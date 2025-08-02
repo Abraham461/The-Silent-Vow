@@ -6743,7 +6743,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Atk1",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -6760,7 +6760,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Atk2",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -6780,7 +6780,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Atk3",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -6800,7 +6800,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Atk4",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -7790,6 +7790,7 @@ script = ExtResource("4_ral0s")
 offset = Vector2(0, -50)
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
+position_smoothing_speed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/CharacterBody2D"]
 position = Vector2(2, 8)
@@ -7813,7 +7814,7 @@ libraries = {
 }
 
 [node name="AttackTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
-wait_time = 0.3
+wait_time = 0.547
 one_shot = true
 
 [node name="RollTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
@@ -7821,7 +7822,6 @@ wait_time = 0.7
 one_shot = true
 
 [node name="ComboTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
-wait_time = 0.8
 one_shot = true
 
 [node name="SlideTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]

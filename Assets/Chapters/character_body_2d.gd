@@ -16,7 +16,7 @@ const ROLL_COOLDOWN := 0.8
 # Timers (only essential ones)
 @onready var combo_timer := $ComboTimer
 @onready var roll_cooldown_timer := $RollCooldownTimer
-
+@onready var roll_timer := $RollTimer
 # State management
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, HEAL, PRAY }
 var current_state: State = State.IDLE
@@ -25,6 +25,7 @@ var move_direction: float = 0
 var facing_direction: float = 1
 var slide_velocity: float = 0
 var can_roll: bool = true
+var attack_buffered: bool = false
 
 func _ready():
 	# Configure timers
@@ -33,34 +34,52 @@ func _ready():
 	
 	roll_cooldown_timer.wait_time = ROLL_COOLDOWN
 	roll_cooldown_timer.one_shot = true
-	
+	# RollTimer governs how long the roll lasts; set this in the inspector or here:
+	roll_timer.wait_time = 0.4    # e.g. 0.4 seconds of roll
+	roll_timer.one_shot = true
 	# Connect signals
 	sprite.animation_finished.connect(_on_animation_finished)
 	combo_timer.timeout.connect(_on_combo_timeout)
 	roll_cooldown_timer.timeout.connect(_on_roll_cooldown_timeout)
+	roll_timer.timeout.connect(_on_roll_timer_timeout)
+		# ensure your attack animations play at a visible rate
+	var frames = sprite.sprite_frames
 
+	# Make sure each combo only plays once:
+	# Make each combo play only once at 8 FPS
+	for combo in ["Atk1", "Atk2", "Atk3", "Atk4"]:
+		if frames.has_animation(combo):
+			frames.set_animation_loop(combo, false)
+			frames.set_animation_speed(combo, 19.0)
+
+	# And still one-shot Heal/Pray
+	if frames.has_animation("Heal"):
+		frames.set_animation_loop("Heal", false)
+	if frames.has_animation("Pray"):
+		frames.set_animation_loop("Pray", false)
 func _physics_process(delta):
-	# Apply gravity only when not grounded or jumping
+	# 1) catch any click before state logic
+	# 1) Always catch an attack click
+	if Input.is_action_just_pressed("Atk"):
+		if current_state == State.ATTACK:
+			attack_buffered = true
+		else:
+			start_attack()
+
+	# 2) ALWAYS apply gravity
 	if not is_on_floor() or current_state == State.JUMP:
 		velocity.y += GRAVITY * delta
-	
-	# Process state logic
+
+	# 3) run your state‐machine
 	match current_state:
-		State.IDLE:
-			handle_idle_state()
-		State.RUN:
-			handle_run_state()
-		State.JUMP:
-			handle_jump_state()
-		State.ATTACK:
-			handle_attack_state()
-		State.ROLL:
-			handle_roll_state()
-		State.SLIDE:
-			handle_slide_state(delta)
-		State.HEAL, State.PRAY:
-			pass  # Special states handled by animation
-	
+		State.IDLE:   handle_idle_state()
+		State.RUN:    handle_run_state()
+		State.JUMP:   handle_jump_state()
+		State.ATTACK: handle_attack_state()
+		State.ROLL:   handle_roll_state()
+		State.SLIDE:  handle_slide_state(delta)
+		State.HEAL, State.PRAY: pass
+
 	move_and_slide()
 	update_animation()
 
@@ -139,16 +158,17 @@ func start_roll():
 	current_state = State.ROLL
 	sprite.play("Roll")
 	can_roll = false
-	velocity.x = facing_direction * ROLL_SPEED
 	roll_cooldown_timer.start()
+	roll_timer.start()
 
 func start_slide():
 	current_state = State.SLIDE
 	sprite.play("Slide")
 	slide_velocity = SLIDE_SPEED
-	velocity.x = facing_direction * slide_velocity
+
 
 func start_attack():
+	print(">> start_attack() fired! current_state was:", current_state)
 	current_state = State.ATTACK
 	combo_step = 1
 	sprite.play("Atk1")
@@ -184,24 +204,25 @@ func _on_combo_timeout():
 func _on_roll_cooldown_timeout():
 	can_roll = true
 
+func _on_roll_timer_timeout():
+	if current_state == State.ROLL:
+		current_state = State.IDLE
+		velocity.x = 0
 func _on_animation_finished():
+	print(">> animation_finished for: ", sprite.animation)  # debug
 	match current_state:
 		State.ATTACK:
-			if combo_step < MAX_COMBO and Input.is_action_pressed("Atk"):
-				# Continue combo
+			if combo_step < MAX_COMBO and attack_buffered:
+				attack_buffered = false             # consume the buffered click
 				combo_step += 1
 				sprite.play("Atk%d" % combo_step)
-				combo_timer.start()  # Restart combo window
+				combo_timer.start()
 			else:
-				# End attack sequence
 				current_state = State.IDLE
 				combo_step = 0
+				attack_buffered = false             # clear any leftover
 		
-		State.ROLL:
-			current_state = State.IDLE
-		
-		State.SLIDE:
-			current_state = State.IDLE
-		
-		State.HEAL, State.PRAY:
-			current_state = State.IDLE
+		State.ROLL, State.SLIDE, State.HEAL, State.PRAY:
+			# for slide we also fall back when velocity decays
+			if current_state in [State.HEAL, State.PRAY]:
+				current_state = State.IDLE
