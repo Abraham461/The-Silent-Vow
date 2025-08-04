@@ -1,6 +1,10 @@
 extends CharacterBody2D
+signal healthChanged
 
 # Movement parameters
+var currentHealth: int = 100
+var maxHealth: int = 100
+var isHurt: bool = false
 const WALK_SPEED := 200
 const ROLL_SPEED := 300
 const JUMP_FORCE := -400
@@ -26,6 +30,10 @@ var facing_direction: float = 1
 var slide_velocity: float = 0
 var can_roll: bool = true
 var attack_buffered: bool = false
+@onready var effects = $AnimationPlayer
+@onready var hurtTimer = $HurtTimer
+var knockbackPower = 250.0  # or whatever value you need
+
 
 func _ready():
 	# Configure timers
@@ -226,3 +234,24 @@ func _on_animation_finished():
 			# for slide we also fall back when velocity decays
 			if current_state in [State.HEAL, State.PRAY]:
 				current_state = State.IDLE
+
+func hurtByEnemy(area):
+	currentHealth -= 20
+	if currentHealth < 0:
+		currentHealth = maxHealth
+
+	isHurt = true
+	healthChanged.emit()
+
+	knockback(area.get_parent().velocity)
+	effects.play("TakeHit")
+	hurtTimer.start()
+	await hurtTimer.timeout
+	effects.play("RESET")
+	isHurt = false
+
+
+func knockback(enemyVelocity: Vector2):
+	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	velocity = knockbackDirection
+	move_and_slide()
