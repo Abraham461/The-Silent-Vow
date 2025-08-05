@@ -8421,7 +8421,7 @@ libraries = {
 }
 
 [node name="AttackTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
-wait_time = 0.7
+wait_time = 1.594
 one_shot = true
 
 [node name="RollTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
@@ -8429,7 +8429,6 @@ wait_time = 0.7
 one_shot = true
 
 [node name="ComboTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
-wait_time = 1.5
 one_shot = true
 
 [node name="SlideTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
@@ -8441,6 +8440,10 @@ wait_time = 0.899
 one_shot = true
 
 [node name="HurtTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
+
+[node name="AttackCooldownTimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
+one_shot = true
+ignore_time_scale = true
 
 [node name="Enemy" type="CharacterBody2D" parent="Chapter2-1"]
 position = Vector2(12047, 412)
