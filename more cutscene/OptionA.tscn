@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkkxnrxpbi4wd"]
+
+[ext_resource type="Script" uid="uid://bwfrryw8l4q7s" path="res://more cutscene/option_a.gd" id="2_mh4px"]
+[ext_resource type="AudioStream" uid="uid://5528frjya04a" path="res://more cutscene/soundeff/RPG_Fantasy_Music_-_No_Copyright_Music_-_DnD(256k).ogg" id="3_d3xr1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_us7u2"]
+bg_color = Color(0.0295066, 0.0295066, 0.0295065, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_ptcjm"]
+font_names = PackedStringArray("Times New Roman")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_4fg7c"]
+font_names = PackedStringArray("Times New Roman")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_88vyv"]
+subpixel_positioning = 0
+
+[node name="option_A" type="CanvasLayer"]
+script = ExtResource("2_mh4px")
+
+[node name="CutsceneImage" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(640, 360)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+
+[node name="TextboxContainer" type="MarginContainer" parent="."]
+texture_filter = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = -99.0
+offset_right = -45.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="TextboxContainer"]
+modulate = Color(1, 1, 1, 0.552941)
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_us7u2")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+
+[node name="start" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_ptcjm")
+theme_override_font_sizes/font_size = 14
+text = "*"
+
+[node name="Label2" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = SubResource("SystemFont_4fg7c")
+theme_override_font_sizes/font_size = 14
+text = "In the peaceful kingdom of Eirenwald, golden cities and lush valleys thrived under calm skies. For over forty years, its people flourished under King Solomon the Wise, a ruler of justice and peace."
+autowrap_mode = 3
+clip_text = true
+
+[node name="end" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_88vyv")
+theme_override_font_sizes/font_size = 14
+text = "<-"
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_d3xr1")
+autoplay = true
+parameters/looping = true
+
+[node name="SeffPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXTimer" type="Timer" parent="."]
