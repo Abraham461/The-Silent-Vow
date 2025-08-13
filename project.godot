@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="uid://c61wee8duqu24"
+run/main_scene="uid://c1xenwm5rtq1k"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,15 +19,17 @@ config/icon="res://icon.svg"
 
 NavigationManager="*res://player/scripts/navigation_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+TransitionScreen="*res://Main_menu/Global Transition/transition_screen.tscn"
+AudioPlayer="*res://Main_menu/Global Transition/audio_player.tscn"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
-window/size/window_width_override=1280
-window/size/window_height_override=750
+window/size/window_width_override=1152
+window/size/window_height_override=648
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
