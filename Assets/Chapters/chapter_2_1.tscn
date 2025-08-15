@@ -8350,7 +8350,6 @@ energy = 0.5
 shadow_enabled = true
 
 [node name="Cave Darkness" type="LightOccluder2D" parent="Chapter2-1"]
-visible = false
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(26, 122)
