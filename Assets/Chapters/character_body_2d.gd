@@ -10,10 +10,13 @@ const ROLL_SPEED := 300
 const JUMP_FORCE := -400
 const GRAVITY := 1000
 const MAX_COMBO := 4
-const SLIDE_SPEED := 230
+const SLIDE_SPEED := 310
+const SLIDE_COOLDOWN :=0.8
 const COMBO_WINDOW := 0.3
 const ROLL_COOLDOWN := 0.8
-
+const JUMP_ATK_DROP := 200      # tweak this to control how fast you slam down (higher -> faster)
+const JUMP_ATK_HOLD_FRAME := 1     # 0-based frame index to hold (1 = second frame)
+const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landing (frame 3 -> index 2)
 # Animation references
 @onready var sprite := $AnimatedSprite2D
 
@@ -21,6 +24,13 @@ const ROLL_COOLDOWN := 0.8
 @onready var combo_timer := $ComboTimer
 @onready var roll_cooldown_timer := $RollCooldownTimer
 @onready var roll_timer := $RollTimer
+@onready var slide_cooldown_timer := $SlideCooldownTimer
+
+
+@onready var effects = $AnimationPlayer
+@onready var hurtTimer = $HurtTimer
+@onready var slide_timer := $SlideTimer  # Make sure you add this Timer node in scene
+
 # State management
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, HEAL, PRAY }
 var current_state: State = State.IDLE
@@ -29,11 +39,10 @@ var move_direction: float = 0
 var facing_direction: float = 1
 var slide_velocity: float = 0
 var can_roll: bool = true
+var can_slide: bool = true
 var attack_buffered: bool = false
-@onready var effects = $AnimationPlayer
-@onready var hurtTimer = $HurtTimer
 var knockbackPower = 250.0  # or whatever value you need
-
+var jumpatk_lock: bool = false  # true while JumpAtk must wait for landing
 
 func _ready():
 	# Configure timers
@@ -45,27 +54,39 @@ func _ready():
 	# RollTimer governs how long the roll lasts; set this in the inspector or here:
 	roll_timer.wait_time = 0.4    # e.g. 0.4 seconds of roll
 	roll_timer.one_shot = true
+	slide_cooldown_timer.wait_time = SLIDE_COOLDOWN
+	slide_cooldown_timer.one_shot = true
+	slide_timer.wait_time = 0.6
+	slide_timer.one_shot = true
 	# Connect signals
 	sprite.animation_finished.connect(_on_animation_finished)
 	combo_timer.timeout.connect(_on_combo_timeout)
 	roll_cooldown_timer.timeout.connect(_on_roll_cooldown_timeout)
 	roll_timer.timeout.connect(_on_roll_timer_timeout)
+	slide_cooldown_timer.timeout.connect(_on_slide_cooldown_timeout)
+	slide_timer.timeout.connect(_on_slide_timer_timeout)
+	
+
 		# ensure your attack animations play at a visible rate
 	var frames = sprite.sprite_frames
 
 	# Make sure each combo only plays once:
 	# Make each combo play only once at 8 FPS
-	for combo in ["Atk1", "Atk2", "Atk3", "Atk4"]:
-		if frames.has_animation(combo):
-			frames.set_animation_loop(combo, false)
-			frames.set_animation_speed(combo, 19.0)
+	for anim_name in ["Atk1", "Atk2", "Atk3", "Atk4", "JumpAtk", ]:
+		if frames.has_animation(anim_name):
+			frames.set_animation_loop(anim_name, false)
+			frames.set_animation_speed(anim_name, 19.0)
+
+	# rest of your _ready...
 
 	# And still one-shot Heal/Pray
 	if frames.has_animation("Heal"):
 		frames.set_animation_loop("Heal", false)
 	if frames.has_animation("Pray"):
 		frames.set_animation_loop("Pray", false)
+var was_on_floor = false
 func _physics_process(delta):
+	var now_on_floor = is_on_floor()
 	# 1) catch any click before state logic
 	# 1) Always catch an attack click
 	if Input.is_action_just_pressed("Atk"):
@@ -85,11 +106,39 @@ func _physics_process(delta):
 		State.JUMP:   handle_jump_state()
 		State.ATTACK: handle_attack_state()
 		State.ROLL:   handle_roll_state()
-		State.SLIDE:  handle_slide_state(delta)
+		State.SLIDE:  handle_slide_state()
 		State.HEAL, State.PRAY: pass
 
 	move_and_slide()
+		# If we were holding JumpAtk until landing, check for landing now
+	if jumpatk_lock and now_on_floor and not was_on_floor:
+		_end_jumpatk()
+
+	was_on_floor = now_on_floor
 	update_animation()
+# --- New helper to finish JumpAtk when landed ---
+
+
+func _end_jumpatk():
+	jumpatk_lock = false
+	if sprite.sprite_frames.has_animation("JumpAtk"):
+		sprite.animation = "JumpAtk"
+		sprite.play("JumpAtk")
+		await get_tree().process_frame
+		sprite.frame = JUMP_ATK_RESUME_FRAME
+
+		call_deferred("_force_resume_frame", JUMP_ATK_RESUME_FRAME)
+		print("update_animation set anim:", sprite.animation, " state:", current_state)
+
+	# Keep state as ATTACK until tail finishes
+	current_state = State.ATTACK
+	combo_step = 0
+	attack_buffered = false
+	# 🚫 Don't immediately change to RUN/IDLE or call update_animation()
+
+func _force_resume_frame(frame):
+	sprite.frame = frame
+	sprite.speed_scale = 1.0
 
 func handle_idle_state():
 	move_direction = Input.get_axis("Left", "Right")
@@ -100,6 +149,8 @@ func handle_idle_state():
 		current_state = State.RUN
 	elif Input.is_action_just_pressed("Roll") and can_roll:
 		start_roll()
+	elif Input.is_action_just_pressed("Slide") and can_slide:
+		start_slide()
 	elif Input.is_action_just_pressed("Atk"):
 		start_attack()
 	elif Input.is_action_just_pressed("Heal"):
@@ -120,6 +171,9 @@ func handle_run_state():
 		jump()
 	elif Input.is_action_just_pressed("Roll") and can_roll:
 		start_roll()
+	elif Input.is_action_just_pressed("Slide") and is_on_floor():
+		# start a ground slide
+		start_slide()
 	elif Input.is_action_just_pressed("Atk"):
 		start_attack()
 	elif move_direction == 0:
@@ -148,13 +202,16 @@ func handle_roll_state():
 	velocity.x = facing_direction * ROLL_SPEED
 	velocity.y = 0
 
-func handle_slide_state(delta):
-	slide_velocity = move_toward(slide_velocity, 0, delta * 1000)
-	velocity.x = facing_direction * slide_velocity
+func handle_slide_state():
+	velocity.x = facing_direction * SLIDE_SPEED
 	velocity.y = 0
-	
-	if slide_velocity <= 10:
-		current_state = State.IDLE
+		# --- start slide ---
+func start_slide():
+	current_state = State.SLIDE
+	sprite.play("Slide")
+	can_roll = false
+	slide_cooldown_timer.start()
+	slide_timer.start()
 
 # Action starters
 func jump():
@@ -169,14 +226,32 @@ func start_roll():
 	roll_cooldown_timer.start()
 	roll_timer.start()
 
-func start_slide():
-	current_state = State.SLIDE
-	sprite.play("Slide")
-	slide_velocity = SLIDE_SPEED
 
 
 func start_attack():
 	print(">> start_attack() fired! current_state was:", current_state)
+		# If in air, play JumpAtk and do not run ground combo logic
+	# If in air, play JumpAtk and hold a specific frame until landing
+	if current_state == State.JUMP:
+		current_state = State.ATTACK
+		jumpatk_lock = true
+		# force a stronger downward velocity so the character drops faster
+		velocity.y = max(velocity.y, JUMP_ATK_DROP)
+		# start the animation and immediately freeze it on the chosen frame
+		if sprite.sprite_frames.has_animation("JumpAtk"):
+			await get_tree().process_frame
+			sprite.play("JumpAtk")
+			sprite.frame = JUMP_ATK_HOLD_FRAME
+			sprite.stop()  # freeze at this frame
+			var frame_count = sprite.sprite_frames.get_frame_count("JumpAtk")
+			sprite.frame = clamp(JUMP_ATK_HOLD_FRAME, 0, frame_count - 1)
+			# freeze the animation by stopping it
+			sprite.stop()
+		else:
+			# fallback: just ensure we're in attack state if animation missing
+			push_warning("JumpAtk animation missing on AnimatedSprite2D")
+		return
+	# ground combo
 	current_state = State.ATTACK
 	combo_step = 1
 	sprite.play("Atk1")
@@ -193,7 +268,11 @@ func start_pray():
 func update_animation():
 	if current_state in [State.ATTACK, State.ROLL, State.SLIDE, State.HEAL, State.PRAY]:
 		return
-	
+	if current_state == State.ATTACK:
+		return  # don't touch animation, let it finish
+	if sprite.animation == "JumpAtk" and sprite.frame == JUMP_ATK_HOLD_FRAME:
+		return
+
 	match current_state:
 		State.IDLE:
 			sprite.play("Idle")
@@ -216,8 +295,43 @@ func _on_roll_timer_timeout():
 	if current_state == State.ROLL:
 		current_state = State.IDLE
 		velocity.x = 0
+		
+func _on_slide_cooldown_timeout():
+	can_roll = true
+func _on_slide_timer_timeout():
+	if current_state == State.SLIDE:
+		current_state = State.IDLE
+		velocity.x = 0
+		
 func _on_animation_finished():
 	print(">> animation_finished for: ", sprite.animation)  # debug
+	var anim = sprite.animation
+
+	# If JumpAtk finishing event fired:
+	if anim == "JumpAtk":
+		# If still locked for some reason, ignore finishing (shouldn't happen because we stopped)
+		if jumpatk_lock:
+			return
+
+		# JumpAtk finished normally (we had resumed at landing and played frames 3..end)
+		# Now return to an appropriate grounded state
+		if is_on_floor():
+			current_state = State.RUN if abs(velocity.x) > 10 else State.IDLE
+		else:
+			# if somehow not on floor, keep JUMP state (safety)
+			current_state = State.JUMP
+
+		# cleanup combo flags
+		combo_step = 0
+		attack_buffered = false
+		return
+
+	# Slide finished -> stop sliding
+	if anim == "Slide":
+		if current_state == State.SLIDE:
+			current_state = State.IDLE
+			velocity.x = 0
+		return
 	match current_state:
 		State.ATTACK:
 			if combo_step < MAX_COMBO and attack_buffered:

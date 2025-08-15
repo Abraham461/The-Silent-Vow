@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://5528frjya04a"
+path="res://.godot/imported/RPG_Fantasy_Music_-_No_Copyright_Music_-_DnD(256k).ogg-abc5514e0edad0be40aa253f348e5933.oggvorbisstr"
+
+[deps]
+
+source_file="res://more cutscene/soundeff/RPG_Fantasy_Music_-_No_Copyright_Music_-_DnD(256k).ogg"
+dest_files=["res://.godot/imported/RPG_Fantasy_Music_-_No_Copyright_Music_-_DnD(256k).ogg-abc5514e0edad0be40aa253f348e5933.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

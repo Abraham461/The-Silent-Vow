@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsft61g7ss3xl"]
+
+[ext_resource type="PackedScene" uid="uid://cvcq4v6pdk17n" path="res://player/player.tscn" id="1_1sv7u"]
+[ext_resource type="Script" uid="uid://qv2e58kp8oow" path="res://player/Playable.gd" id="1_xx22o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sv7u"]
+size = Vector2(640, 116.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1t06j"]
+size = Vector2(8, 352)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xx22o"]
+size = Vector2(33, 375)
+
+[node name="Playable" type="Node2D"]
+script = ExtResource("1_xx22o")
+
+[node name="Player" parent="." instance=ExtResource("1_1sv7u")]
+disable_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(320, 298.25)
+shape = SubResource("RectangleShape2D_1sv7u")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="ExitRight" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitRight"]
+position = Vector2(642, 180)
+shape = SubResource("RectangleShape2D_1t06j")
+
+[node name="LeftBarrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBarrier"]
+position = Vector2(6.5, 177.5)
+shape = SubResource("RectangleShape2D_xx22o")

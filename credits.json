@@ -1,0 +1,80 @@
+[
+  {
+	"title": "Story & Cutscenes",
+	"items": [
+	  "Hein Htet San"
+	]
+  },
+  {
+	"title": "Dialogue & Narrative Design",
+	"items": [
+	  "Hein Htet San"
+	]
+  },
+  {
+	"title": "Game Setting & Menu Design",
+	"items": [
+	  "Aye Su Mon",
+	  "Aye Thidar Tun"
+	]
+  },
+  {
+	"title": "Main Menu & Intro Scene",
+	"items": [
+	  "Aye Thidar Tun",
+	  "Aye Su Mon"
+	]
+  },
+  {
+	"title": "Game Characters & Animation",
+	"items": [
+	  "Abraham"
+	]
+  },
+  {
+	"title": "Gameplay Systems & Combat (hit/hurt, health bars)",
+	"items": [
+	  "Hein Htet San",
+	  "Abraham"
+	]
+  },
+  {
+	"title": "Game Environment & Level Art",
+	"items": [
+	  "Bhone Myint Chain",
+	  "Wati Caw"
+	]
+  },
+  {
+	"title": "Background Asset Collection & Editing",
+	"items": [
+	  "Bhone Myint Chain",
+	  "Wati Caw"
+	]
+  },
+  {
+	"title": "Options UI & Interface Scripting",
+	"items": [
+	  "Aye Thidar Tun",
+	  "Aye Su Mon"
+	]
+  },
+  {
+	"title": "Cutscene Video Editing",
+	"items": [
+	  "Aye Thidar Tun"
+	]
+  },
+  {
+	"title": "Project Coordination & Integration",
+	"items": [
+	  "Aye Thidar Tun"
+	]
+  },
+  {
+	"title": "Playtesting & QA",
+	"items": [
+	  "Team"
+	]
+  }
+]
