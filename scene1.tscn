@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bsft61g7ss3xl" path="res://player/character.tscn" id="4_ho7oe"]
 [ext_resource type="PackedScene" uid="uid://dld58qq8eton0" path="res://door.tscn" id="5_nmhtg"]
 [ext_resource type="Script" uid="uid://bhwor06mi5l4r" path="res://character_body2d.gd" id="6_sprq5"]
-[ext_resource type="Texture2D" uid="uid://fg0osqu2a70f" path="res://Sprites/Idle (King).png" id="7_kc8kc"]
-[ext_resource type="Texture2D" uid="uid://dlra2l36w6sjl" path="res://Sprites/Run (King).png" id="8_ivjb3"]
+[ext_resource type="Texture2D" uid="uid://fg0osqu2a70f" path="res://king/Sprites/Idle (King).png" id="7_kc8kc"]
+[ext_resource type="Texture2D" uid="uid://dlra2l36w6sjl" path="res://king/Sprites/Run (King).png" id="8_ivjb3"]
 [ext_resource type="PackedScene" uid="uid://dingdtff7a7j5" path="res://helpers/actioinable.tscn" id="9_ivjb3"]
 [ext_resource type="Resource" uid="uid://b4rro3nph71ad" path="res://dialogue/main.dialogue" id="10_i8grw"]
 
