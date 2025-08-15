@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx4rm83ufwxob"]
+
+[ext_resource type="Script" uid="uid://cvskfbyxhbicv" path="res://credits_roll.gd" id="1_ls2al"]
+
+[node name="CreditsLabel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ls2al")
+
+[node name="credits_label" type="RichTextLabel" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 178.0
+offset_top = 1.0
+offset_right = 471.0
+offset_bottom = 359.0
+text = "fefefwe"
+fit_content = true
+scroll_following = true
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 638.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="scroll" type="AnimationPlayer" parent="."]

@@ -48,7 +48,7 @@ func _process(_delta):
 				display_text()
 			elif text_queue.is_empty() and image_queue.is_empty():
 				# Finished all entries → go to scene1.tscn
-				get_tree().change_scene_to_file("res://scene1.tscn")
+				get_tree().change_scene_to_file("res://more cutscene/cutscene_final.tscn")
 		State.READING:
 			if Input.is_action_just_pressed("ui_accept"):
 				tween.kill()

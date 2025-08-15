@@ -1,16 +1,20 @@
 extends CanvasLayer
+
 const CHAR_READ_RATE = 0.05
 
 @onready var textbox_container = $TextboxContainer
 @onready var start_symbol = $TextboxContainer/MarginContainer/HBoxContainer/start
 @onready var end_symbol = $TextboxContainer/MarginContainer/HBoxContainer/end
 @onready var label = $TextboxContainer/MarginContainer/HBoxContainer/Label2
-@onready var image_rect = $CutsceneImage
+@onready var image_rect = $CutsceneImage 
 @onready var bgm_player = $BGMPlayer
 @onready var sfx_player = $SeffPlayer
 @onready var sfx_timer = $SFXTimer
 @onready var tween = get_tree().create_tween()
-enum State {
+
+
+
+enum  State {
 	READY,
 	READING,
 	FINISHED
@@ -20,35 +24,36 @@ var current_state = State.READY
 var image_queue = []
 var text_queue = []
 
-# Preload all images
+
+# preload all six images (make sure the paths match your project)
 var textures = [
-	preload("res://more cutscene/Image_for_options/OptionC.png"),
-	preload("res://more cutscene/Image_for_options/OptionC.png")
+	preload("res://more cutscene/image/Zakkcoff_final_statue.png")
 ]
 
-# Optional sound effect map
 var sfx_map = {
-	1: preload("res://more cutscene/soundeff/nosoundeff.ogg")
+	0: preload("res://more cutscene/soundeff/nosoundeff.ogg")
+
 }
 
 func _ready():
-	bgm_player.stop()
+	print("Starting state: State.READY")
+	if has_node("BGMPlayer"):
+		$BGMPlayer.stop()
+	#bgm_player.play()  
 	hide_textbox()
-	enqueue_cutscenes()
+	queue_text("Elira: `There is power in silence. But in the silence after death, the vow echoes still...` `He kept his. Now I must keep mine.`")
+	queue_image(textures[0])
 
-func enqueue_cutscenes():
-	# Add text and image pairs in order
-	queue_pair("Elira uses the Hollow Star’s remaining power to become immortal and protect the realm through fear. Peace is kept — but coldly. ", textures[0])
-	queue_pair("The people love her… and fear her. Statues of Zakcoff are removed from history. 'A vow kept through mercy dies. A vow kept through power endures.' ", textures[1])
 
+	
 func _process(_delta):
 	match current_state:
 		State.READY:
-			if text_queue.size() > 0 and image_queue.size() > 0:
+			if !text_queue.is_empty():
 				display_text()
 			elif text_queue.is_empty() and image_queue.is_empty():
 				# Finished all entries → go to scene1.tscn
-				get_tree().change_scene_to_file("res://more cutscene/cutscene_final.tscn")
+				get_tree().change_scene_to_file("res://credits_roll.tscn")
 		State.READING:
 			if Input.is_action_just_pressed("ui_accept"):
 				tween.kill()
@@ -57,15 +62,14 @@ func _process(_delta):
 				change_state(State.FINISHED)
 		State.FINISHED:
 			if Input.is_action_just_pressed("ui_accept"):
-				hide_textbox()
 				change_state(State.READY)
+				hide_textbox()
 
+func queue_text (next_text):
+	text_queue.push_back(next_text)
+func queue_image(tex: Texture) -> void:
+	image_queue.append(tex)
 
-
-# Helper to queue both text & image
-func queue_pair(text: String, img: Texture) -> void:
-	text_queue.append(text)
-	image_queue.append(img)
 
 func hide_textbox():
 	start_symbol.text = ""
@@ -79,20 +83,22 @@ func show_textbox():
 	textbox_container.show()
 
 func display_text():
-	# Pop next items
-	var next_text = text_queue.pop_front()
 	var next_img = image_queue.pop_front()
-	# Set visuals
+	var next_text = text_queue.pop_front()
 	image_rect.texture = next_img
-	label.text = next_text
-	show_textbox()
-	change_state(State.READING)
-	var idx = textures.find(next_img)
-	if sfx_map.has(idx):
-		sfx_player.stream = sfx_map[idx]
+	sfx_player.stop()
+	sfx_timer.stop() 
+	 # Determine which texture this is by checking how many are left
+	var current_index = textures.size() - image_queue.size() - 1
+	if sfx_map.has(current_index):
+		sfx_player.stream = sfx_map[current_index]
 		sfx_player.play()
-	# Animate text
+		if current_index == 1:
+			sfx_player.volume_db = -12
 	tween = get_tree().create_tween()
+	label.text = next_text
+	change_state(State.READING)
+	show_textbox()
 	tween.tween_property(
 		label,
 		"visible_characters",
@@ -102,12 +108,19 @@ func display_text():
 	tween.connect("finished", Callable(self, "on_tween_finished"))
 	end_symbol.text = "..."
 
-func _on_tween_finished():
-	end_symbol.text = "<-"
-	change_state(State.FINISHED)
-
 func _on_SFXTimer_timeout():
 	sfx_player.stop()
-
-func change_state(new_state):
-	current_state = new_state
+	
+func on_tween_finished():
+	end_symbol.text = "<-"
+	change_state(State.FINISHED)
+func change_state(next_state):
+	current_state = next_state
+	match current_state:
+		State.READY:
+			print("Changing state to: State.READY")
+		State.READING:
+			print("Changing state to: State.READING")
+		State.FINISHED:
+			print("Changing state to: State.FINISHED")
+			
