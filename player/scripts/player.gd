@@ -98,13 +98,13 @@ func _ready():
 	change_state(PlayerState.IDLE)
 
 func _on_dialogue_started():
-	# enable blocking walls and freeze the player
+	# enable blocking walls and freeze the player controls for dialogue only
 	dialogue_active = true
 	_enable_walls()
-	freeze_player()
+	freeze_player()  # note: freeze_player no longer toggles movement_disabled
 
 func _on_dialogue_finished():
-	# disable blocking walls and unfreeze the player
+	# disable blocking walls and unfreeze the player controls
 	dialogue_active = false
 	_disable_walls()
 	unfreeze_player()
@@ -138,16 +138,17 @@ func _disable_walls():
 
 # Freeze / unfreeze player movement & inputs
 func freeze_player():
-	movement_disabled = true
+	# Do NOT change movement_disabled here — keep movement_disabled for other usages.
+	# Dialogue flow uses dialogue_active to block movement. Here we just stop input processing & animations.
 	velocity = Vector2.ZERO
 	# make sure to stop motion immediately
 	move_and_slide()
 	animation_player.play("Idle")
-	# optional: stop processing input callbacks if you want (keeps physics)
+	# stop _input callbacks (optional). Physics still runs so dialogue walls and collisions work.
 	set_process_input(false)
 
 func unfreeze_player():
-	movement_disabled = false
+	# Do NOT touch movement_disabled here.
 	set_process_input(true)
 
 func is_frozen() -> bool:
@@ -160,8 +161,8 @@ func _on_spawn(position:Vector2,direction:String):
 	animation_player.stop()
 
 func _physics_process(delta):
-	# If we are frozen, don't allow movement or physics-controlled velocity changes
-	if movement_disabled or is_dead or is_hurt:
+	# If we are frozen (dialogue_active or movement_disabled or death/hurt), don't allow movement or physics-controlled velocity changes
+	if dialogue_active or movement_disabled or is_dead or is_hurt:
 		velocity = Vector2.ZERO
 		# ensure we still run move_and_slide so collisions update
 		move_and_slide()
@@ -223,12 +224,12 @@ func _on_actionable_exited(area: Area2D) -> void:
 		_dialogue_triggered = false
 
 func handle_input():
-	# block input handling if movement is disabled
-	if movement_disabled:
+	# block input handling if movement is disabled OR dialogue is active
+	if movement_disabled or dialogue_active:
 		animated_sprite.play("Idle")
 		return
 
-	# keep dialogue_active effect for visuals
+	# keep dialogue_active effect for visuals (redundant guard)
 	if dialogue_active:
 		animated_sprite.play("Idle")
 
@@ -289,7 +290,8 @@ func handle_death():
 		animation_player.play("Dead")
 
 func start_combo_attack():
-	if movement_disabled: return
+	# respect dialogue_active and hard freeze
+	if movement_disabled or dialogue_active: return
 	if attack_delay_timer > 0:
 		return
 
@@ -310,7 +312,7 @@ func start_combo_attack():
 		4: animation_player.play("NormalAtk4")
 
 func start_jump_attack():
-	if movement_disabled: return
+	if movement_disabled or dialogue_active: return
 	is_attacking = true
 	has_jumped_attack = true
 	attack_timer = ATTACK_COOLDOWN
@@ -319,7 +321,7 @@ func start_jump_attack():
 	animation_player.play("JumpAtk")
 
 func start_roll():
-	if movement_disabled: return
+	if movement_disabled or dialogue_active: return
 	is_rolling = true
 	roll_timer = ROLL_DURATION
 	roll_cooldown_timer = ROLL_COOLDOWN
@@ -331,7 +333,7 @@ func start_roll():
 	velocity.y = 0
 
 func start_pray():
-	if movement_disabled: return
+	if movement_disabled or dialogue_active: return
 	change_state(PlayerState.PRAY)
 	animation_player.play("Pray")
 

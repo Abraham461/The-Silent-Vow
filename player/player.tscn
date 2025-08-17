@@ -1127,7 +1127,6 @@ shape = SubResource("CircleShape2D_2ieo8")
 [node name="LeftWall" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
-visible = false
 position = Vector2(91, 181.25)
 shape = SubResource("RectangleShape2D_ebec5")
 
