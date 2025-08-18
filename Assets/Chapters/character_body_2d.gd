@@ -2,6 +2,7 @@ extends CharacterBody2D
 signal healthChanged
 
 # Movement parameters
+var can_enter_house: bool = false
 var currentHealth: int = 100
 var maxHealth: int = 100
 var isHurt: bool = false
@@ -31,6 +32,9 @@ const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landi
 @onready var hurtTimer = $HurtTimer
 @onready var slide_timer := $SlideTimer  # Make sure you add this Timer node in scene
 
+@onready var torch_light = $TorchLight
+var torch_on = false
+
 # State management
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, HEAL, PRAY }
 var current_state: State = State.IDLE
@@ -44,8 +48,14 @@ var attack_buffered: bool = false
 var knockbackPower = 250.0  # or whatever value you need
 var jumpatk_lock: bool = false  # true while JumpAtk must wait for landing
 
+func _process(delta):
+	if Input.is_action_just_pressed("toggle_torch"):
+		torch_on = !torch_on
+		torch_light.visible = torch_on
+		
 func _ready():
 	# Configure timers
+	torch_light.visible = torch_on
 	combo_timer.wait_time = COMBO_WINDOW
 	combo_timer.one_shot = true
 	
