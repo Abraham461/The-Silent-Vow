@@ -1,4 +1,4 @@
-[gd_scene load_steps=262 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=263 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bm1khtjexhhsx" path="res://Assets/Sprites/NightBorne.png" id="9_whxi1"]
 [ext_resource type="Script" uid="uid://dygoxfbje3vki" path="res://Assets/Chapters/door_area.gd" id="10_fr5cv"]
 [ext_resource type="Texture2D" uid="uid://cbxvfelaq0kcd" path="res://Assets/Sprites/Climb.png" id="10_gmtg2"]
+[ext_resource type="Script" uid="uid://xhxu3lowv4cw" path="res://Assets/Chapters/key_item.gd" id="11_0ni1m"]
 [ext_resource type="Texture2D" uid="uid://cplsu82m7ob8u" path="res://Assets/Sprites/crouch_idle.png" id="11_rujle"]
 [ext_resource type="Texture2D" uid="uid://b5yhprilfv46y" path="res://Assets/Sprites/crouch_attacks.png" id="12_ui76u"]
 [ext_resource type="Texture2D" uid="uid://v4nsxpuurtp3" path="res://Assets/Sprites/Death.png" id="13_eqqdr"]
@@ -9547,7 +9548,7 @@ normal = Vector2(-1, 0)
 distance = 10.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g1nf"]
-size = Vector2(22, 19.7188)
+size = Vector2(21, 17.9297)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt7p7"]
 
@@ -11664,6 +11665,7 @@ energy = 0.5
 shadow_enabled = true
 
 [node name="Cave Darkness" type="LightOccluder2D" parent="Chapter2-1"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(26, 122)
@@ -11721,13 +11723,14 @@ position = Vector2(13729, -46)
 shape = SubResource("WorldBoundaryShape2D_whxi1")
 
 [node name="KeyItem" type="Area2D" parent="Chapter2-1"]
+script = ExtResource("11_0ni1m")
 
 [node name="Sprite2D" type="Sprite2D" parent="Chapter2-1/KeyItem"]
-position = Vector2(14317, 427)
+position = Vector2(5667, 74)
 texture = ExtResource("8_vimia")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/KeyItem"]
-position = Vector2(14316, 425)
+position = Vector2(5665.5, 72.9648)
 shape = SubResource("RectangleShape2D_7g1nf")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Chapter2-1"]
@@ -11831,3 +11834,5 @@ debug_color = Color(1, 0, 0, 0.419608)
 
 [connection signal="body_entered" from="Chapter2-1/Door/DoorArea" to="Chapter2-1/Door/DoorArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Chapter2-1/Door/DoorArea" to="Chapter2-1/Door/DoorArea" method="_on_body_exited"]
+[connection signal="body_entered" from="Chapter2-1/KeyItem" to="Chapter2-1/KeyItem" method="_on_body_entered"]
+[connection signal="body_exited" from="Chapter2-1/KeyItem" to="Chapter2-1/KeyItem" method="_on_body_exited"]
