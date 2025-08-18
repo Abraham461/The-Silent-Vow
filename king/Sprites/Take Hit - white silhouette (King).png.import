@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpcl6d0dv5mgn"
-path="res://.godot/imported/Take Hit - white silhouette (King).png-5b0cecee22d6866458148eb0330f1c0e.ctex"
+path="res://.godot/imported/Take Hit - white silhouette (King).png-ecc2ff98c913bdac14c6b017c4bca4f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Take Hit - white silhouette (King).png"
-dest_files=["res://.godot/imported/Take Hit - white silhouette (King).png-5b0cecee22d6866458148eb0330f1c0e.ctex"]
+source_file="res://king/Sprites/Take Hit - white silhouette (King).png"
+dest_files=["res://.godot/imported/Take Hit - white silhouette (King).png-ecc2ff98c913bdac14c6b017c4bca4f0.ctex"]
 
 [params]
 
