@@ -37,9 +37,15 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
+<<<<<<< HEAD
 [global_group]
 
 player=""
+=======
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+>>>>>>> 962da26a1c0af5b518443bdf6f2a06e6b65e4b73
 
 [input]
 
