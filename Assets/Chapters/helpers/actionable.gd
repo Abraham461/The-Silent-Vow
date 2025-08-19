@@ -18,7 +18,7 @@ func _on_body_entered(body: Node) -> void:
 
 		# wait until dialogue balloon node disappears
 		# wait for fixed duration before unfreezing
-		var dialogue_duration = 6  # adjust to match dialogue length
+		var dialogue_duration = 9 # adjust to match dialogue length
 		await get_tree().create_timer(dialogue_duration).timeout
 
 		# unfreeze player
