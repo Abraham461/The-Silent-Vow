@@ -1,4 +1,4 @@
-[gd_scene load_steps=268 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=264 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -33,8 +33,6 @@
 [ext_resource type="PackedScene" uid="uid://c0gndkgjxaom4" path="res://canvas_layer.tscn" id="25_rujle"]
 [ext_resource type="Script" uid="uid://dlh6v4qgohbp6" path="res://Assets/Chapters/HurtBox.gd" id="26_vimia"]
 [ext_resource type="Script" uid="uid://cu68vv8fptiy7" path="res://Assets/Chapters/health.gd" id="31_fr5cv"]
-[ext_resource type="PackedScene" uid="uid://bv8lwakktb675" path="res://Assets/Chapters/helpers/actionable.tscn" id="33_vx4nc"]
-[ext_resource type="Resource" uid="uid://cks1cp7a0kx78" path="res://Assets/Chapters/dialogue/npc_intro.dialogue" id="34_8ncxi"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pjcyk"]
 polygon = PackedVector2Array(-618, 37, 634, 8, 819, 8, 912, 8, 960, 23, 1001, 60, 1007, 95, 1002, 122, 1069, 120, 1125, 64, 1219, -1, 1261, -23, 1329, -22, 1358, -53, 1413, -71, 1453, -71, 1478, -90, 1550, -90, 1622, -89, 1687, -88, 1752, -87, 1811, -86, 1846, -135, 1910, -135, 1961, -174, 2026, -186, 2109, -196, 2176, -190, 2223, -174, 2252, -149, 2274, -119, 2300.67, -82.4296, 2339, -70, 2376, -58, 2377, -17, 2378, 28, 2379, 63, 2394, 78, 2412, 83, 2440.95, 82.4067, 2470, 63, 2493, -21, 2551, -55, 2603, -68, 2628, -115, 2682, -115, 2724, -126, 2765, -160, 2810, -195, 2839, -208, 2876, -186, 2922, -164, 2954, -141, 2960, -111, 2968, -78, 2977, -47, 2992, -22, 3012, 0, 3047, -8, 3077, -39, 3113, -64, 3156, -84, 3221, -83, 3289, -92, 3355, -101, 3433, -100, 3502, -90, 3578, -82, 3643, -65, 3694, -45, 3729, -8, 3757, 24, 3788, 57, 3792, 105, 3798, 151, 3809, 202, 3870, 195, 3928, 185, 4000, 134, 4040, 98, 4089, 46, 4135, -6, 4169, -50, 4216, -86, 4277, -89, 4339, -88, 4408, -87, 4467, -84, 4571, -81, 4656, -79, 4739, -79, 4798, -108, 4835, -67, 4862, -27, 4919, -20, 4976, -18, 5024, -40, 5082, -51, 5138, -48, 5191, -44, 5232, -30, 5240, 22, 5246, 69, 5271, 107, 5403, 224, 5491, 240, 5588, 248, 5687, 254, 5773, 236, 5888, 174, 5945, 105, 6029, 55, 6103, 2, 6198, -24, 6296, -47, 6365, -68, 6445, -81, 6510, -87, 6576, -47, 6618, -11, 6650, 16, 6703, 35, 6759, 24, 6795, -8, 6845, -45, 6896, -74, 6944, -83, 6996, -82, 7054, -91, 7144, -100, 7225, -109, 7309, -122, 7406, -122, 7492, -120, 7563, -120, 7647, -131, 7690, -138, 7717, -130, 7874, 179, 7903, 214, 7938, 237, 7979, 236, 8038.23, 217.283, 8079, 182, 8118, 154, 8192, 135, 8259, 106, 8330, 76, 8386, 79, 8439, 49, 8490, 25, 8551, 4, 8620, -18, 8680, -15, 8751, -10, 8816, -35, 8879, -37, 8932, -71, 9007, -71, 9059, -104, 9133, -105, 9207, -106, 9275, -106, 9346, -107, 9400, -107, 9428, -139, 9469, -114, 9491, -75, 9528, -35, 9550, 11, 9574, 58, 9600, 100, 9625, 149, 9665, 153, 9712, 163, 9752, 127, 9776, 72, 9793, 28, 9829, -7, 9876, -39, 9937, -51, 9984, -90, 10016, -128, 10048, -143, 10097, -166, 10156, -166, 10240, -166, 10346, -167, 10443, -167, 10506, -139, 10572, -144, 10641, -149, 10693, -135, 10742, -126, 10786, -126, 10827, -91, 10861, -62, 10924, -59, 10981, -58, 11029, -46, 11098, -25, 11235, -11, 11259, -53, 11297, -102, 11334, -127, 11384, -126, 11437, -123, 11482, -91, 11517, -63, 11583, -65, 11626, -58, 11666, -18, 11749, -7, 11808.7, -20.791, 11863, -53, 11918, -77, 11975, -95, 12031, -110, 12082, -120, 12135, -125, 12194, -126, 12258, -118, 12322, -104, 12383, -89, 12430, -72, 12477, -42, 12516, -16, 12558, 5, 12605, -21, 12644, -59, 12682, -104, 12729, -128, 12768, -147, 12814, -162, 13181.5, -161.403, 13262, -192, 13373, -208, 13442, -207, 13504, -125, 13650, -27, 14152, -32, 14277, -77, 14385, -90, 14509, -94, 14621, -97, 14732, -97, 14850, -97, 14929, -100, 15073, -97, 15072, -10, 15064, 1084, 1446.68, 1057.02, -612, 1080, -608, 274, -614, 148)
@@ -11060,15 +11058,163 @@ _data = {
 &"TakeHit": SubResource("Animation_6rjlp")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k0sts"]
-radius = 43.0
-
 [sub_resource type="GDScript" id="GDScript_gmtg2"]
-script/source = "extends CharacterBody2D
-class_name Kaelen
+script/source = "# Enemy.gd
+extends CharacterBody2D
 
-func _on_health_health_depleted() -> void:
-	queue_free()
+@export var speed: float = 130.0
+@export var detection_range: float = 250.0
+@export var attack_range: float = 60.0
+@export var attack_cooldown: float = 1.2
+@export var attack_damage: int = 10
+@export var gravity: float = 900.0
+
+# animation names (edit in Inspector if different)
+@export var anim_idle: String = \"NightBorneIdle\"
+@export var anim_run: String  = \"NightBorneRun\"
+@export var anim_attack: String = \"NightBorneAtk\"
+
+@export var debug: bool = true
+
+signal attack(damage: int)
+
+var _player: Node2D = null
+var _anim: AnimatedSprite2D = null
+
+var _is_attacking: bool = false
+var _attack_timer: float = 0.0
+
+func _ready() -> void:
+	_anim = _find_animated_sprite_in(self)
+	_player = _find_player()
+	if debug:
+		print_debug(\"ready: anim:\", _anim != null, \" player:\", _player != null)
+	if _anim and _anim.has_signal(\"animation_finished\"):
+		_anim.connect(\"animation_finished\", Callable(self, \"_on_anim_finished\"))
+
+func _physics_process(delta: float) -> void:
+	# lazy-find player if it appears later
+	if not _player:
+		_player = _find_player()
+		if debug and not _player:
+			print_debug(\"No player found. Add player to 'Player' group or name it 'Player'.\")
+		if not _player:
+			# still apply gravity so enemy falls normally
+			_apply_gravity(delta)
+			move_and_slide()
+			return
+
+	_attack_timer = max(0.0, _attack_timer - delta)
+
+	_apply_gravity(delta)
+
+	var to_player: Vector2 = _player.global_position - global_position
+	var dist_sq: float = to_player.length_squared()
+
+	if debug:
+		print_debug(\"dist:\", sqrt(dist_sq), \"attack_timer:\", _attack_timer, \"is_attacking:\", _is_attacking)
+
+	# if currently attacking, freeze horizontal movement
+	if _is_attacking:
+		velocity.x = 0.0
+		move_and_slide()
+		return
+
+	# use squared distances for comparison
+	if dist_sq <= attack_range * attack_range and _attack_timer <= 0.0:
+		_start_attack()
+	elif dist_sq <= detection_range * detection_range:
+		_chase(to_player)
+	else:
+		_idle()
+
+	move_and_slide()
+
+# --- behaviors ---
+func _start_attack() -> void:
+	_is_attacking = true
+	_attack_timer = attack_cooldown
+	if _anim:
+		_anim.play(anim_attack)
+	if debug:
+		print_debug(\"Starting attack\")
+
+func _chase(to_player: Vector2) -> void:
+	var dir = to_player.normalized()
+	velocity.x = dir.x * speed
+	# flip sprite depending on movement direction (true flips horizontally)
+	if _anim:
+		_anim.flip_h = dir.x < 0.0
+		# play run animation while chasing
+		if _anim.animation != anim_run:
+			_anim.play(anim_run)
+	if debug:
+		print_debug(\"Chasing player, velocity.x =\", velocity.x)
+
+func _idle() -> void:
+	velocity.x = 0.0
+	if _anim and _anim.animation != anim_idle:
+		_anim.play(anim_idle)
+	if debug:
+		print_debug(\"Idle\")
+
+func _on_anim_finished() -> void:
+	if not _anim:
+		_is_attacking = false
+		return
+	var finished := _anim.animation
+	if debug:
+		print_debug(\"anim finished:\", finished)
+	if finished == anim_attack:
+		emit_signal(\"attack\", attack_damage)
+		_is_attacking = false
+		if debug:
+			print_debug(\"Attack signal emitted\")
+
+# gravity helper
+func _apply_gravity(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	else:
+		velocity.y = 0.0
+
+# --- helpers: find nodes safely ---
+func _find_animated_sprite_in(node: Node) -> AnimatedSprite2D:
+	for child in node.get_children():
+		if child is AnimatedSprite2D:
+			return child as AnimatedSprite2D
+		var found := _find_animated_sprite_in(child)
+		if found:
+			return found
+	return null
+
+func _find_player() -> Node2D:
+	# prefer group \"Player\"
+	var nodes := get_tree().get_nodes_in_group(\"Player\")
+	if nodes.size() > 0:
+		var cand := nodes[0]
+		if cand is Node2D:
+			return cand as Node2D
+	# fallback recursive search by name (safe)
+	var root := get_tree().get_root()
+	var found := _find_node_by_name_recursive(root, \"Player\")
+	if found and found is Node2D:
+		return found as Node2D
+	return null
+
+func _find_node_by_name_recursive(node: Node, name_to_find: String) -> Node:
+	if node.name == name_to_find:
+		return node
+	for child in node.get_children():
+		var res := _find_node_by_name_recursive(child, name_to_find)
+		if res:
+			return res
+	return null
+
+# small debug helper (useful because print() spam can be noisy)
+func print_debug():
+	if debug:
+		print( \"[Enemy] \", var2str(Array(...)) )
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmtg2"]
@@ -11640,9 +11786,6 @@ _data = {
 &"RESET": SubResource("Animation_es753")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8ncxi"]
-radius = 396.02
-
 [node name="Chapter 2_1" type="Node2D"]
 position = Vector2(779, -94)
 
@@ -11749,9 +11892,8 @@ texture = ExtResource("8_vimia")
 position = Vector2(5665.5, 72.9648)
 shape = SubResource("RectangleShape2D_7g1nf")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Chapter2-1" groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Chapter2-1"]
 position = Vector2(34, -24)
-collision_mask = 17
 script = ExtResource("4_ral0s")
 
 [node name="Camera2D" type="Camera2D" parent="Chapter2-1/CharacterBody2D"]
@@ -11760,7 +11902,7 @@ zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/CharacterBody2D" groups=["player"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/CharacterBody2D"]
 position = Vector2(2, 8)
 scale = Vector2(1.3, 1.3)
 shape = SubResource("CapsuleShape2D_pt7p7")
@@ -11821,20 +11963,18 @@ position = Vector2(20, 8)
 scale = Vector2(1.3, 1.3)
 shape = SubResource("CapsuleShape2D_pt7p7")
 
-[node name="Direction" type="Marker2D" parent="Chapter2-1/CharacterBody2D" groups=["player"]]
-
-[node name="ActionableFinder" type="Area2D" parent="Chapter2-1/CharacterBody2D/Direction" groups=["player"]]
-collision_layer = 16
-collision_mask = 17
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/CharacterBody2D/Direction/ActionableFinder" groups=["player"]]
-position = Vector2(6, 6)
-shape = SubResource("CircleShape2D_k0sts")
-
 [node name="Enemy" type="CharacterBody2D" parent="Chapter2-1"]
 position = Vector2(11853, 714)
 collision_mask = 0
 script = SubResource("GDScript_gmtg2")
+speed = null
+detection_range = null
+attack_range = null
+attack_cooldown = null
+attack_damage = null
+gravity = null
+anim_idle = null
+anim_attack = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy"]
 position = Vector2(6, 29)
@@ -11866,15 +12006,6 @@ health = NodePath("../Health")
 position = Vector2(6, 29)
 shape = SubResource("CapsuleShape2D_gmtg2")
 debug_color = Color(1, 0, 0, 0.419608)
-
-[node name="Actionable" parent="Chapter2-1/Enemy" instance=ExtResource("33_vx4nc")]
-collision_layer = 16
-collision_mask = 17
-dialogue_resource = ExtResource("34_8ncxi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy/Actionable"]
-position = Vector2(-1, 21)
-shape = SubResource("CircleShape2D_8ncxi")
 
 [node name="Health" parent="Chapter2-1" instance=ExtResource("25_rujle")]
 

@@ -27,13 +27,14 @@ const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landi
 @onready var roll_timer := $RollTimer
 @onready var slide_cooldown_timer := $SlideCooldownTimer
 
-
+@onready var player = $CollisionShape2D
 @onready var effects = $AnimationPlayer
 @onready var hurtTimer = $HurtTimer
 @onready var slide_timer := $SlideTimer  # Make sure you add this Timer node in scene
 
 @onready var torch_light = $TorchLight
 var torch_on = false
+var is_frozen: bool = false
 
 # State management
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, HEAL, PRAY }
@@ -52,7 +53,11 @@ func _process(delta):
 	if Input.is_action_just_pressed("toggle_torch"):
 		torch_on = !torch_on
 		torch_light.visible = torch_on
-		
+	if Input.is_action_just_pressed("teleport"):
+		position = Vector2(11200, 600)
+	if is_frozen:
+		return  # skip input actions like torch toggle, teleport, etc.
+	# existing _process code here
 func _ready():
 	# Configure timers
 	torch_light.visible = torch_on
@@ -61,7 +66,7 @@ func _ready():
 	
 	roll_cooldown_timer.wait_time = ROLL_COOLDOWN
 	roll_cooldown_timer.one_shot = true
-	# RollTimer governs how long the roll lasts; set this in the inspector or here:
+	# RollTimer governs how londg the roll lasts; set this in the inspector or here:
 	roll_timer.wait_time = 0.4    # e.g. 0.4 seconds of roll
 	roll_timer.one_shot = true
 	slide_cooldown_timer.wait_time = SLIDE_COOLDOWN
@@ -96,6 +101,10 @@ func _ready():
 		frames.set_animation_loop("Pray", false)
 var was_on_floor = false
 func _physics_process(delta):
+	if is_frozen:
+		velocity = Vector2.ZERO  # stop all movement
+		move_and_slide()
+		return
 	var now_on_floor = is_on_floor()
 	# 1) catch any click before state logic
 	# 1) Always catch an attack click
@@ -379,3 +388,10 @@ func knockback(enemyVelocity: Vector2):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
 	velocity = knockbackDirection
 	move_and_slide()
+
+func trigger_dialogue(dialogue_resource: DialogueResource) -> void:
+	if dialogue_resource and Engine.has_singleton("DialogueManager"):
+		DialogueManager.show_dialogue(dialogue_resource)
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("Collision with: ", body.name)
