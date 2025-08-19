@@ -14252,7 +14252,6 @@ energy = 0.5
 shadow_enabled = true
 
 [node name="Cave Darkness" type="LightOccluder2D" parent="Chapter2-1"]
-visible = false
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(26, 122)
@@ -14272,7 +14271,6 @@ shape = SubResource("RectangleShape2D_6rjlp")
 [node name="CanvasLayer" type="CanvasLayer" parent="Chapter2-1/Welcome/Area2D"]
 
 [node name="WelcomeSign" type="Label" parent="Chapter2-1/Welcome/Area2D/CanvasLayer"]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
