@@ -34,5 +34,6 @@ shape = SubResource("RectangleShape2D_1t06j")
 [node name="LeftBarrier" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBarrier"]
+visible = false
 position = Vector2(6.5, 177.5)
 shape = SubResource("RectangleShape2D_xx22o")

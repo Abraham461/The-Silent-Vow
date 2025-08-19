@@ -119,3 +119,4 @@ offset_bottom = 23.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("3_eg8a8")]
+visible = false

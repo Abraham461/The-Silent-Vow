@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://cvcq4v6pdk17n"]
+[gd_scene load_steps=115 format=3 uid="uid://cvcq4v6pdk17n"]
 
 [ext_resource type="Script" uid="uid://2acj8nsxfhwg" path="res://player/scripts/player.gd" id="1_ebec5"]
 [ext_resource type="Texture2D" uid="uid://b5pcmre0cpsem" path="res://player/sprites/Idle.png" id="1_l8h54"]
@@ -1085,6 +1085,12 @@ height = 84.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ieo8"]
 radius = 55.9017
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebec5"]
+size = Vector2(133, 363.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yllr7"]
+size = Vector2(20, 402)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ebec5")
 
@@ -1117,3 +1123,15 @@ script = ExtResource("12_ebec5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionableFinder"]
 position = Vector2(290, 208)
 shape = SubResource("CircleShape2D_2ieo8")
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2(91, 181.25)
+shape = SubResource("RectangleShape2D_ebec5")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+position = Vector2(434, 181)
+shape = SubResource("RectangleShape2D_yllr7")

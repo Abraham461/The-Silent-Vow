@@ -19,7 +19,5 @@ func _on_resume_pressed() -> void:
 	set_paused(false)
 
 
-
-
 func _on_exit_pressed() -> void:
 	get_tree().quit()
