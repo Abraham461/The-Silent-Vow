@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cs2ky2dxvhgaf"]
+[gd_scene load_steps=8 format=3 uid="uid://cs2ky2dxvhgaf"]
 
 [ext_resource type="Script" uid="uid://2kbpavb4ds1o" path="res://more cutscene/cuts_second.gd" id="1_t1vys"]
 [ext_resource type="AudioStream" uid="uid://5528frjya04a" path="res://more cutscene/soundeff/RPG_Fantasy_Music_-_No_Copyright_Music_-_DnD(256k).ogg" id="3_350d3"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="3_832gj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_us7u2"]
 bg_color = Color(0.0295066, 0.0295066, 0.0295065, 1)
@@ -111,3 +112,7 @@ parameters/looping = true
 [node name="SeffPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="SFXTimer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("3_832gj")]

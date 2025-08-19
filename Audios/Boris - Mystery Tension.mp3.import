@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bgf850nhbh5y4"
+path="res://.godot/imported/Boris - Mystery Tension.mp3-6bb70436da9dea4570a559c30fa6914a.mp3str"
+
+[deps]
+
+source_file="res://Audios/Boris - Mystery Tension.mp3"
+dest_files=["res://.godot/imported/Boris - Mystery Tension.mp3-6bb70436da9dea4570a559c30fa6914a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

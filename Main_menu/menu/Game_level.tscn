@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dafw0yxq5cvep"]
+[gd_scene load_steps=8 format=3 uid="uid://dafw0yxq5cvep"]
 
 [ext_resource type="Script" uid="uid://bcyrhu1fsojdt" path="res://Main_menu/menu/game_level.gd" id="1_uxngw"]
 [ext_resource type="Texture2D" uid="uid://bnbou8gqeck0p" path="res://Main_menu/Image/Gamelevel.jpg" id="2_uxngw"]
+[ext_resource type="AudioStream" uid="uid://6i4ohnbe15d5" path="res://Main_menu/Audios/Boris - Mystery Tension.mp3" id="3_3eenj"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="4_tyhta"]
 
 [sub_resource type="SystemFont" id="SystemFont_uxngw"]
 font_names = PackedStringArray("TAPEMAN")
@@ -38,7 +40,7 @@ anchor_right = 0.581249
 anchor_bottom = 0.452778
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 18
@@ -55,7 +57,7 @@ anchor_right = 0.35625
 anchor_bottom = 0.591666
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 18
@@ -72,7 +74,7 @@ anchor_right = 0.582812
 anchor_bottom = 0.641667
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 18
@@ -90,7 +92,7 @@ anchor_bottom = 0.575001
 offset_right = 3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 18
@@ -121,10 +123,18 @@ anchor_right = 0.582812
 anchor_bottom = 0.830556
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.465026, 0.629399, 0.318828, 1)
+theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Back "
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3eenj")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("4_tyhta")]
