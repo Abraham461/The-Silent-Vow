@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-[gd_scene load_steps=268 format=4 uid="uid://c61wee8duqu24"]
-=======
+
 [gd_scene load_steps=270 format=4 uid="uid://c61wee8duqu24"]
->>>>>>> 962da26a1c0af5b518443bdf6f2a06e6b65e4b73
+
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
