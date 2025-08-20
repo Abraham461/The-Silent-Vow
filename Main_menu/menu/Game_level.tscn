@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="4_tyhta"]
 
 [sub_resource type="SystemFont" id="SystemFont_uxngw"]
-font_names = PackedStringArray("TAPEMAN")
+font_names = PackedStringArray("Times New Roman")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wy5st"]
 
 [sub_resource type="SystemFont" id="SystemFont_5vbcs"]
-font_names = PackedStringArray("TAPEMAN")
+font_names = PackedStringArray("Times New Roman")
 
 [node name="Game_level" type="Control"]
 layout_mode = 3
@@ -43,7 +43,7 @@ grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Chapter 1 "
 metadata/_edit_use_anchors_ = true
@@ -51,16 +51,16 @@ metadata/_edit_use_anchors_ = true
 [node name="Chapter2" type="Button" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.20625
-anchor_top = 0.522222
-anchor_right = 0.35625
-anchor_bottom = 0.591666
+anchor_left = 0.203125
+anchor_top = 0.483425
+anchor_right = 0.353125
+anchor_bottom = 0.552869
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Chapter 2 "
 metadata/_edit_use_anchors_ = true
@@ -77,7 +77,7 @@ grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Chapter 3 "
 metadata/_edit_use_anchors_ = true
@@ -85,17 +85,17 @@ metadata/_edit_use_anchors_ = true
 [node name="Chapter4" type="Button" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.64375
-anchor_top = 0.505556
-anchor_right = 0.785937
-anchor_bottom = 0.575001
+anchor_left = 0.642187
+anchor_top = 0.48895
+anchor_right = 0.784375
+anchor_bottom = 0.558395
 offset_right = 3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Chapter 4 "
 metadata/_edit_use_anchors_ = true
@@ -110,7 +110,7 @@ anchor_bottom = 0.258333
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = SubResource("SystemFont_5vbcs")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 27
 text = "Game Levles"
 metadata/_edit_use_anchors_ = true
 
@@ -126,7 +126,7 @@ grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Back "
 metadata/_edit_use_anchors_ = true

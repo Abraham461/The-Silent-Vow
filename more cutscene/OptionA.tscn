@@ -113,7 +113,5 @@ parameters/looping = true
 
 [node name="SFXTimer" type="Timer" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("3_t5eq2")]
+[node name="Pause_Menu" parent="." instance=ExtResource("3_t5eq2")]
 visible = false

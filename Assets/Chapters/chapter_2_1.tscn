@@ -14280,6 +14280,13 @@ position = Vector2(779, -94)
 position = Vector2(-780, -5)
 script = ExtResource("1_2vle6")
 
+[node name="Pause_Menu" parent="Chapter2-1" instance=ExtResource("28_vimia")]
+visible = false
+offset_left = 780.0
+offset_top = 5.0
+offset_right = 780.0
+offset_bottom = 5.0
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Chapter2-1"]
 
 [node name="Background" type="ParallaxLayer" parent="Chapter2-1/ParallaxBackground"]
@@ -14591,15 +14598,6 @@ position = Vector2(-1, 21)
 shape = SubResource("CircleShape2D_8ncxi")
 
 [node name="Health" parent="Chapter2-1" instance=ExtResource("25_rujle")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Chapter2-1"]
-
-[node name="Pause_Menu" parent="Chapter2-1/CanvasLayer" instance=ExtResource("28_vimia")]
-visible = false
-offset_left = 779.0
-offset_top = -94.0
-offset_right = 779.0
-offset_bottom = -94.0
 
 [connection signal="body_entered" from="Chapter2-1/Welcome/Area2D" to="Chapter2-1/Welcome/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Chapter2-1/Door/DoorArea" to="Chapter2-1/Door/DoorArea" method="_on_body_entered"]
