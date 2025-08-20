@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://0ywej4fuel7v"]
+[gd_scene load_steps=18 format=3 uid="uid://0ywej4fuel7v"]
 
 [ext_resource type="Script" uid="uid://8aei47uogisb" path="res://Main_menu/menu/main_menu.gd" id="1_7u1x5"]
 [ext_resource type="Texture2D" uid="uid://c5pwkps3g7i4o" path="res://Main_menu/Image/Main_back.jpg" id="2_88t6w"]
 [ext_resource type="Texture2D" uid="uid://dhkxj7r1rulau" path="res://Main_menu/Image/Knight.png" id="3_3g516"]
 [ext_resource type="Texture2D" uid="uid://bjb566jhmdff2" path="res://Main_menu/Image/FinalBG.png" id="3_8s76n"]
+[ext_resource type="AudioStream" uid="uid://6i4ohnbe15d5" path="res://Main_menu/Audios/Boris - Mystery Tension.mp3" id="5_eseue"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="6_f112c"]
 
 [sub_resource type="SystemFont" id="SystemFont_3g516"]
 font_names = PackedStringArray("Times New Roman")
@@ -182,3 +184,12 @@ grow_vertical = 2
 texture = ExtResource("3_3g516")
 expand_mode = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_eseue")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("6_f112c")]
+visible = false

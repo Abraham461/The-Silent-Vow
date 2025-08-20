@@ -12671,6 +12671,21 @@ script = ExtResource("22_i0687")
 position = Vector2(48.5, 192.5)
 shape = SubResource("RectangleShape2D_y4mne")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="DoorArea1"]
+
+[node name="Door1Label" type="Label" parent="DoorArea1/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="Start" type="Marker2D" parent="SpawnPoints"]
