@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="uid://c1xenwm5rtq1k"
+run/main_scene="uid://pprcgpqkny0q"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://kxx57p8vglqt"
 
 [autoload]
 
@@ -30,7 +30,7 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/window_width_override=1080
 window/size/window_height_override=720
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [editor_plugins]
