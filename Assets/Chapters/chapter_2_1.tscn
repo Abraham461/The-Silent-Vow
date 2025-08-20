@@ -1,4 +1,4 @@
-[gd_scene load_steps=278 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=279 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -33,8 +33,14 @@
 [ext_resource type="Texture2D" uid="uid://douwh6y8f15rp" path="res://Assets/Sprites/Slide.png" id="22_k0sts"]
 [ext_resource type="Texture2D" uid="uid://dii21ix70y2qb" path="res://Assets/Sprites/Hurt.png" id="23_0b2to"]
 [ext_resource type="Script" uid="uid://mrf3eewg8u0a" path="res://Assets/Chapters/Hitbox.gd" id="24_eqqdr"]
+
 [ext_resource type="PackedScene" uid="uid://c0gndkgjxaom4" path="res://canvas_layer.tscn" id="25_rujle"]
 [ext_resource type="Script" uid="uid://dlh6v4qgohbp6" path="res://Assets/Chapters/HurtBox.gd" id="26_vimia"]
+
+[ext_resource type="PackedScene" path="res://canvas_layer.tscn" id="25_rujle"]
+[ext_resource type="Script" uid="uid://dlh6v4qgohbp6" path="res://Assets/Chapters/HurtBox.gd" id="26_vimia"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="28_vimia"]
+
 [ext_resource type="Script" uid="uid://cu68vv8fptiy7" path="res://Assets/Chapters/health.gd" id="31_fr5cv"]
 [ext_resource type="PackedScene" uid="uid://bv8lwakktb675" path="res://Assets/Chapters/helpers/actionable.tscn" id="33_vx4nc"]
 [ext_resource type="Resource" uid="uid://cks1cp7a0kx78" path="res://Assets/Chapters/dialogue/npc_intro.dialogue" id="34_8ncxi"]
@@ -14590,6 +14596,15 @@ position = Vector2(-1, 21)
 shape = SubResource("CircleShape2D_8ncxi")
 
 [node name="Health" parent="Chapter2-1" instance=ExtResource("25_rujle")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Chapter2-1"]
+
+[node name="Pause_Menu" parent="Chapter2-1/CanvasLayer" instance=ExtResource("28_vimia")]
+visible = false
+offset_left = 779.0
+offset_top = -94.0
+offset_right = 779.0
+offset_bottom = -94.0
 
 [connection signal="body_entered" from="Chapter2-1/Welcome/Area2D" to="Chapter2-1/Welcome/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Chapter2-1/Door/DoorArea" to="Chapter2-1/Door/DoorArea" method="_on_body_entered"]
