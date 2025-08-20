@@ -53,6 +53,7 @@ var previous_state: PlayerState = PlayerState.IDLE
 @onready var camera = $Camera2D
 @onready var actionable_finder: Area2D = $Direction/ActionableFinder
 var _dialogue_triggered := false
+@onready var running_on_concrete: AudioStreamPlayer = $Running_on_concrete
 
 # walls: Expect LeftWall and RightWall to have CollisionShape2D children.
 @onready var left_wall_shape: CollisionShape2D = $LeftWall/CollisionShape2D
@@ -179,6 +180,11 @@ func _physics_process(delta):
 
 	move_and_slide()
 	update_animation()
+	
+	if animation_player.current_animation == "Run":
+		if not running_on_concrete.playing: running_on_concrete.play()
+	else:
+		if running_on_concrete.playing: running_on_concrete.stop()
 
 	if combo_step > 0:
 		combo_timer -= delta

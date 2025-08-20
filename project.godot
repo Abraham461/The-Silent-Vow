@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="uid://c1xenwm5rtq1k"
+run/main_scene="uid://chs8gl8jb2gd6"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -28,8 +28,6 @@ Inventory="*res://inventory.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/window_width_override=1080
-window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

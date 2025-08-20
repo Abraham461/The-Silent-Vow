@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsft61g7ss3xl"]
+[gd_scene load_steps=7 format=3 uid="uid://bsft61g7ss3xl"]
 
 [ext_resource type="PackedScene" uid="uid://cvcq4v6pdk17n" path="res://player/player.tscn" id="1_1sv7u"]
 [ext_resource type="Script" uid="uid://qv2e58kp8oow" path="res://player/Playable.gd" id="1_xx22o"]
+[ext_resource type="AudioStream" uid="uid://vurjtjl3qmfb" path="res://running-on-concrete-268478.mp3" id="3_xx22o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1sv7u"]
 size = Vector2(640, 116.5)
@@ -17,6 +18,9 @@ script = ExtResource("1_xx22o")
 
 [node name="Player" parent="." instance=ExtResource("1_1sv7u")]
 disable_mode = 1
+
+[node name="Running_on_concrete" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("3_xx22o")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
