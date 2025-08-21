@@ -14607,10 +14607,11 @@ animation = &"Idle"
 libraries = {
 &"": SubResource("AnimationLibrary_tabx2")
 }
+speed_scale = 0.207
 
 [node name="Health" type="Node" parent="Chapter2-1/Enemy"]
 script = ExtResource("31_fr5cv")
-max_health = 20
+max_health = 500
 
 [node name="HurtBox" type="Area2D" parent="Chapter2-1/Enemy" node_paths=PackedStringArray("health")]
 collision_layer = 0
