@@ -28,6 +28,7 @@ var _player: CharacterBody2D = null
 var _activated: bool = false
 
 func _ready():
+	
 	if _health and _health.has_signal("health_depleted") and not _health.health_depleted.is_connected(_on_health_depleted):
 		_health.health_depleted.connect(_on_health_depleted)
 	if _hurtbox and _hurtbox.has_signal("recieved_damage") and not _hurtbox.recieved_damage.is_connected(_on_recieved_damage):
@@ -225,22 +226,19 @@ func _distance_to_player() -> float:
 	if not _player:
 		return INF
 	return global_position.distance_to(_player.global_position)
-
 func _find_player() -> CharacterBody2D:
-	# 1) sibling named CharacterBody2D
-	var p := get_parent()
-	if p and p.has_node("CharacterBody2D"):
-		var n = p.get_node("CharacterBody2D")
-		if n is CharacterBody2D:
-			return n
-	# 2) nearest CharacterBody2D in scene (prefer one with common player fields)
-	var best: CharacterBody2D = null
-	var best_dist := INF
-	for node in get_tree().get_nodes_in_group(""):
-		pass # placeholder no-op
-	# fallback: brute-force search
+	# prefer explicit group "player" if present
+	var players := get_tree().get_nodes_in_group("player")
+	if players.size() > 0:
+		for p in players:
+			if p is CharacterBody2D:
+				return p
+
+	# fallback: find nearest CharacterBody2D in current scene
 	var root := get_tree().current_scene
 	if root:
+		var best: CharacterBody2D = null
+		var best_dist := INF
 		var stack := [root]
 		while stack.size() > 0:
 			var cur = stack.pop_back()
@@ -251,7 +249,10 @@ func _find_player() -> CharacterBody2D:
 					if d < best_dist:
 						best = c
 						best_dist = d
-	return best
+		return best
+	return null
+
+
 
 func _find_sprite() -> AnimatedSprite2D:
 	# prefer child named Enemy, else first AnimatedSprite2D
@@ -271,7 +272,7 @@ func _ensure_hitbox() -> Area2D:
 	add_child(hb)
 	var shape := CollisionShape2D.new()
 	shape.shape = RectangleShape2D.new()
-	shape.shape.size = Vector2(22, 16)
+	shape.shape.extents = Vector2(11, 8)  # half-size
 	hb.add_child(shape)
 	hb.set("damage", attack_damage)
 	return hb

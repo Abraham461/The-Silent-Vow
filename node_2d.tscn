@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://cahe5dv2pi58l"]
 
-[ext_resource type="Script" path="res://character_body2d.gd" id="1_epypp"]
+[ext_resource type="Script" uid="uid://bhwor06mi5l4r" path="res://character_body2d.gd" id="1_epypp"]
 [ext_resource type="Texture2D" uid="uid://fg0osqu2a70f" path="res://Sprites/Idle (King).png" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://dlra2l36w6sjl" path="res://Sprites/Run (King).png" id="2_0e48y"]
 

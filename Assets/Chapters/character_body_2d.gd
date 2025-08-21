@@ -13,7 +13,7 @@ const GRAVITY := 1000
 const MAX_COMBO := 4
 const SLIDE_SPEED := 310
 const SLIDE_COOLDOWN :=0.8
-const COMBO_WINDOW := 1.0
+const COMBO_WINDOW := 0.8
 const ROLL_COOLDOWN := 0.8
 const JUMP_ATK_DROP := 200      # tweak this to control how fast you slam down (higher -> faster)
 const JUMP_ATK_HOLD_FRAME := 1     # 0-based frame index to hold (1 = second frame)
@@ -70,6 +70,7 @@ func _process(_delta):
 	# existing _process code here
 func _ready():
 	# Configure timers
+	
 	torch_light.visible = torch_on
 	combo_timer.wait_time = COMBO_WINDOW
 	combo_timer.one_shot = true
@@ -308,7 +309,7 @@ func start_attack():
 			await get_tree().process_frame
 			sprite.play("JumpAtk")
 			sprite.frame = JUMP_ATK_HOLD_FRAME
-			sprite.stop()  # freeze at this frame
+			#sprite.stop()  # freeze at this frame
 			var frame_count = sprite.sprite_frames.get_frame_count("JumpAtk")
 			sprite.frame = clamp(JUMP_ATK_HOLD_FRAME, 0, frame_count - 1)
 			# freeze the animation by stopping it
@@ -410,7 +411,7 @@ func _on_animation_finished():
 			if combo_step < MAX_COMBO and attack_buffered:
 				attack_buffered = false             # consume the buffered click
 				combo_step += 1
-				await get_tree().create_timer(1.0).timeout
+				await get_tree().process_frame
 				sprite.play("Atk%d" % combo_step)
 				combo_timer.start()
 				# bump damage slightly for later hits

@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cplsu82m7ob8u" path="res://Assets/Sprites/crouch_idle.png" id="11_rujle"]
 [ext_resource type="Texture2D" uid="uid://b5yhprilfv46y" path="res://Assets/Sprites/crouch_attacks.png" id="12_ui76u"]
 [ext_resource type="Script" uid="uid://3cge8f13eacw" path="res://Assets/Chapters/door_area_2.gd" id="12_vx4nc"]
-[ext_resource type="Script" uid="uid://bed2he1w56oaf" path="res://Assets/Chapters/door_area_4.gd" id="13_8ncxi"]
+[ext_resource type="Script" path="res://Assets/Chapters/door_area_4.gd" id="13_8ncxi"]
 [ext_resource type="Texture2D" uid="uid://v4nsxpuurtp3" path="res://Assets/Sprites/Death.png" id="13_eqqdr"]
 [ext_resource type="Texture2D" uid="uid://cpt5vfpaaokbc" path="res://Assets/Sprites/Hanging.png" id="14_vimia"]
 [ext_resource type="Texture2D" uid="uid://wvf7o443l5ro" path="res://Assets/Sprites/Health.png" id="15_7g1nf"]
@@ -14264,6 +14264,8 @@ height = 104.0
 
 [node name="Chapter 2_1" type="Node2D"]
 position = Vector2(779, -94)
+metadata/_edit_horizontal_guides_ = [572.0]
+metadata/_edit_vertical_guides_ = [11905.0]
 
 [node name="Chapter2-1" type="Node2D" parent="."]
 position = Vector2(-780, -5)
@@ -14586,8 +14588,8 @@ scale = Vector2(1.3, 1.3)
 shape = SubResource("CapsuleShape2D_pt7p7")
 
 [node name="Enemy" type="CharacterBody2D" parent="Chapter2-1"]
+z_index = 100
 position = Vector2(11853, 714)
-collision_mask = 0
 script = ExtResource("34_6rjlp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy"]

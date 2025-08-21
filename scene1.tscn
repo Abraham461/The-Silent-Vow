@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b05rnn3nmoub8" path="res://background 4/Plan 1.png" id="3_tq727"]
 [ext_resource type="PackedScene" uid="uid://bsft61g7ss3xl" path="res://player/character.tscn" id="4_ho7oe"]
 [ext_resource type="PackedScene" uid="uid://dld58qq8eton0" path="res://door.tscn" id="5_nmhtg"]
-[ext_resource type="Script" path="res://character_body2d.gd" id="6_sprq5"]
+[ext_resource type="Script" uid="uid://bhwor06mi5l4r" path="res://character_body2d.gd" id="6_sprq5"]
 [ext_resource type="Texture2D" uid="uid://fg0osqu2a70f" path="res://Sprites/Idle (King).png" id="7_kc8kc"]
 [ext_resource type="Texture2D" uid="uid://dlra2l36w6sjl" path="res://Sprites/Run (King).png" id="8_ivjb3"]
 [ext_resource type="PackedScene" uid="uid://dingdtff7a7j5" path="res://helpers/actioinable.tscn" id="9_ivjb3"]
