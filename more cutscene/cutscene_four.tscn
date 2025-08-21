@@ -116,7 +116,5 @@ parameters/looping = true
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("3_eg8a8")]
+[node name="Pause_Menu" parent="." instance=ExtResource("3_eg8a8")]
 visible = false
