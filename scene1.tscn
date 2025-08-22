@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b05rnn3nmoub8" path="res://background 4/Plan 1.png" id="3_tq727"]
 [ext_resource type="PackedScene" uid="uid://bsft61g7ss3xl" path="res://player/character.tscn" id="4_ho7oe"]
 [ext_resource type="PackedScene" uid="uid://dld58qq8eton0" path="res://door.tscn" id="5_nmhtg"]
-[ext_resource type="Script" path="res://character_body2d.gd" id="6_sprq5"]
+[ext_resource type="Script" uid="uid://bhwor06mi5l4r" path="res://character_body2d.gd" id="6_sprq5"]
 [ext_resource type="Texture2D" uid="uid://fg0osqu2a70f" path="res://Sprites/Idle (King).png" id="7_kc8kc"]
 [ext_resource type="Texture2D" uid="uid://dlra2l36w6sjl" path="res://Sprites/Run (King).png" id="8_ivjb3"]
 [ext_resource type="PackedScene" uid="uid://dingdtff7a7j5" path="res://helpers/actioinable.tscn" id="9_ivjb3"]
@@ -201,7 +201,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xw712"]
-radius = 89.56
+radius = 474.128
 
 [node name="Parallax" type="Node2D"]
 
@@ -212,7 +212,7 @@ motion_scale = Vector2(0.05, 0.05)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/1"]
 position = Vector2(1, 0)
-scale = Vector2(1.11285, 1.10494)
+scale = Vector2(1.17882, 1.10494)
 texture = ExtResource("1_ho7oe")
 centered = false
 
@@ -220,7 +220,7 @@ centered = false
 motion_scale = Vector2(0.05, 0.05)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/2"]
-scale = Vector2(1.11458, 1.1142)
+scale = Vector2(1.18229, 1.1142)
 texture = ExtResource("2_nmhtg")
 centered = false
 

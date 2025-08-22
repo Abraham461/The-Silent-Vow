@@ -13,7 +13,7 @@ const GRAVITY := 1000
 const MAX_COMBO := 4
 const SLIDE_SPEED := 310
 const SLIDE_COOLDOWN :=0.8
-const COMBO_WINDOW := 0.3
+const COMBO_WINDOW := 0.8
 const ROLL_COOLDOWN := 0.8
 const JUMP_ATK_DROP := 200      # tweak this to control how fast you slam down (higher -> faster)
 const JUMP_ATK_HOLD_FRAME := 1     # 0-based frame index to hold (1 = second frame)
@@ -36,6 +36,16 @@ const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landi
 var torch_on = false
 var is_frozen: bool = false
 
+# Combat hit/hurt boxes
+@onready var hitbox: Area2D = $HitBox
+@onready var hitbox_shape: CollisionShape2D = $HitBox/CollisionShape2D
+@onready var hitbox2: Area2D = $HitBox2 if has_node("HitBox2") else null
+@onready var hitbox2_shape: CollisionShape2D = $HitBox2/CollisionShape2D if has_node("HitBox2/CollisionShape2D") else null
+@onready var hitbox3: Area2D = $HitBox3 if has_node("HitBox3") else null
+@onready var hitbox3_shape: CollisionShape2D = $HitBox3/CollisionShape2D if has_node("HitBox3/CollisionShape2D") else null
+@onready var hitbox4: Area2D = $HitBox4 if has_node("HitBox4") else null
+@onready var hitbox4_shape: CollisionShape2D = $HitBox4/CollisionShape2D if has_node("HitBox4/CollisionShape2D") else null
+
 # State management
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, HEAL, PRAY }
 var current_state: State = State.IDLE
@@ -49,7 +59,7 @@ var attack_buffered: bool = false
 var knockbackPower = 250.0  # or whatever value you need
 var jumpatk_lock: bool = false  # true while JumpAtk must wait for landing
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("toggle_torch"):
 		torch_on = !torch_on
 		torch_light.visible = torch_on
@@ -60,6 +70,7 @@ func _process(delta):
 	# existing _process code here
 func _ready():
 	# Configure timers
+	
 	torch_light.visible = torch_on
 	combo_timer.wait_time = COMBO_WINDOW
 	combo_timer.one_shot = true
@@ -75,22 +86,59 @@ func _ready():
 	slide_timer.one_shot = true
 	# Connect signals
 	sprite.animation_finished.connect(_on_animation_finished)
+	if sprite.has_signal("frame_changed"):
+		sprite.frame_changed.connect(_on_sprite_frame_changed)
 	combo_timer.timeout.connect(_on_combo_timeout)
 	roll_cooldown_timer.timeout.connect(_on_roll_cooldown_timeout)
 	roll_timer.timeout.connect(_on_roll_timer_timeout)
 	slide_cooldown_timer.timeout.connect(_on_slide_cooldown_timeout)
 	slide_timer.timeout.connect(_on_slide_timer_timeout)
-	
+
+	# Default: disable hitbox until active attack frames
+	if hitbox:
+		# avoid physics warnings by deferring
+		hitbox.set_deferred("monitoring", false)
+	if hitbox_shape:
+		hitbox_shape.set_deferred("disabled", true)
+	# Also disable any extra hitboxes if present
+	if hitbox2:
+		hitbox2.set_deferred("monitoring", false)
+	if hitbox2_shape:
+		hitbox2_shape.set_deferred("disabled", true)
+	if hitbox3:
+		hitbox3.set_deferred("monitoring", false)
+	if hitbox3_shape:
+		hitbox3_shape.set_deferred("disabled", true)
+	if hitbox4:
+		hitbox4.set_deferred("monitoring", false)
+	if hitbox4_shape:
+		hitbox4_shape.set_deferred("disabled", true)
+
+	# Ensure we have a HurtBox for receiving enemy damage
+	if not has_node("HurtBox"):
+		var hb := Area2D.new()
+		hb.name = "HurtBox"
+		add_child(hb)
+		var shape := CollisionShape2D.new()
+		shape.shape = RectangleShape2D.new()
+		shape.shape.size = Vector2(18, 26)
+		shape.position = Vector2(0, -4)
+		hb.add_child(shape)
+		# attach script so it will call our hurtByEnemy when hit
+		var s := load("res://Assets/Chapters/HurtBox.gd")
+		hb.set_script(s)
+	# If the HurtBox exists it will forward damage to hurtByEnemy
 
 		# ensure your attack animations play at a visible rate
 	var frames = sprite.sprite_frames
 
 	# Make sure each combo only plays once:
-	# Make each combo play only once at 8 FPS
+	# Make each combo play only once and slow a bit for readability
 	for anim_name in ["Atk1", "Atk2", "Atk3", "Atk4", "JumpAtk", ]:
 		if frames.has_animation(anim_name):
 			frames.set_animation_loop(anim_name, false)
-			frames.set_animation_speed(anim_name, 19.0)
+			# reduce speed so you don't need to spam clicks to chain
+			frames.set_animation_speed(anim_name, 12.0)
 
 	# rest of your _ready...
 
@@ -261,7 +309,7 @@ func start_attack():
 			await get_tree().process_frame
 			sprite.play("JumpAtk")
 			sprite.frame = JUMP_ATK_HOLD_FRAME
-			sprite.stop()  # freeze at this frame
+			#sprite.stop()  # freeze at this frame
 			var frame_count = sprite.sprite_frames.get_frame_count("JumpAtk")
 			sprite.frame = clamp(JUMP_ATK_HOLD_FRAME, 0, frame_count - 1)
 			# freeze the animation by stopping it
@@ -275,6 +323,13 @@ func start_attack():
 	combo_step = 1
 	sprite.play("Atk1")
 	combo_timer.start()
+	# give a tiny grace period before allowing next buffer to encourage smooth rhythm
+	await get_tree().process_frame
+
+	# scale damage by combo step (1..4) and set on HitBox for HurtBox readers
+	var base_damage := 10
+	var dmg := base_damage + int(2 * (combo_step - 1))
+	_set_hitboxes_damage(dmg)
 
 func start_heal():
 	current_state = State.HEAL
@@ -356,12 +411,18 @@ func _on_animation_finished():
 			if combo_step < MAX_COMBO and attack_buffered:
 				attack_buffered = false             # consume the buffered click
 				combo_step += 1
+				await get_tree().process_frame
 				sprite.play("Atk%d" % combo_step)
 				combo_timer.start()
+				# bump damage slightly for later hits
+				var base_damage2 := 10
+				var dmg2 := base_damage2 + int(2 * (combo_step - 1))
+				_set_hitboxes_damage(dmg2)
 			else:
 				current_state = State.IDLE
 				combo_step = 0
 				attack_buffered = false             # clear any leftover
+				_set_hitbox_active(false)
 		
 		State.ROLL, State.SLIDE, State.HEAL, State.PRAY:
 			# for slide we also fall back when velocity decays
@@ -369,7 +430,17 @@ func _on_animation_finished():
 				current_state = State.IDLE
 
 func hurtByEnemy(area):
-	currentHealth -= 20
+	var dmg: int = 20
+	if area != null:
+		if area.has_method("get_damage"):
+			var maybe: Variant = area.get_damage()
+			if typeof(maybe) == TYPE_INT:
+				dmg = int(maybe)
+		elif area.has_variable("damage"):
+			var v: Variant = area.get("damage")
+			if typeof(v) == TYPE_INT:
+				dmg = int(v)
+	currentHealth -= dmg
 	if currentHealth < 0:
 		currentHealth = maxHealth
 
@@ -395,3 +466,160 @@ func trigger_dialogue(dialogue_resource: DialogueResource) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("Collision with: ", body.name)
+
+# Handle incoming enemy HitBoxes
+func _on_area_entered(area: Area2D) -> void:
+	# ignore our own hitbox if layers overlap incorrectly
+	if area == null:
+		return
+	if area.get_parent() == self:
+		return
+	# take damage only from areas that advertise damage
+	if area.has_method("get_damage") or area.has_variable("damage"):
+		if not isHurt:
+			hurtByEnemy(area)
+
+# Toggle HitBox based on current attack animation frame
+func _on_sprite_frame_changed():
+	if not sprite:
+		return
+	var anim: StringName = sprite.animation
+	var frame: int = sprite.frame
+	var frames: SpriteFrames = sprite.sprite_frames
+	var count: int = 0
+	if frames and frames.has_animation(anim):
+		count = frames.get_frame_count(anim)
+	var active: bool = false
+	if anim.begins_with("Atk"):
+		var start: int = 1
+		var end: int = min(3, max(1, count - 1))
+		active = frame >= start and frame <= end
+		_set_combo_hitboxes_active(anim, active)
+	elif anim == "JumpAtk":
+		var start2: int = JUMP_ATK_RESUME_FRAME
+		var end2: int = max(start2, min(start2 + 2, count - 1))
+		active = frame >= start2 and frame <= end2
+		_set_jumpatk_hitbox_active(active)
+	else:
+		active = false
+		_set_all_hitboxes_inactive()
+
+func _set_hitbox_active(active: bool):
+	if not hitbox or not hitbox_shape:
+		return
+	# position in front of player
+	hitbox.position.x = 20.0 * facing_direction
+	hitbox.set_deferred("monitoring", active)
+	hitbox_shape.set_deferred("disabled", not active)
+	# keep secondary boxes aligned too if they exist
+	if hitbox2 and hitbox2_shape:
+		hitbox2.position.x = 26.0 * facing_direction
+		hitbox2.set_deferred("monitoring", active)
+		hitbox2_shape.set_deferred("disabled", not active)
+	if hitbox3 and hitbox3_shape:
+		hitbox3.position.x = 32.0 * facing_direction
+		hitbox3.set_deferred("monitoring", active)
+		hitbox3_shape.set_deferred("disabled", not active)
+	if hitbox4 and hitbox4_shape:
+		hitbox4.position.x = 20.0 * facing_direction
+		hitbox4.set_deferred("monitoring", active)
+		hitbox4_shape.set_deferred("disabled", not active)
+
+func _set_all_hitboxes_inactive():
+	if hitbox and hitbox_shape:
+		hitbox.set_deferred("monitoring", false)
+		hitbox_shape.set_deferred("disabled", true)
+	if hitbox2 and hitbox2_shape:
+		hitbox2.set_deferred("monitoring", false)
+		hitbox2_shape.set_deferred("disabled", true)
+	if hitbox3 and hitbox3_shape:
+		hitbox3.set_deferred("monitoring", false)
+		hitbox3_shape.set_deferred("disabled", true)
+	if hitbox4 and hitbox4_shape:
+		hitbox4.set_deferred("monitoring", false)
+		hitbox4_shape.set_deferred("disabled", true)
+
+func _set_combo_hitboxes_active(anim: String, active: bool):
+	# Atk1, Atk2 -> HitBox
+	# Atk3 -> HitBox + HitBox2
+	# Atk4 -> HitBox + HitBox2 + HitBox3
+	# While inactive, ensure all are disabled
+	if not active:
+		_set_all_hitboxes_inactive()
+		return
+	# Position and enable per mapping
+	if anim == "Atk1" or anim == "Atk2":
+		if hitbox and hitbox_shape:
+			hitbox.position.x = 20.0 * facing_direction
+			hitbox.set_deferred("monitoring", true)
+			hitbox_shape.set_deferred("disabled", false)
+		# ensure others are off
+		if hitbox2_shape: hitbox2_shape.set_deferred("disabled", true)
+		if hitbox2: hitbox2.set_deferred("monitoring", false)
+		if hitbox3_shape: hitbox3_shape.set_deferred("disabled", true)
+		if hitbox3: hitbox3.set_deferred("monitoring", false)
+		if hitbox4_shape: hitbox4_shape.set_deferred("disabled", true)
+		if hitbox4: hitbox4.set_deferred("monitoring", false)
+	elif anim == "Atk3":
+		if hitbox and hitbox_shape:
+			hitbox.position.x = 18.0 * facing_direction
+			hitbox.set_deferred("monitoring", true)
+			hitbox_shape.set_deferred("disabled", false)
+		if hitbox2 and hitbox2_shape:
+			hitbox2.position.x = 28.0 * facing_direction
+			hitbox2.set_deferred("monitoring", true)
+			hitbox2_shape.set_deferred("disabled", false)
+		# turn off others
+		if hitbox3_shape: hitbox3_shape.set_deferred("disabled", true)
+		if hitbox3: hitbox3.set_deferred("monitoring", false)
+		if hitbox4_shape: hitbox4_shape.set_deferred("disabled", true)
+		if hitbox4: hitbox4.set_deferred("monitoring", false)
+	elif anim == "Atk4":
+		if hitbox and hitbox_shape:
+			hitbox.position.x = 16.0 * facing_direction
+			hitbox.set_deferred("monitoring", true)
+			hitbox_shape.set_deferred("disabled", false)
+		if hitbox2 and hitbox2_shape:
+			hitbox2.position.x = 26.0 * facing_direction
+			hitbox2.set_deferred("monitoring", true)
+			hitbox2_shape.set_deferred("disabled", false)
+		if hitbox3 and hitbox3_shape:
+			hitbox3.position.x = 34.0 * facing_direction
+			hitbox3.set_deferred("monitoring", true)
+			hitbox3_shape.set_deferred("disabled", false)
+		# ensure HitBox4 off
+		if hitbox4_shape: hitbox4_shape.set_deferred("disabled", true)
+		if hitbox4: hitbox4.set_deferred("monitoring", false)
+	else:
+		# fallback to primary only
+		_set_hitbox_active(true)
+
+func _set_jumpatk_hitbox_active(active: bool):
+	if not active:
+		_set_all_hitboxes_inactive()
+		return
+	# activate only HitBox4 during JumpAtk
+	if hitbox4 and hitbox4_shape:
+		hitbox4.position.x = 20.0 * facing_direction
+		hitbox4.set_deferred("monitoring", true)
+		hitbox4_shape.set_deferred("disabled", false)
+	# others off
+	if hitbox and hitbox_shape:
+		hitbox.set_deferred("monitoring", false)
+		hitbox_shape.set_deferred("disabled", true)
+	if hitbox2 and hitbox2_shape:
+		hitbox2.set_deferred("monitoring", false)
+		hitbox2_shape.set_deferred("disabled", true)
+	if hitbox3 and hitbox3_shape:
+		hitbox3.set_deferred("monitoring", false)
+		hitbox3_shape.set_deferred("disabled", true)
+
+func _set_hitboxes_damage(dmg: int):
+	if hitbox:
+		hitbox.set("damage", dmg)
+	if hitbox2:
+		hitbox2.set("damage", dmg)
+	if hitbox3:
+		hitbox3.set("damage", dmg)
+	if hitbox4:
+		hitbox4.set("damage", dmg)
