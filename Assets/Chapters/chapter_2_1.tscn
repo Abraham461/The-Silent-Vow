@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cplsu82m7ob8u" path="res://Assets/Sprites/crouch_idle.png" id="11_rujle"]
 [ext_resource type="Texture2D" uid="uid://b5yhprilfv46y" path="res://Assets/Sprites/crouch_attacks.png" id="12_ui76u"]
 [ext_resource type="Script" uid="uid://3cge8f13eacw" path="res://Assets/Chapters/door_area_2.gd" id="12_vx4nc"]
-[ext_resource type="Script" path="res://Assets/Chapters/door_area_4.gd" id="13_8ncxi"]
+[ext_resource type="Script" uid="uid://bed2he1w56oaf" path="res://Assets/Chapters/door_area_4.gd" id="13_8ncxi"]
 [ext_resource type="Texture2D" uid="uid://v4nsxpuurtp3" path="res://Assets/Sprites/Death.png" id="13_eqqdr"]
 [ext_resource type="Texture2D" uid="uid://cpt5vfpaaokbc" path="res://Assets/Sprites/Hanging.png" id="14_vimia"]
 [ext_resource type="Texture2D" uid="uid://wvf7o443l5ro" path="res://Assets/Sprites/Health.png" id="15_7g1nf"]
@@ -33,6 +33,9 @@
 [ext_resource type="Texture2D" uid="uid://douwh6y8f15rp" path="res://Assets/Sprites/Slide.png" id="22_k0sts"]
 [ext_resource type="Texture2D" uid="uid://dii21ix70y2qb" path="res://Assets/Sprites/Hurt.png" id="23_0b2to"]
 [ext_resource type="Script" uid="uid://mrf3eewg8u0a" path="res://Assets/Chapters/Hitbox.gd" id="24_eqqdr"]
+
+[ext_resource type="PackedScene" path="res://canvas_layer.tscn" id="25_rujle"]
+
 [ext_resource type="PackedScene" uid="uid://c0gndkgjxaom4" path="res://canvas_layer.tscn" id="25_rujle"]
 [ext_resource type="Script" uid="uid://dlh6v4qgohbp6" path="res://Assets/Chapters/HurtBox.gd" id="26_vimia"]
 [ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="28_vimia"]
@@ -14518,16 +14521,13 @@ position = Vector2(779, -94)
 metadata/_edit_horizontal_guides_ = [572.0]
 metadata/_edit_vertical_guides_ = [11905.0]
 
+[node name="Pause_Menu" parent="." instance=ExtResource("28_vimia")]
+visible = false
+anchors_preset = -1
+
 [node name="Chapter2-1" type="Node2D" parent="."]
 position = Vector2(-780, -5)
 script = ExtResource("1_2vle6")
-
-[node name="Pause_Menu" parent="Chapter2-1" instance=ExtResource("28_vimia")]
-visible = false
-offset_left = 780.0
-offset_top = 5.0
-offset_right = 780.0
-offset_bottom = 5.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Chapter2-1"]
 
