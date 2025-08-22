@@ -642,3 +642,7 @@ func _on_enemyarea_body_entered(body: Node2D) -> void:
 			txt.enqueue_message("Hi welcome")
 		# mark triggered (remove/reset as needed)
 		has_triggeredmod = true
+
+
+func _on_minoarea_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

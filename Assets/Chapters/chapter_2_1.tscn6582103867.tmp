@@ -14697,8 +14697,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xy5j7"]
-radius = 157.035
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy5j7"]
+size = Vector2(384, 96)
 
 [node name="Chapter 2_1" type="Node2D"]
 position = Vector2(779, -94)
@@ -14898,8 +14898,8 @@ shape = SubResource("RectangleShape2D_7g1nf")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Chapter2-1" groups=["player"]]
 position = Vector2(34, -24)
-collision_layer = 769
-collision_mask = 785
+collision_layer = 513
+collision_mask = 529
 script = ExtResource("4_ral0s")
 
 [node name="Camera2D" type="Camera2D" parent="Chapter2-1/CharacterBody2D"]
@@ -15119,6 +15119,8 @@ collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("45_cuak4")
+speed = null
+patrol_range = null
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Chapter2-1/enemymino"]
 position = Vector2(1614.5, -53.5)
@@ -15130,16 +15132,14 @@ position = Vector2(1622, -73)
 scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_wd7hf")
 animation = &"minodeath"
-frame_progress = 0.577035
+frame_progress = 0.447753
 
-[node name="AggroZone" type="Area2D" parent="Chapter2-1/enemymino"]
+[node name="minoarea" type="Area2D" parent="Chapter2-1/enemymino"]
 position = Vector2(1, 9)
-collision_layer = 256
-collision_mask = 257
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/enemymino/AggroZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/enemymino/minoarea"]
 position = Vector2(1620, -69)
-shape = SubResource("CircleShape2D_xy5j7")
+shape = SubResource("RectangleShape2D_xy5j7")
 
 [connection signal="body_entered" from="Chapter2-1/Welcome/Area2D" to="Chapter2-1/Welcome/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Chapter2-1/Door/DoorArea" to="Chapter2-1/Door/DoorArea" method="_on_body_entered"]
@@ -15153,4 +15153,4 @@ shape = SubResource("CircleShape2D_xy5j7")
 [connection signal="health_depleted" from="Chapter2-1/Enemy/Health" to="Chapter2-1/Enemy" method="_on_health_health_depleted"]
 [connection signal="area_entered" from="Chapter2-1/enemy1/enemyarea" to="Chapter2-1/CharacterBody2D" method="_on_enemyarea_area_entered"]
 [connection signal="body_entered" from="Chapter2-1/enemy1/enemyarea" to="Chapter2-1/CharacterBody2D" method="_on_enemyarea_body_entered"]
-[connection signal="body_entered" from="Chapter2-1/enemymino/AggroZone" to="Chapter2-1/CharacterBody2D" method="_on_batsarea_body_entered"]
+[connection signal="body_entered" from="Chapter2-1/enemymino/minoarea" to="Chapter2-1/CharacterBody2D" method="_on_batsarea_body_entered"]

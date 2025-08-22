@@ -14697,8 +14697,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xy5j7"]
-radius = 157.035
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy5j7"]
+size = Vector2(384, 96)
 
 [node name="Chapter 2_1" type="Node2D"]
 position = Vector2(779, -94)
@@ -15130,16 +15130,16 @@ position = Vector2(1622, -73)
 scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_wd7hf")
 animation = &"minodeath"
-frame_progress = 0.577035
+frame_progress = 0.406044
 
 [node name="AggroZone" type="Area2D" parent="Chapter2-1/enemymino"]
 position = Vector2(1, 9)
 collision_layer = 256
-collision_mask = 257
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/enemymino/AggroZone"]
 position = Vector2(1620, -69)
-shape = SubResource("CircleShape2D_xy5j7")
+shape = SubResource("RectangleShape2D_xy5j7")
 
 [connection signal="body_entered" from="Chapter2-1/Welcome/Area2D" to="Chapter2-1/Welcome/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Chapter2-1/Door/DoorArea" to="Chapter2-1/Door/DoorArea" method="_on_body_entered"]
