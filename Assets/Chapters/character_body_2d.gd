@@ -46,6 +46,8 @@ var is_frozen: bool = false
 @onready var hitbox4: Area2D = $HitBox4 if has_node("HitBox4") else null
 @onready var hitbox4_shape: CollisionShape2D = $HitBox4/CollisionShape2D if has_node("HitBox4/CollisionShape2D") else null
 
+@export var textbox_scene: PackedScene = preload("res://DuskBorne-Druid/Textboxmod.tscn")
+var has_triggeredmod := false
 # State management
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, HEAL, PRAY }
 var current_state: State = State.IDLE
@@ -623,3 +625,20 @@ func _set_hitboxes_damage(dmg: int):
 		hitbox3.set("damage", dmg)
 	if hitbox4:
 		hitbox4.set("damage", dmg)
+
+
+
+func _on_enemyarea_body_entered(body: Node2D) -> void:
+	# avoid retriggering
+	if has_triggeredmod:
+		return
+
+	if body.is_in_group("player"):
+		var txt = textbox_scene.instantiate()
+		# add to current scene so CanvasLayer and UI draw correctly
+		get_tree().current_scene.add_child(txt)
+		# if the textbox scene exposes enqueue_message(), use it:
+		if txt.has_method("enqueue_message"):
+			txt.enqueue_message("Hi welcome")
+		# mark triggered (remove/reset as needed)
+		has_triggeredmod = true
