@@ -638,7 +638,7 @@ func _set_hitboxes_damage(dmg: int):
 func _on_enemyarea_body_entered(body: Node2D) -> void:
 	if has_triggeredmod:
 		return
-
+	has_triggeredmod = true
 	if body.is_in_group("player"):
 		enemy1.visible = true
 
@@ -680,7 +680,7 @@ func _on_enemyarea_body_entered(body: Node2D) -> void:
 		# 6) Remove enemy node from scene
 		enemy1.queue_free()
 
-		has_triggeredmod = true
+
 
 
 
