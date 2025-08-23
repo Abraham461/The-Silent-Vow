@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://combatdemo123"]
+
+[ext_resource type="Script" path="res://Assets/Combat/PlayerCombat.gd" id="1"]
+[ext_resource type="Script" path="res://Assets/Combat/EnemyCombat.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Sprites/Run.png" id="3"]
+[ext_resource type="Texture2D" path="res://Sprites/Jump.png" id="4"]
+
+[node name="CombatDemo" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1")
+position = Vector2(100, 300)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 10)
+
+[node name="HitBox" type="Area2D" parent="Player"]
+position = Vector2(20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HitBox"]
+
+[node name="HurtBox" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtBox"]
+position = Vector2(0, -5)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+script = ExtResource("2")
+position = Vector2(400, 300)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(0, 10)
+
+[node name="HitBox" type="Area2D" parent="Enemy"]
+position = Vector2(-20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/HitBox"]
+
+[node name="HurtBox" type="Area2D" parent="Enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/HurtBox"]
+position = Vector2(0, -5)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true

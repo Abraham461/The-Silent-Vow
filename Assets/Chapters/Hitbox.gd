@@ -1,14 +1,8 @@
-class_name HitBox
-extends Area2D
+extends "res://Assets/Combat/CombatHitBox.gd"
 
-@export var damage: int = 5 : set = set_damage, get = get_damage
+# This script now extends CombatHitBox which provides enhanced functionality
+# You can override or extend any methods here for custom behavior
 
-
-
-func set_damage(value: int):
-	damage = value
-
-
-
-func get_damage() -> int:
-	return damage
+func _ready():
+    super._ready()
+    # Any additional initialization for this hitbox
