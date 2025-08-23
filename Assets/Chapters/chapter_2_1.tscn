@@ -1,4 +1,4 @@
-[gd_scene load_steps=453 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=463 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -50,6 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://bi7nndjsahn6k" path="res://bats/Minotaur_1/Attack.png" id="46_4gk5h"]
 [ext_resource type="Texture2D" uid="uid://cig8dqr112u51" path="res://bats/Minotaur_1/Walk.png" id="46_cuak4"]
 [ext_resource type="Texture2D" uid="uid://cphv5ympxg2b0" path="res://bats/Minotaur_1/Dead.png" id="47_xy5j7"]
+[ext_resource type="Texture2D" uid="uid://dfrrlwasqy73m" path="res://DuskBorne-Druid/moreeffects/Crow.png" id="48_sx1yp"]
 [ext_resource type="Texture2D" uid="uid://ctp571irlw1h3" path="res://DuskBorne-Druid/moreeffects/Spritesheets/Gravity-Sheet.png" id="51_80imr"]
 [ext_resource type="Texture2D" uid="uid://coi4b0n8rfbha" path="res://DuskBorne-Druid/moreeffects/Spritesheets/Fire+Sparks-Sheet.png" id="51_fb3f8"]
 [ext_resource type="Texture2D" uid="uid://dbvt7tq27iuwf" path="res://DuskBorne-Druid/moreeffects/Spritesheets/Holy Light Aura.png" id="52_bhxw2"]
@@ -14630,7 +14631,43 @@ _data = {
 radius = 16.4049
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cuak4"]
-size = Vector2(47, 91)
+size = Vector2(24.75, 30.75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ablwc"]
+atlas = ExtResource("48_sx1yp")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqhc2"]
+atlas = ExtResource("48_sx1yp")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kxf4"]
+atlas = ExtResource("48_sx1yp")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fdm6"]
+atlas = ExtResource("48_sx1yp")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nds18"]
+atlas = ExtResource("48_sx1yp")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y3e6"]
+atlas = ExtResource("48_sx1yp")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdbjl"]
+atlas = ExtResource("48_sx1yp")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvp2h"]
+atlas = ExtResource("48_sx1yp")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebdwn"]
+atlas = ExtResource("48_sx1yp")
+region = Rect2(0, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ecfix"]
 atlas = ExtResource("46_4gk5h")
@@ -14722,6 +14759,38 @@ region = Rect2(1408, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wd7hf"]
 animations = [{
+"frames": [{
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_ablwc")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_cqhc2")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_6kxf4")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_8fdm6")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_nds18")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_2y3e6")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_pdbjl")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_dvp2h")
+}, {
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_ebdwn")
+}],
+"loop": true,
+"name": &"crowidle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 5.0,
 "texture": SubResource("AtlasTexture_ecfix")
@@ -15870,7 +15939,7 @@ shape = SubResource("RectangleShape2D_cuak4")
 position = Vector2(1699, 626)
 sprite_frames = SubResource("SpriteFrames_wd7hf")
 animation = &"minowalk"
-frame_progress = 0.309519
+frame_progress = 0.330592
 
 [node name="AggroZone" type="Area2D" parent="Chapter2-1/enemymino"]
 position = Vector2(1, 9)
@@ -15881,11 +15950,27 @@ collision_mask = 257
 position = Vector2(1692, 618)
 shape = SubResource("CircleShape2D_xy5j7")
 
+[node name="crow" type="CharacterBody2D" parent="Chapter2-1"]
+collision_layer = 2
+collision_mask = 2
+motion_mode = 1
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Chapter2-1/crow"]
+position = Vector2(2202, -134)
+shape = SubResource("RectangleShape2D_cuak4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Chapter2-1/crow"]
+position = Vector2(2201, -130)
+scale = Vector2(0.583333, 0.583333)
+sprite_frames = SubResource("SpriteFrames_wd7hf")
+animation = &"crowidle"
+frame_progress = 0.275932
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Chapter2-1"]
 position = Vector2(1909, 383)
 sprite_frames = SubResource("SpriteFrames_5a4rq")
 animation = &"gate"
-frame_progress = 0.961486
+frame_progress = 0.982557
 
 [node name="tparea" type="Area2D" parent="Chapter2-1/AnimatedSprite2D"]
 collision_layer = 65537
@@ -15899,15 +15984,13 @@ position = Vector2(1777, -26)
 scale = Vector2(0.307293, 0.255208)
 sprite_frames = SubResource("SpriteFrames_5a4rq")
 animation = &"fire"
-frame_progress = 0.195583
+frame_progress = 0.216657
 
 [node name="tpoutarea" type="Area2D" parent="Chapter2-1/holyaura"]
-visible = false
 collision_layer = 65537
 collision_mask = 65537
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/holyaura/tpoutarea"]
-visible = false
 position = Vector2(-5, 17)
 shape = SubResource("CircleShape2D_80imr")
 
@@ -15916,15 +15999,13 @@ position = Vector2(1770, -147)
 scale = Vector2(0.307293, 0.727604)
 sprite_frames = SubResource("SpriteFrames_5a4rq")
 animation = &"smoke"
-frame_progress = 0.563235
+frame_progress = 0.584308
 
 [node name="tpoutarea" type="Area2D" parent="Chapter2-1/smoe"]
-visible = false
 collision_layer = 65537
 collision_mask = 65537
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/smoe/tpoutarea"]
-visible = false
 position = Vector2(-5, 17)
 shape = SubResource("CircleShape2D_80imr")
 

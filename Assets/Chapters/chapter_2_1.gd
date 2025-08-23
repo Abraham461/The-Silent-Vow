@@ -4,6 +4,7 @@ extends Node2D
 @onready var animgate: AnimatedSprite2D = $AnimatedSprite2D
 @onready var holyaura: AnimatedSprite2D = $holyaura
 @onready var smoe: AnimatedSprite2D = $smoe
+@onready var crow: AnimatedSprite2D = $crow/AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,3 +15,4 @@ func _ready():
 	animgate.play("gate")
 	holyaura.play("fire")
 	smoe.play("smoke")
+	crow.play("crowidle")
