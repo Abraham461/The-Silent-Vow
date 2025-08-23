@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://combatdemo123"]
 
-[ext_resource type="Script" path="res://Assets/Combat/PlayerCombat.gd" id="1"]
-[ext_resource type="Script" path="res://Assets/Combat/EnemyCombat.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Sprites/Run.png" id="3"]
-[ext_resource type="Texture2D" path="res://Sprites/Jump.png" id="4"]
+[ext_resource type="Script" uid="uid://y52w4a3voqrt" path="res://Assets/Combat/PlayerCombat.gd" id="1"]
+[ext_resource type="Script" uid="uid://337drp0q3g7q" path="res://Assets/Combat/EnemyCombat.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://ca7av0y4qyfup" path="res://Assets/Sprites/Run.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://pdvkedgfbey6" path="res://Assets/Sprites/Jump.png" id="4"]
 
 [node name="CombatDemo" type="Node2D"]
 

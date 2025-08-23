@@ -4,5 +4,5 @@ extends "res://Assets/Combat/CombatHitBox.gd"
 # You can override or extend any methods here for custom behavior
 
 func _ready():
-    super._ready()
-    # Any additional initialization for this hitbox
+	super._ready()
+	# Any additional initialization for this hitbox

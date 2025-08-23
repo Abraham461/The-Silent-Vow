@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://nightborne_enemy"]
+[gd_scene load_steps=13 format=3 uid="uid://djo22gbno6ruh"]
 
-[ext_resource type="Script" path="res://Assets/Chapters/Enemy.gd" id="1"]
-[ext_resource type="Texture2D" path="res://Player Knight/player/sprites/NightBorne.png" id="2"]
-[ext_resource type="Script" path="res://Assets/Combat/HealthComponent.gd" id="3"]
-[ext_resource type="Script" path="res://Assets/Combat/CombatEffects.gd" id="4"]
-[ext_resource type="Script" path="res://Assets/Combat/CombatHitBox.gd" id="5"]
-[ext_resource type="Script" path="res://Assets/Combat/CombatHurtBox.gd" id="6"]
+[ext_resource type="Script" uid="uid://dud3x3hobbsnc" path="res://Assets/Chapters/Enemy.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://l3lcvvcjiee8" path="res://Player Knight/player/sprites/NightBorne.png" id="2"]
+[ext_resource type="Script" uid="uid://bf2knaih1j5kt" path="res://Assets/Combat/HealthComponent.gd" id="3"]
+[ext_resource type="Script" uid="uid://btxfm3nkrsnvo" path="res://Assets/Combat/CombatEffects.gd" id="4"]
+[ext_resource type="Script" uid="uid://cm36kcc6a53as" path="res://Assets/Combat/CombatHitBox.gd" id="5"]
+[ext_resource type="Script" uid="uid://ckglqtgf3hqjp" path="res://Assets/Combat/CombatHurtBox.gd" id="6"]
 
 [sub_resource type="AtlasTexture" id="1"]
 atlas = ExtResource("2")
@@ -13,22 +13,6 @@ region = Rect2(0, 0, 80, 80)
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("1")
-}],
-"loop": true,
-"name": &"NightBorneIdle",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("1")
-}],
-"loop": true,
-"name": &"NightBorneRun",
-"speed": 10.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("1")
@@ -44,6 +28,22 @@ animations = [{
 "loop": false,
 "name": &"NightBorneDeath",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}],
+"loop": true,
+"name": &"NightBorneIdle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}],
+"loop": true,
+"name": &"NightBorneRun",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -70,16 +70,10 @@ radius = 260.0
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1")
-max_health = 100
+special_attack_chance = 0.25
 move_speed = 150.0
-patrol_speed = 50.0
-aggro_radius = 260.0
-deaggro_radius = 400.0
-attack_range = 60.0
 attack_cooldown = 1.5
 attack_damage = 15
-special_attack_chance = 0.25
-enrage_threshold = 0.3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("2")
@@ -92,18 +86,15 @@ shape = SubResource("3")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3")
-max_health = 100
 
 [node name="CombatEffects" type="Node2D" parent="."]
 script = ExtResource("4")
 
 [node name="HitBox" type="Area2D" parent="." groups=["enemy_hitbox"]]
 collision_layer = 4
-collision_mask = 1
 monitoring = false
 script = ExtResource("5")
 base_damage = 15
-base_knockback = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(25, 0)
@@ -121,8 +112,6 @@ shape = SubResource("5")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 1
-monitoring = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("6")
