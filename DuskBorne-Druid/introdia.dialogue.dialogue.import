@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://5vkw8l8djriw"
+path="res://.godot/imported/introdia.dialogue.dialogue-61aec5ab99417cf9e0b3ccef153a217f.tres"
+
+[deps]
+
+source_file="res://DuskBorne-Druid/introdia.dialogue.dialogue"
+dest_files=["res://.godot/imported/introdia.dialogue.dialogue-61aec5ab99417cf9e0b3ccef153a217f.tres"]
+
+[params]
+
+defaults=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dafw0yxq5cvep"]
+[gd_scene load_steps=28 format=3 uid="uid://dafw0yxq5cvep"]
 
 [ext_resource type="Script" uid="uid://bcyrhu1fsojdt" path="res://Main_menu/menu/game_level.gd" id="1_uxngw"]
 [ext_resource type="Texture2D" uid="uid://bnbou8gqeck0p" path="res://Main_menu/Image/Gamelevel.jpg" id="2_uxngw"]
@@ -8,10 +8,50 @@
 [sub_resource type="SystemFont" id="SystemFont_uxngw"]
 font_names = PackedStringArray("Times New Roman")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tyhta"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8fv6c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tffyc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1bew4"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wy5st"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gt0s2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fi4uu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vr33u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ano1e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c518x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gwer3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pohqj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bithf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_htinp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2omuf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ivt35"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gm3rp"]
 
 [sub_resource type="SystemFont" id="SystemFont_5vbcs"]
 font_names = PackedStringArray("Times New Roman")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kf0uj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1t4ec"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e8jor"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mos4p"]
 
 [node name="Game_level" type="Control"]
 layout_mode = 3
@@ -44,6 +84,10 @@ theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tyhta")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8fv6c")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tffyc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1bew4")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Chapter 1 "
 metadata/_edit_use_anchors_ = true
@@ -61,6 +105,10 @@ theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gt0s2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_fi4uu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vr33u")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ano1e")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Chapter 2 "
 metadata/_edit_use_anchors_ = true
@@ -78,6 +126,10 @@ theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c518x")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_gwer3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pohqj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bithf")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Chapter 3 "
 metadata/_edit_use_anchors_ = true
@@ -96,6 +148,10 @@ theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_htinp")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_2omuf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ivt35")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gm3rp")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Chapter 4 "
 metadata/_edit_use_anchors_ = true
@@ -111,7 +167,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = SubResource("SystemFont_5vbcs")
 theme_override_font_sizes/font_size = 27
-text = "Game Levles"
+text = "Game Levels"
 metadata/_edit_use_anchors_ = true
 
 [node name="Back_Button" type="Button" parent="TextureRect"]
@@ -127,6 +183,10 @@ theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kf0uj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1t4ec")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e8jor")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mos4p")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wy5st")
 text = "Back "
 metadata/_edit_use_anchors_ = true

@@ -307,9 +307,9 @@ func _execute_attack_pattern():
 	
 	# Play attack animation
 	if sprite:
-		sprite.play("Attack")
+		sprite.play("NightBorneAtk")
 	elif animation_player:
-		animation_player.play("Attack")
+		animation_player.play("NightBorneAtk")
 	
 	# Windup
 	await get_tree().create_timer(attack_windup).timeout
@@ -373,9 +373,9 @@ func _handle_attack_interruption():
 	change_state(EnemyState.HURT)
 	
 	if sprite:
-		sprite.play("Hurt")
+		sprite.play("NightBorneTakeHit")
 	elif animation_player:
-		animation_player.play("Hurt")
+		animation_player.play("NightBorneTakeHit")
 
 func take_damage(damage: int, attacker: Node = null, knockback_force: Vector2 = Vector2.ZERO):
 	if current_state == EnemyState.DEAD:
@@ -431,34 +431,34 @@ func update_animation():
 	
 	match current_state:
 		EnemyState.IDLE:
-			if sprite and sprite.animation != "Idle":
-				sprite.play("Idle")
-			elif animation_player and animation_player.current_animation != "Idle":
-				animation_player.play("Idle")
+			if sprite and sprite.animation != "NightBorneIdle":
+				sprite.play("NightBorneIdle")
+			elif animation_player and animation_player.current_animation != "NightBorneIdle":
+				animation_player.play("NightBorneIdle")
 		
 		EnemyState.PATROL, EnemyState.CHASE:
 			if abs(velocity.x) > 5:
-				if sprite and sprite.animation != "Run":
-					sprite.play("Run")
-				elif animation_player and animation_player.current_animation != "Run":
-					animation_player.play("Run")
+				if sprite and sprite.animation != "NightBorneRun":
+					sprite.play("NightBorneRun")
+				elif animation_player and animation_player.current_animation != "NightBorneRun":
+					animation_player.play("NightBorneRun")
 			else:
-				if sprite and sprite.animation != "Idle":
-					sprite.play("Idle")
-				elif animation_player and animation_player.current_animation != "Idle":
-					animation_player.play("Idle")
+				if sprite and sprite.animation != "NightBorneIdle":
+					sprite.play("NightBorneIdle")
+				elif animation_player and animation_player.current_animation != "NightBorneIdle":
+					animation_player.play("NightBorneIdle")
 		
 		EnemyState.HURT:
-			if sprite and sprite.animation != "Hurt":
-				sprite.play("Hurt")
-			elif animation_player and animation_player.current_animation != "Hurt":
-				animation_player.play("Hurt")
+			if sprite and sprite.animation != "NightBorneTakeHit":
+				sprite.play("NightBorneTakeHit")
+			elif animation_player and animation_player.current_animation != "NightBorneTakeHit":
+				animation_player.play("NightBorneTakeHit")
 		
 		EnemyState.DEAD:
-			if sprite and sprite.animation != "Death":
-				sprite.play("Death")
-			elif animation_player and animation_player.current_animation != "Death":
-				animation_player.play("Death")
+			if sprite and sprite.animation != "NightBorneDeath":
+				sprite.play("NightBorneDeath")
+			elif animation_player and animation_player.current_animation != "NightBorneDeath":
+				animation_player.play("NightBorneDeath")
 
 func _on_detection_body_entered(body: Node2D):
 	if body.is_in_group("player"):

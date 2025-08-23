@@ -47,6 +47,8 @@ const JUMP_ATK_RESUME_FRAME := 2
 @onready var player = $CollisionShape2D
 @onready var effects: AnimationPlayer = $AnimationPlayer
 @onready var hurtTimer: Timer = $HurtTimer
+
+@onready var animMod: AnimatedSprite2D = $"../enemy1/AnimatedSprite2D"
 @onready var torch_light = $TorchLight
 
 var torch_on: bool = false
@@ -64,6 +66,9 @@ var is_frozen: bool = false
 @onready var hitbox4_shape: CollisionShape2D = $HitBox4/CollisionShape2D if has_node("HitBox4/CollisionShape2D") else null
 
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, CLIMB, HEAL, PRAY }
+@export var textbox_scene: PackedScene = preload("res://DuskBorne-Druid/Textboxmod.tscn")
+
+# State management
 var current_state: State = State.IDLE
 var combo_step: int = 0
 var move_direction: float = 0
@@ -76,7 +81,14 @@ var knockbackPower: float = 250.0
 var jumpatk_lock: bool = false
 var was_on_floor: bool = false
 
-func _process(_delta: float) -> void:
+@export var enemy1_path: NodePath
+@export var exit_distance: float = 220.0
+@export var exit_duration: float = 6.0
+@onready var enemy1: CharacterBody2D = $"../enemy1"
+
+
+var has_triggeredmod := false
+func _process(_delta):
 	if Input.is_action_just_pressed("toggle_torch"):
 		torch_on = !torch_on
 		torch_light.visible = torch_on
@@ -665,3 +677,56 @@ func _set_hitboxes_damage(dmg: int) -> void:
 		hitbox3.set("damage", dmg)
 	if hitbox4:
 		hitbox4.set("damage", dmg)
+		
+		# after the dialogue ends, run the exit sequence for enemy1
+func _on_enemyarea_body_entered(body: Node2D) -> void:
+	if has_triggeredmod:
+		return
+	has_triggeredmod = true
+	if body.is_in_group("player"):
+		enemy1.visible = true
+
+		# 1) Play death animation once
+		animMod.sprite_frames.set_animation_loop("moddeath", false)
+		animMod.play("moddeath")
+
+		# Show dialogue immediately after death animation starts
+		var txt = textbox_scene.instantiate()
+		get_tree().current_scene.add_child(txt)
+		if txt.has_method("enqueue_message"):
+			txt.enqueue_message("Hi welcome")
+
+		await animMod.animation_finished  # wait until death finishes
+
+		# 2) Play idle animation for 2 seconds
+		animMod.play("modIdle")
+		await get_tree().create_timer(2.0).timeout
+
+		# 3) Play walk animation while moving left
+		animMod.play("modwalk")
+		var target_pos = enemy1.position + Vector2(-280, 0)
+		var tween = create_tween()
+		tween.tween_property(enemy1, "position", target_pos, 10.0)
+		await tween.finished  # wait until walk completes
+
+		# 4) Play "modHurt" animation and move slightly back (-20px)
+		animMod.sprite_frames.set_animation_loop("modHurt", false)
+		animMod.play("modHurt")
+ # adjust duration to match animation
+		await animMod.animation_finished
+
+
+		# 5) Play "modDis" animation
+		animMod.sprite_frames.set_animation_loop("modDis", false)
+		animMod.play("modDis")
+		await animMod.animation_finished
+
+		# 6) Remove enemy node from scene
+		enemy1.queue_free()
+
+
+
+
+
+func _on_minoarea_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

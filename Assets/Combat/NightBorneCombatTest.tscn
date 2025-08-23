@@ -1,0 +1,179 @@
+[gd_scene load_steps=8 format=3 uid="uid://nightborne_test"]
+
+[ext_resource type="PackedScene" uid="uid://nightborne_enemy" path="res://Assets/Combat/NightBorneEnemy.tscn" id="1"]
+[ext_resource type="Script" path="res://Assets/Combat/PlayerCombat.gd" id="2"]
+[ext_resource type="Script" path="res://Assets/Combat/HealthComponent.gd" id="3"]
+[ext_resource type="Script" path="res://Assets/Combat/CombatEffects.gd" id="4"]
+[ext_resource type="Script" path="res://Assets/Combat/CombatHitBox.gd" id="5"]
+[ext_resource type="Script" path="res://Assets/Combat/CombatHurtBox.gd" id="6"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(30, 50)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(40, 60)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(35, 55)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(1200, 20)
+
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(20, 600)
+
+[node name="NightBorneCombatTest" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(200, 400)
+collision_layer = 1
+collision_mask = 6
+script = ExtResource("2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+modulate = Color(0.2, 0.6, 1, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="Player/Sprite2D"]
+color = Color(0.2, 0.6, 1, 1)
+polygon = PackedVector2Array(-15, -25, 15, -25, 15, 25, -15, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 5)
+shape = SubResource("1")
+
+[node name="HealthComponent" type="Node" parent="Player"]
+script = ExtResource("3")
+max_health = 100
+
+[node name="CombatEffects" type="Node2D" parent="Player"]
+script = ExtResource("4")
+
+[node name="HitBox" type="Area2D" parent="Player" groups=["player_hitbox"]]
+collision_layer = 8
+collision_mask = 2
+monitoring = false
+script = ExtResource("5")
+base_damage = 20
+base_knockback = 250.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HitBox"]
+position = Vector2(30, 0)
+shape = SubResource("2")
+disabled = true
+
+[node name="HurtBox" type="Area2D" parent="Player" groups=["player_hurtbox"]]
+collision_layer = 1
+collision_mask = 4
+script = ExtResource("6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtBox"]
+position = Vector2(0, -5)
+shape = SubResource("3")
+
+[node name="NightBorneEnemy" parent="." instance=ExtResource("1")]
+position = Vector2(600, 400)
+
+[node name="NightBorneEnemy2" parent="." instance=ExtResource("1")]
+position = Vector2(800, 400)
+move_speed = 120.0
+attack_damage = 12
+
+[node name="NightBorneEnemy3" parent="." instance=ExtResource("1")]
+position = Vector2(1000, 400)
+move_speed = 180.0
+attack_damage = 18
+special_attack_chance = 0.4
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="Environment"]
+position = Vector2(600, 500)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Ground"]
+shape = SubResource("4")
+
+[node name="ColorRect" type="ColorRect" parent="Environment/Ground"]
+offset_left = -600.0
+offset_top = -10.0
+offset_right = 600.0
+offset_bottom = 10.0
+color = Color(0.3, 0.3, 0.3, 1)
+
+[node name="LeftWall" type="StaticBody2D" parent="Environment"]
+position = Vector2(10, 300)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/LeftWall"]
+shape = SubResource("5")
+
+[node name="RightWall" type="StaticBody2D" parent="Environment"]
+position = Vector2(1190, 300)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RightWall"]
+shape = SubResource("5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(600, 300)
+zoom = Vector2(0.8, 0.8)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Instructions" type="RichTextLabel" parent="UI"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 400.0
+offset_bottom = 150.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "NightBorne Combat Test
+Controls:
+- Arrow Keys/WASD: Move
+- Space: Jump
+- Z/J: Attack
+- X/K: Special Attack
+
+Enemy Animations:
+- NightBorneIdle
+- NightBorneRun
+- NightBorneAtk
+- NightBorneDeath
+- NightBorneTakeHit"
+
+[node name="HealthDisplay" type="Label" parent="UI"]
+offset_left = 10.0
+offset_top = 160.0
+offset_right = 200.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "Player Health: 100/100"
+
+[node name="EnemyStatus" type="Label" parent="UI"]
+offset_right = 300.0
+offset_bottom = 100.0
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -310.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "Enemies Status:
+Enemy 1: Idle
+Enemy 2: Idle
+Enemy 3: Idle"
+horizontal_alignment = 2

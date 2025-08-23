@@ -67,9 +67,9 @@ func perform_special_attack() -> void:
 	
 	# Special attack - area slam
 	if sprite:
-		sprite.play("Attack")
+		sprite.play("NightBorneAtk")
 	elif animation_player:
-		animation_player.play("Attack")
+		animation_player.play("NightBorneAtk")
 	
 	# Windup with telegraph
 	if sprite:
