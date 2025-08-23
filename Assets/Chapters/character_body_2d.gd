@@ -32,6 +32,8 @@ const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landi
 @onready var hurtTimer = $HurtTimer
 @onready var slide_timer := $SlideTimer  # Make sure you add this Timer node in scene
 
+@onready var animMod: AnimatedSprite2D = $"../enemy1/AnimatedSprite2D"
+
 @onready var torch_light = $TorchLight
 var torch_on = false
 var is_frozen: bool = false
@@ -47,7 +49,7 @@ var is_frozen: bool = false
 @onready var hitbox4_shape: CollisionShape2D = $HitBox4/CollisionShape2D if has_node("HitBox4/CollisionShape2D") else null
 
 @export var textbox_scene: PackedScene = preload("res://DuskBorne-Druid/Textboxmod.tscn")
-var has_triggeredmod := false
+
 # State management
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, HEAL, PRAY }
 var current_state: State = State.IDLE
@@ -60,7 +62,13 @@ var can_slide: bool = true
 var attack_buffered: bool = false
 var knockbackPower = 250.0  # or whatever value you need
 var jumpatk_lock: bool = false  # true while JumpAtk must wait for landing
+@export var enemy1_path: NodePath
+@export var exit_distance: float = 220.0   # how far to move left (pixels)
+@export var exit_duration: float = 6     # how long the move takes (seconds)
+@onready var enemy1: CharacterBody2D = $"../enemy1"
 
+
+var has_triggeredmod := false
 func _process(_delta):
 	if Input.is_action_just_pressed("toggle_torch"):
 		torch_on = !torch_on
@@ -625,23 +633,55 @@ func _set_hitboxes_damage(dmg: int):
 		hitbox3.set("damage", dmg)
 	if hitbox4:
 		hitbox4.set("damage", dmg)
-
-
-
+		
+		# after the dialogue ends, run the exit sequence for enemy1
 func _on_enemyarea_body_entered(body: Node2D) -> void:
-	# avoid retriggering
 	if has_triggeredmod:
 		return
 
 	if body.is_in_group("player"):
+		enemy1.visible = true
+
+		# 1) Play death animation once
+		animMod.sprite_frames.set_animation_loop("moddeath", false)
+		animMod.play("moddeath")
+
+		# Show dialogue immediately after death animation starts
 		var txt = textbox_scene.instantiate()
-		# add to current scene so CanvasLayer and UI draw correctly
 		get_tree().current_scene.add_child(txt)
-		# if the textbox scene exposes enqueue_message(), use it:
 		if txt.has_method("enqueue_message"):
 			txt.enqueue_message("Hi welcome")
-		# mark triggered (remove/reset as needed)
+
+		await animMod.animation_finished  # wait until death finishes
+
+		# 2) Play idle animation for 2 seconds
+		animMod.play("modIdle")
+		await get_tree().create_timer(2.0).timeout
+
+		# 3) Play walk animation while moving left
+		animMod.play("modwalk")
+		var target_pos = enemy1.position + Vector2(-280, 0)
+		var tween = create_tween()
+		tween.tween_property(enemy1, "position", target_pos, 10.0)
+		await tween.finished  # wait until walk completes
+
+		# 4) Play "modHurt" animation and move slightly back (-20px)
+		animMod.sprite_frames.set_animation_loop("modHurt", false)
+		animMod.play("modHurt")
+ # adjust duration to match animation
+		await animMod.animation_finished
+
+
+		# 5) Play "modDis" animation
+		animMod.sprite_frames.set_animation_loop("modDis", false)
+		animMod.play("modDis")
+		await animMod.animation_finished
+
+		# 6) Remove enemy node from scene
+		enemy1.queue_free()
+
 		has_triggeredmod = true
+
 
 
 func _on_minoarea_body_entered(body: Node2D) -> void:
