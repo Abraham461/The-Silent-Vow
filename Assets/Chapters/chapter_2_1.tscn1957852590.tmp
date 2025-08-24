@@ -1,4 +1,4 @@
-[gd_scene load_steps=516 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=492 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -38,6 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="28_vimia"]
 [ext_resource type="Script" uid="uid://cu68vv8fptiy7" path="res://Assets/Chapters/health.gd" id="31_fr5cv"]
 [ext_resource type="PackedScene" uid="uid://bv8lwakktb675" path="res://Assets/Chapters/helpers/actionable.tscn" id="33_vx4nc"]
+[ext_resource type="Script" uid="uid://dud3x3hobbsnc" path="res://Assets/Chapters/Enemy.gd" id="34_6rjlp"]
 [ext_resource type="Resource" uid="uid://cks1cp7a0kx78" path="res://Assets/Chapters/dialogue/npc_intro.dialogue" id="34_8ncxi"]
 [ext_resource type="Texture2D" uid="uid://bqma83k4r2dcb" path="res://DuskBorne-Druid/SpriteSheet/DruidBasicAtk1-Sheet.png" id="41_f3ovl"]
 [ext_resource type="Texture2D" uid="uid://c2hff437ca1vx" path="res://DuskBorne-Druid/SpriteSheet/DruidIdle001-Sheet.png" id="41_lw5t0"]
@@ -55,7 +56,6 @@
 [ext_resource type="Texture2D" uid="uid://coi4b0n8rfbha" path="res://DuskBorne-Druid/moreeffects/Spritesheets/Fire+Sparks-Sheet.png" id="51_fb3f8"]
 [ext_resource type="Texture2D" uid="uid://dbvt7tq27iuwf" path="res://DuskBorne-Druid/moreeffects/Spritesheets/Holy Light Aura.png" id="52_bhxw2"]
 [ext_resource type="Script" uid="uid://douukc8ck6cp4" path="res://Assets/Chapters/enemydevil.gd" id="53_1ys4a"]
-[ext_resource type="Texture2D" uid="uid://byfii32ipqhor" path="res://DuskBorne-Druid/moreeffects/Incendiary/Fire_Incendiary_96x32.png" id="53_w62w1"]
 [ext_resource type="Texture2D" uid="uid://dl6xiskebyf85" path="res://DuskBorne-Druid/moreeffects/Spritesheets/Smoke2-Sheet.png" id="54_c88mf"]
 [ext_resource type="Script" uid="uid://6jbqpdto4r3v" path="res://Assets/Chapters/hurt_box.gd" id="54_w62w1"]
 
@@ -14760,34 +14760,6 @@ region = Rect2(512, 256, 64, 64)
 atlas = ExtResource("49_sg2kx")
 region = Rect2(576, 256, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_32rbx"]
-atlas = ExtResource("42_ks44t")
-region = Rect2(384, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i0p8q"]
-atlas = ExtResource("42_ks44t")
-region = Rect2(512, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6yfxc"]
-atlas = ExtResource("42_ks44t")
-region = Rect2(640, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vx6e8"]
-atlas = ExtResource("42_ks44t")
-region = Rect2(768, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x0qh0"]
-atlas = ExtResource("49_sg2kx")
-region = Rect2(0, 192, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_biq3v"]
-atlas = ExtResource("42_6vvgp")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i4pin"]
-atlas = ExtResource("49_sg2kx")
-region = Rect2(384, 192, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_4o1h2"]
 atlas = ExtResource("49_sg2kx")
 region = Rect2(0, 0, 64, 64)
@@ -15005,37 +14977,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_32rbx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i0p8q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6yfxc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vx6e8")
-}],
-"loop": true,
-"name": &"devildeath",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x0qh0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_biq3v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i4pin")
-}],
-"loop": true,
-"name": &"devilhurt",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_4o1h2")
 }, {
 "duration": 1.0,
@@ -15136,132 +15077,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xy5j7"]
-radius = 131.004
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4v7cv"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(0, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ck5tc"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(96, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a4lxk"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(192, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iyeg6"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(288, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ksn3i"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(0, 32, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jeiq5"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(96, 32, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8mn2f"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(192, 32, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b51co"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(288, 32, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bkxty"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(0, 64, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qhydg"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(96, 64, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0v3kb"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(192, 64, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bk2gu"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(288, 64, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8034"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(0, 96, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ml8m"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(96, 96, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w3nmx"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(192, 96, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q23dc"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(288, 96, 96, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_83op5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4v7cv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ck5tc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a4lxk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iyeg6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ksn3i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jeiq5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8mn2f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b51co")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bkxty")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qhydg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0v3kb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bk2gu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8034")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ml8m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w3nmx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q23dc")
-}],
-"loop": true,
-"name": &"AttackEffect",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+radius = 79.0253
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg2kx"]
 size = Vector2(65, 56)
@@ -16097,7 +15913,6 @@ position = Vector2(5665.5, 72.9648)
 shape = SubResource("RectangleShape2D_7g1nf")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Chapter2-1" groups=["player"]]
-texture_filter = 1
 position = Vector2(34, -24)
 collision_layer = 66305
 collision_mask = 785
@@ -16166,10 +15981,9 @@ collision_mask = 0
 script = ExtResource("24_eqqdr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/CharacterBody2D/HitBox"]
-position = Vector2(2, 8)
+position = Vector2(-2, 8)
 scale = Vector2(1.3, 1.3)
 shape = SubResource("CapsuleShape2D_pt7p7")
-disabled = true
 
 [node name="Direction" type="Marker2D" parent="Chapter2-1/CharacterBody2D" groups=["player"]]
 
@@ -16178,12 +15992,10 @@ collision_layer = 16
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/CharacterBody2D/Direction/ActionableFinder" groups=["player"]]
-visible = false
 position = Vector2(2, 3)
 shape = SubResource("CircleShape2D_k0sts")
 
 [node name="HitBox2" type="Area2D" parent="Chapter2-1/CharacterBody2D"]
-visible = false
 collision_layer = 15
 collision_mask = 0
 script = ExtResource("24_eqqdr")
@@ -16194,7 +16006,6 @@ scale = Vector2(1.3, 1.3)
 shape = SubResource("CapsuleShape2D_pt7p7")
 
 [node name="HitBox3" type="Area2D" parent="Chapter2-1/CharacterBody2D"]
-visible = false
 collision_layer = 15
 collision_mask = 0
 script = ExtResource("24_eqqdr")
@@ -16215,7 +16026,6 @@ position = Vector2(4, 11)
 shape = SubResource("CapsuleShape2D_6rjlp")
 
 [node name="HitBox4" type="Area2D" parent="Chapter2-1/CharacterBody2D"]
-visible = false
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("24_eqqdr")
@@ -16226,11 +16036,10 @@ rotation = 1.5708
 scale = Vector2(1.3, 1.3)
 shape = SubResource("CapsuleShape2D_pt7p7")
 
-[node name="deviltimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
-
 [node name="Enemy" type="CharacterBody2D" parent="Chapter2-1"]
 z_index = 100
 position = Vector2(11853, 714)
+script = ExtResource("34_6rjlp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy"]
 position = Vector2(6, 29)
@@ -16343,26 +16152,18 @@ position = Vector2(1692, 618)
 shape = SubResource("CircleShape2D_xy5j7")
 
 [node name="enemydevil" type="CharacterBody2D" parent="Chapter2-1"]
-process_priority = 5
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("53_1ys4a")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Chapter2-1/enemydevil"]
-texture_filter = 1
-position = Vector2(2743, 397)
-sprite_frames = SubResource("SpriteFrames_83op5")
-animation = &"AttackEffect"
-frame_progress = 0.21106
-flip_h = true
-
 [node name="Health" type="Node" parent="Chapter2-1/enemydevil"]
-process_priority = 4
 script = ExtResource("31_fr5cv")
+max_health = 5
 metadata/_custom_type_script = "uid://cu68vv8fptiy7"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Chapter2-1/enemydevil"]
+visible = false
 position = Vector2(2815, 395)
 shape = SubResource("RectangleShape2D_cuak4")
 
@@ -16370,15 +16171,14 @@ shape = SubResource("RectangleShape2D_cuak4")
 texture_filter = 1
 position = Vector2(2813, 396)
 sprite_frames = SubResource("SpriteFrames_wd7hf")
-animation = &"devilatk2"
-frame = 1
-frame_progress = 0.822139
+animation = &"devilidle"
+frame_progress = 0.55825
 
 [node name="AggroZone" type="Area2D" parent="Chapter2-1/enemydevil"]
+visible = false
 position = Vector2(1, 9)
 collision_layer = 256
 collision_mask = 257
-collision_priority = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/enemydevil/AggroZone"]
 position = Vector2(2813, 387)
@@ -16393,8 +16193,6 @@ script = ExtResource("54_w62w1")
 position = Vector2(2813.5, 396)
 shape = SubResource("RectangleShape2D_sg2kx")
 one_way_collision_margin = 0.0
-
-[node name="HurtCooldown" type="Timer" parent="Chapter2-1/enemydevil"]
 
 [node name="crow" type="CharacterBody2D" parent="Chapter2-1"]
 collision_layer = 2

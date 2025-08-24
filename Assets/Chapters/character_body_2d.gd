@@ -47,7 +47,7 @@ const JUMP_ATK_RESUME_FRAME := 2
 @onready var player = $CollisionShape2D
 @onready var effects: AnimationPlayer = $AnimationPlayer
 @onready var hurtTimer: Timer = $HurtTimer
-
+@onready var devil: AnimatedSprite2D = $"../enemydevil/AnimatedSprite2D"
 @onready var animMod: AnimatedSprite2D = $"../enemy1/AnimatedSprite2D"
 @onready var torch_light = $TorchLight
 
@@ -85,9 +85,15 @@ var was_on_floor: bool = false
 @export var exit_distance: float = 220.0
 @export var exit_duration: float = 6.0
 @onready var enemy1: CharacterBody2D = $"../enemy1"
+@onready var devilanim: AnimatedSprite2D = $"../enemydevil/AnimatedSprite2D"
+var devildeath = false
+@onready var devil_aggro_zone: Area2D = $"../enemydevil/AggroZone"
+@onready var devil_attackeffect: AnimatedSprite2D = $"../enemydevil/AnimatedSprite2D2"
 
-
+var devil_in_aggro: bool = false
 var has_triggeredmod := false
+var devil_attack_loop_running: bool = false
+var devil_aggro_body: CharacterBody2D = null
 func _process(_delta):
 	if Input.is_action_just_pressed("toggle_torch"):
 		torch_on = !torch_on
@@ -735,3 +741,65 @@ func _on_minoarea_body_entered(body: Node2D) -> void:
 func _on_tparea_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # make sure only the player teleports
 		body.global_position = Vector2(1871, -254)
+func _on_aggro_zone_body_entered(body: Node2D) -> void:
+	if devildeath:
+		return
+	if body is CharacterBody2D:
+		devil_in_aggro = true
+		devil_aggro_body = body
+		start_attack_cycle()  # start the attack asynchronously
+
+
+func _on_aggro_zone_body_exited(body: Node2D) -> void:
+	if body == devil_aggro_body:
+		devil_in_aggro = false
+		devil_aggro_body = null
+		if is_instance_valid(devilanim):
+			devilanim.play("devilidle")  # force idle immediately
+func start_attack_cycle() -> void:
+	# stop if devil dead or player left aggro
+	if devildeath or not devil_in_aggro:
+		if is_instance_valid(devilanim):
+			devilanim.play("devilidle")
+		return
+
+	if not is_instance_valid(devilanim):
+		return
+
+	# play attack animation
+	devilanim.play("devilatk2")
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	if not devil_in_aggro or devildeath:
+		if is_instance_valid(devilanim):
+			devilanim.play("devilidle")
+		return
+
+	# freeze at frame 2
+	var frames := devilanim.get_sprite_frames()
+	if frames and frames.has_animation("devilatk2"):
+		var max_idx := frames.get_frame_count("devilatk2") - 1
+		devilanim.frame = clamp(2, 0, max_idx)
+	else:
+		devilanim.frame = 2
+	devilanim.pause()
+
+	if is_instance_valid(devil_attackeffect):
+		devil_attackeffect.play("AttackEffect")
+
+	await get_tree().create_timer(2.0).timeout
+
+	if not devil_in_aggro or devildeath:
+		if is_instance_valid(devilanim):
+			devilanim.play("devilidle")
+		return
+
+	# return to idle
+	if is_instance_valid(devilanim):
+		devilanim.play("devilidle")
+
+	await get_tree().create_timer(1.0).timeout
+
+	# call next attack safely
+	start_attack_cycle()

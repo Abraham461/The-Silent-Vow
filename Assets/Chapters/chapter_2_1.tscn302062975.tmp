@@ -1,4 +1,4 @@
-[gd_scene load_steps=516 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=498 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -55,7 +55,6 @@
 [ext_resource type="Texture2D" uid="uid://coi4b0n8rfbha" path="res://DuskBorne-Druid/moreeffects/Spritesheets/Fire+Sparks-Sheet.png" id="51_fb3f8"]
 [ext_resource type="Texture2D" uid="uid://dbvt7tq27iuwf" path="res://DuskBorne-Druid/moreeffects/Spritesheets/Holy Light Aura.png" id="52_bhxw2"]
 [ext_resource type="Script" uid="uid://douukc8ck6cp4" path="res://Assets/Chapters/enemydevil.gd" id="53_1ys4a"]
-[ext_resource type="Texture2D" uid="uid://byfii32ipqhor" path="res://DuskBorne-Druid/moreeffects/Incendiary/Fire_Incendiary_96x32.png" id="53_w62w1"]
 [ext_resource type="Texture2D" uid="uid://dl6xiskebyf85" path="res://DuskBorne-Druid/moreeffects/Spritesheets/Smoke2-Sheet.png" id="54_c88mf"]
 [ext_resource type="Script" uid="uid://6jbqpdto4r3v" path="res://Assets/Chapters/hurt_box.gd" id="54_w62w1"]
 
@@ -15018,7 +15017,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"devildeath",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -15136,132 +15135,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xy5j7"]
-radius = 131.004
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4v7cv"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(0, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ck5tc"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(96, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a4lxk"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(192, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iyeg6"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(288, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ksn3i"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(0, 32, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jeiq5"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(96, 32, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8mn2f"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(192, 32, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b51co"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(288, 32, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bkxty"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(0, 64, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qhydg"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(96, 64, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0v3kb"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(192, 64, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bk2gu"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(288, 64, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8034"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(0, 96, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ml8m"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(96, 96, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w3nmx"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(192, 96, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q23dc"]
-atlas = ExtResource("53_w62w1")
-region = Rect2(288, 96, 96, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_83op5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4v7cv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ck5tc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a4lxk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iyeg6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ksn3i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jeiq5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8mn2f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b51co")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bkxty")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qhydg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0v3kb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bk2gu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8034")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ml8m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w3nmx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q23dc")
-}],
-"loop": true,
-"name": &"AttackEffect",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+radius = 79.0253
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg2kx"]
 size = Vector2(65, 56)
@@ -16226,8 +16100,6 @@ rotation = 1.5708
 scale = Vector2(1.3, 1.3)
 shape = SubResource("CapsuleShape2D_pt7p7")
 
-[node name="deviltimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
-
 [node name="Enemy" type="CharacterBody2D" parent="Chapter2-1"]
 z_index = 100
 position = Vector2(11853, 714)
@@ -16343,42 +16215,33 @@ position = Vector2(1692, 618)
 shape = SubResource("CircleShape2D_xy5j7")
 
 [node name="enemydevil" type="CharacterBody2D" parent="Chapter2-1"]
-process_priority = 5
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("53_1ys4a")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Chapter2-1/enemydevil"]
-texture_filter = 1
-position = Vector2(2743, 397)
-sprite_frames = SubResource("SpriteFrames_83op5")
-animation = &"AttackEffect"
-frame_progress = 0.21106
-flip_h = true
-
 [node name="Health" type="Node" parent="Chapter2-1/enemydevil"]
-process_priority = 4
 script = ExtResource("31_fr5cv")
 metadata/_custom_type_script = "uid://cu68vv8fptiy7"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Chapter2-1/enemydevil"]
+visible = false
 position = Vector2(2815, 395)
 shape = SubResource("RectangleShape2D_cuak4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Chapter2-1/enemydevil"]
+z_index = 10
 texture_filter = 1
 position = Vector2(2813, 396)
 sprite_frames = SubResource("SpriteFrames_wd7hf")
-animation = &"devilatk2"
-frame = 1
-frame_progress = 0.822139
+animation = &"devildeath"
+frame_progress = 0.291407
 
 [node name="AggroZone" type="Area2D" parent="Chapter2-1/enemydevil"]
+visible = false
 position = Vector2(1, 9)
 collision_layer = 256
 collision_mask = 257
-collision_priority = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/enemydevil/AggroZone"]
 position = Vector2(2813, 387)
@@ -16393,8 +16256,6 @@ script = ExtResource("54_w62w1")
 position = Vector2(2813.5, 396)
 shape = SubResource("RectangleShape2D_sg2kx")
 one_way_collision_margin = 0.0
-
-[node name="HurtCooldown" type="Timer" parent="Chapter2-1/enemydevil"]
 
 [node name="crow" type="CharacterBody2D" parent="Chapter2-1"]
 collision_layer = 2
