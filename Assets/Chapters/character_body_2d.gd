@@ -754,6 +754,7 @@ func _on_aggro_zone_body_exited(body: Node2D) -> void:
 	if body == devil_aggro_body:
 		devil_in_aggro = false
 		devil_aggro_body = null
+		devil_attackeffect.stop()
 		if is_instance_valid(devilanim):
 			devilanim.play("devilidle")  # force idle immediately
 func start_attack_cycle() -> void:
@@ -777,6 +778,10 @@ func start_attack_cycle() -> void:
 		return
 
 	# freeze at frame 2
+
+
+	if is_instance_valid(devil_attackeffect):
+		devil_attackeffect.play("AttackEffect")
 	var frames := devilanim.get_sprite_frames()
 	if frames and frames.has_animation("devilatk2"):
 		var max_idx := frames.get_frame_count("devilatk2") - 1
@@ -784,10 +789,6 @@ func start_attack_cycle() -> void:
 	else:
 		devilanim.frame = 2
 	devilanim.pause()
-
-	if is_instance_valid(devil_attackeffect):
-		devil_attackeffect.play("AttackEffect")
-
 	await get_tree().create_timer(2.0).timeout
 
 	if not devil_in_aggro or devildeath:
@@ -802,4 +803,4 @@ func start_attack_cycle() -> void:
 	await get_tree().create_timer(1.0).timeout
 
 	# call next attack safely
-	start_attack_cycle()
+	#start_attack_cycle()

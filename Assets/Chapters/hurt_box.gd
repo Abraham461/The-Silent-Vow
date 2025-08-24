@@ -56,6 +56,7 @@ func _on_devil_animation_finished() -> void:
 		# only return to idle if still alive
 		if not devildeath:
 			devilanim.play("devilidle")
+			
 
 
 func _on_health_depleted() -> void:
@@ -64,6 +65,7 @@ func _on_health_depleted() -> void:
 	is_hurt = false
 	devilanim.play("devildeath")
 	print("Devil died! HurtBox disabled.")
+
 
 
 func _on_area_exited(area: Area2D) -> void:
