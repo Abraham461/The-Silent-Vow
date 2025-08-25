@@ -803,4 +803,4 @@ func start_attack_cycle() -> void:
 	await get_tree().create_timer(1.0).timeout
 
 	# call next attack safely
-	#start_attack_cycle()
+	start_attack_cycle()
