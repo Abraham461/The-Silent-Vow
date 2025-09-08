@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="New Game Project"
-run/main_scene="uid://pprcgpqkny0q"
+run/main_scene="uid://c61wee8duqu24"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://kxx57p8vglqt"
 
@@ -23,13 +23,12 @@ TransitionScreen="*res://Main_menu/Global Transition/transition_screen.tscn"
 AudioPlayer="*res://Main_menu/Global Transition/audio_player.tscn"
 GameState="*res://game_state.gd"
 Inventory="*res://inventory.gd"
+GameManager="*res://game_manager.tscn"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/window_width_override=1080
-window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

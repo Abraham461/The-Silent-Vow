@@ -16,7 +16,7 @@ func _on_body_exited(body: PhysicsBody2D):
 		label.text = ""
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if entered == true:
 		if Input.is_action_just_pressed("ui_accept"):
 			GameState.spawn_point_name = "House01"

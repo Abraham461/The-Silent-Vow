@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf47qeryogghb"]
+
+[ext_resource type="Script" uid="uid://cp0jgk5u8c0ws" path="res://pendant.gd" id="1_vf76u"]
+[ext_resource type="Texture2D" uid="uid://clnfhwlplbvqi" path="res://35.png" id="2_o3jho"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mjy8g"]
+
+[sub_resource type="Environment" id="Environment_vf76u"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+
+[node name="pendant" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_vf76u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(2, 2, 2, 1)
+visibility_layer = 8
+scale = Vector2(0.201849, 0.426238)
+texture = ExtResource("2_o3jho")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6, 6)
+shape = SubResource("CapsuleShape2D_mjy8g")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vf76u")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

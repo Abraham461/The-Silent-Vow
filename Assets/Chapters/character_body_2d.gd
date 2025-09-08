@@ -26,12 +26,16 @@ const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landi
 @onready var roll_cooldown_timer := $RollCooldownTimer
 @onready var roll_timer := $RollTimer
 @onready var slide_cooldown_timer := $SlideCooldownTimer
+@onready var roll: AudioStreamPlayer = $roll
+@onready var attack: AudioStreamPlayer = $attack
 
 @onready var player = $CollisionShape2D
 @onready var effects = $AnimationPlayer
 @onready var hurtTimer = $HurtTimer
 @onready var slide_timer := $SlideTimer  # Make sure you add this Timer node in scene
-
+@onready var running: AudioStreamPlayer = $running
+@onready var player_jump: AudioStreamPlayer = $player_jump
+#@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var torch_light = $TorchLight
 var torch_on = false
 var is_frozen: bool = false
@@ -49,7 +53,8 @@ var attack_buffered: bool = false
 var knockbackPower = 250.0  # or whatever value you need
 var jumpatk_lock: bool = false  # true while JumpAtk must wait for landing
 
-func _process(delta):
+func _process(_delta):
+
 	if Input.is_action_just_pressed("toggle_torch"):
 		torch_on = !torch_on
 		torch_light.visible = torch_on
@@ -57,8 +62,39 @@ func _process(delta):
 		position = Vector2(11200, 600)
 	if is_frozen:
 		return  # skip input actions like torch toggle, teleport, etc.
-	# existing _process code here
+		
+	# Footstep sound logic - based on AnimatedSprite2D's current animation
+	if sprite.animation == "Run":
+		if not running.playing:
+			running.play()
+	else:
+		if running.playing:
+			running.stop()
+			
+	if sprite.animation == "Jump":
+		if not player_jump.playing:
+			player_jump.play()
+	else:
+		if player_jump.playing:
+			player_jump.stop()
+			
+	if sprite.animation == "Roll":
+		if not roll.playing:
+			roll.play()
+	else:
+		if roll.playing:
+			roll.stop()
+		
+	if sprite.animation == "Atk":
+		if not attack.playing:
+			attack.play()
+	else:
+		if attack.playing:
+			attack.stop()
+
+	
 func _ready():
+	
 	# Configure timers
 	torch_light.visible = torch_on
 	combo_timer.wait_time = COMBO_WINDOW
@@ -100,6 +136,8 @@ func _ready():
 	if frames.has_animation("Pray"):
 		frames.set_animation_loop("Pray", false)
 var was_on_floor = false
+	
+
 func _physics_process(delta):
 	if is_frozen:
 		velocity = Vector2.ZERO  # stop all movement
@@ -245,8 +283,6 @@ func start_roll():
 	roll_cooldown_timer.start()
 	roll_timer.start()
 
-
-
 func start_attack():
 	print(">> start_attack() fired! current_state was:", current_state)
 		# If in air, play JumpAtk and do not run ground combo logic
@@ -297,6 +333,8 @@ func update_animation():
 			sprite.play("Idle")
 		State.RUN:
 			sprite.play("Run")
+			#if not $running_on_concrete.playing:
+				#$running_on_concrete.play()
 		State.JUMP:
 			sprite.play("Jump" if velocity.y < 0 else "Fall")
 

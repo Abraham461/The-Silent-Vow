@@ -1,8 +1,9 @@
-[gd_scene load_steps=279 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=296 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
 [ext_resource type="Texture2D" uid="uid://br83pqbbhv4n7" path="res://Assets/Sprites/Midleground Extended.png" id="2_4lpkv"]
+[ext_resource type="Texture2D" uid="uid://7fcegq517c53" path="res://Midleground Extended Green.png" id="2_lw5t0"]
 [ext_resource type="Texture2D" uid="uid://1o8ovs43ty76" path="res://Assets/Objects/treasure chests.png" id="4_pjcyk"]
 [ext_resource type="Script" uid="uid://cobbhnlqc17nq" path="res://Assets/Chapters/character_body_2d.gd" id="4_ral0s"]
 [ext_resource type="Texture2D" uid="uid://xnaslibwh3u5" path="res://Assets/Objects/Enviroment 1.png" id="5_whxi1"]
@@ -20,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cplsu82m7ob8u" path="res://Assets/Sprites/crouch_idle.png" id="11_rujle"]
 [ext_resource type="Texture2D" uid="uid://b5yhprilfv46y" path="res://Assets/Sprites/crouch_attacks.png" id="12_ui76u"]
 [ext_resource type="Script" uid="uid://3cge8f13eacw" path="res://Assets/Chapters/door_area_2.gd" id="12_vx4nc"]
-[ext_resource type="Script" path="res://Assets/Chapters/door_area_4.gd" id="13_8ncxi"]
+[ext_resource type="Script" uid="uid://bed2he1w56oaf" path="res://Assets/Chapters/door_area_4.gd" id="13_8ncxi"]
 [ext_resource type="Texture2D" uid="uid://v4nsxpuurtp3" path="res://Assets/Sprites/Death.png" id="13_eqqdr"]
 [ext_resource type="Texture2D" uid="uid://cpt5vfpaaokbc" path="res://Assets/Sprites/Hanging.png" id="14_vimia"]
 [ext_resource type="Texture2D" uid="uid://wvf7o443l5ro" path="res://Assets/Sprites/Health.png" id="15_7g1nf"]
@@ -33,17 +34,18 @@
 [ext_resource type="Texture2D" uid="uid://douwh6y8f15rp" path="res://Assets/Sprites/Slide.png" id="22_k0sts"]
 [ext_resource type="Texture2D" uid="uid://dii21ix70y2qb" path="res://Assets/Sprites/Hurt.png" id="23_0b2to"]
 [ext_resource type="Script" uid="uid://mrf3eewg8u0a" path="res://Assets/Chapters/Hitbox.gd" id="24_eqqdr"]
-
 [ext_resource type="PackedScene" uid="uid://c0gndkgjxaom4" path="res://canvas_layer.tscn" id="25_rujle"]
 [ext_resource type="Script" uid="uid://dlh6v4qgohbp6" path="res://Assets/Chapters/HurtBox.gd" id="26_vimia"]
-
-[ext_resource type="PackedScene" path="res://canvas_layer.tscn" id="25_rujle"]
-[ext_resource type="Script" uid="uid://dlh6v4qgohbp6" path="res://Assets/Chapters/HurtBox.gd" id="26_vimia"]
 [ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="28_vimia"]
-
 [ext_resource type="Script" uid="uid://cu68vv8fptiy7" path="res://Assets/Chapters/health.gd" id="31_fr5cv"]
 [ext_resource type="PackedScene" uid="uid://bv8lwakktb675" path="res://Assets/Chapters/helpers/actionable.tscn" id="33_vx4nc"]
 [ext_resource type="Resource" uid="uid://cks1cp7a0kx78" path="res://Assets/Chapters/dialogue/npc_intro.dialogue" id="34_8ncxi"]
+[ext_resource type="AudioStream" uid="uid://vurjtjl3qmfb" path="res://running-on-concrete-268478.mp3" id="34_f3ovl"]
+[ext_resource type="AudioStream" uid="uid://bgfuyb5md4kjj" path="res://jumpingonconcrete-91439.mp3" id="35_ks44t"]
+[ext_resource type="AudioStream" uid="uid://cns8qlrkdybef" path="res://sword-blade-slicing-flesh-352708.mp3" id="37_cuak4"]
+[ext_resource type="PackedScene" uid="uid://dfeffspxcid2k" path="res://Coin.tscn" id="40_6rjlp"]
+[ext_resource type="PackedScene" uid="uid://cf47qeryogghb" path="res://pendant.tscn" id="42_5vn1b"]
+[ext_resource type="AudioStream" uid="uid://bmtol1owj2cor" path="res://air-blow-380645.mp3" id="44_srkaq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pjcyk"]
 polygon = PackedVector2Array(-618, 37, 634, 8, 819, 8, 912, 8, 960, 23, 1001, 60, 1007, 95, 1002, 122, 1069, 120, 1125, 64, 1219, -1, 1261, -23, 1329, -22, 1358, -53, 1413, -71, 1453, -71, 1478, -90, 1550, -90, 1622, -89, 1687, -88, 1752, -87, 1811, -86, 1846, -135, 1910, -135, 1961, -174, 2026, -186, 2109, -196, 2176, -190, 2223, -174, 2252, -149, 2274, -119, 2300.67, -82.4296, 2339, -70, 2376, -58, 2377, -17, 2378, 28, 2379, 63, 2394, 78, 2412, 83, 2440.95, 82.4067, 2470, 63, 2493, -21, 2551, -55, 2603, -68, 2628, -115, 2682, -115, 2724, -126, 2765, -160, 2810, -195, 2839, -208, 2876, -186, 2922, -164, 2954, -141, 2960, -111, 2968, -78, 2977, -47, 2992, -22, 3012, 0, 3047, -8, 3077, -39, 3113, -64, 3156, -84, 3221, -83, 3289, -92, 3355, -101, 3433, -100, 3502, -90, 3578, -82, 3643, -65, 3694, -45, 3729, -8, 3757, 24, 3788, 57, 3792, 105, 3798, 151, 3809, 202, 3870, 195, 3928, 185, 4000, 134, 4040, 98, 4089, 46, 4135, -6, 4169, -50, 4216, -86, 4277, -89, 4339, -88, 4408, -87, 4467, -84, 4571, -81, 4656, -79, 4739, -79, 4798, -108, 4835, -67, 4862, -27, 4919, -20, 4976, -18, 5024, -40, 5082, -51, 5138, -48, 5191, -44, 5232, -30, 5240, 22, 5246, 69, 5271, 107, 5403, 224, 5491, 240, 5588, 248, 5687, 254, 5773, 236, 5888, 174, 5945, 105, 6029, 55, 6103, 2, 6198, -24, 6296, -47, 6365, -68, 6445, -81, 6510, -87, 6576, -47, 6618, -11, 6650, 16, 6703, 35, 6759, 24, 6795, -8, 6845, -45, 6896, -74, 6944, -83, 6996, -82, 7054, -91, 7144, -100, 7225, -109, 7309, -122, 7406, -122, 7492, -120, 7563, -120, 7647, -131, 7690, -138, 7717, -130, 7874, 179, 7903, 214, 7938, 237, 7979, 236, 8038.23, 217.283, 8079, 182, 8118, 154, 8192, 135, 8259, 106, 8330, 76, 8386, 79, 8439, 49, 8490, 25, 8551, 4, 8620, -18, 8680, -15, 8751, -10, 8816, -35, 8879, -37, 8932, -71, 9007, -71, 9059, -104, 9133, -105, 9207, -106, 9275, -106, 9346, -107, 9400, -107, 9428, -139, 9469, -114, 9491, -75, 9528, -35, 9550, 11, 9574, 58, 9600, 100, 9625, 149, 9665, 153, 9712, 163, 9752, 127, 9776, 72, 9793, 28, 9829, -7, 9876, -39, 9937, -51, 9984, -90, 10016, -128, 10048, -143, 10097, -166, 10156, -166, 10240, -166, 10346, -167, 10443, -167, 10506, -139, 10572, -144, 10641, -149, 10693, -135, 10742, -126, 10786, -126, 10827, -91, 10861, -62, 10924, -59, 10981, -58, 11029, -46, 11098, -25, 11235, -11, 11259, -53, 11297, -102, 11334, -127, 11384, -126, 11437, -123, 11482, -91, 11517, -63, 11583, -65, 11626, -58, 11666, -18, 11749, -7, 11808.7, -20.791, 11863, -53, 11918, -77, 11975, -95, 12031, -110, 12082, -120, 12135, -125, 12194, -126, 12258, -118, 12322, -104, 12383, -89, 12430, -72, 12477, -42, 12516, -16, 12558, 5, 12605, -21, 12644, -59, 12682, -104, 12729, -128, 12768, -147, 12814, -162, 13181.5, -161.403, 13262, -192, 13373, -208, 13442, -207, 13504, -125, 13650, -27, 14152, -32, 14277, -77, 14385, -90, 14509, -94, 14621, -97, 14732, -97, 14850, -97, 14929, -100, 15073, -97, 15072, -10, 15064, 1084, 1446.68, 1057.02, -612, 1080, -608, 274, -614, 148)
@@ -14278,6 +14280,51 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ncxi"]
 radius = 396.02
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6rjlp"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_lw5t0"]
+_limits = [0.0, 0.3, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 1.59342, 0, 0, Vector2(0.49581, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 0.00219825), -1.35382, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5vn1b"]
+curve = SubResource("Curve_lw5t0")
+
+[sub_resource type="Gradient" id="Gradient_f3ovl"]
+colors = PackedColorArray(1, 1, 1, 0.0784314, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ks44t"]
+gradient = SubResource("Gradient_f3ovl")
+
+[sub_resource type="Curve" id="Curve_srkaq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_cuak4"]
+_limits = [0.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0.0012987, 14.8731), 0.0, 154.295, 0, 0, Vector2(0.250649, 29.725), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_4gk5h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_xy5j7"]
+curve_x = SubResource("Curve_srkaq")
+curve_y = SubResource("Curve_cuak4")
+curve_z = SubResource("Curve_4gk5h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dg2qy"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -200, 0)
+emission_shape = 3
+emission_box_extents = Vector3(350, 1, 1)
+gravity = Vector3(0, 1000, 0)
+scale_curve = SubResource("CurveXYZTexture_xy5j7")
+color_initial_ramp = SubResource("GradientTexture1D_ks44t")
+alpha_curve = SubResource("CurveTexture_5vn1b")
+
 [node name="Chapter 2_1" type="Node2D"]
 position = Vector2(779, -94)
 
@@ -14287,14 +14334,22 @@ script = ExtResource("1_2vle6")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Chapter2-1"]
 
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Chapter2-1/ParallaxBackground"]
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Chapter2-1/ParallaxBackground/ParallaxLayer"]
+position = Vector2(600.5, -311)
+scale = Vector2(3.0025, 1.32555)
+texture = ExtResource("2_lw5t0")
+
 [node name="Background" type="ParallaxLayer" parent="Chapter2-1/ParallaxBackground"]
 position = Vector2(0, -2)
 motion_mirroring = Vector2(1200, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Chapter2-1/ParallaxBackground/Background"]
 modulate = Color(0.533037, 0.533037, 0.533037, 1)
-position = Vector2(600, -100)
-scale = Vector2(3, 3)
+position = Vector2(600, -104.25)
+scale = Vector2(3, 2.98759)
 texture = ExtResource("1_d0uug")
 
 [node name="Middleground" type="ParallaxLayer" parent="Chapter2-1/ParallaxBackground"]
@@ -14302,8 +14357,8 @@ motion_mirroring = Vector2(1200, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Chapter2-1/ParallaxBackground/Middleground"]
 modulate = Color(0.533333, 0.533333, 0.533333, 1)
-position = Vector2(599, -72)
-scale = Vector2(3, 3)
+position = Vector2(599, -79.5)
+scale = Vector2(3, 2.7781)
 texture = ExtResource("2_4lpkv")
 
 [node name="Darkness" type="CanvasModulate" parent="Chapter2-1"]
@@ -14472,6 +14527,9 @@ position = Vector2(34, -24)
 collision_mask = 17
 script = ExtResource("4_ral0s")
 
+[node name="running" type="AudioStreamPlayer" parent="Chapter2-1/CharacterBody2D"]
+stream = ExtResource("34_f3ovl")
+
 [node name="Camera2D" type="Camera2D" parent="Chapter2-1/CharacterBody2D"]
 offset = Vector2(0, -50)
 zoom = Vector2(1.5, 1.5)
@@ -14550,6 +14608,21 @@ collision_mask = 17
 position = Vector2(6, 6)
 shape = SubResource("CircleShape2D_k0sts")
 
+[node name="player_jump" type="AudioStreamPlayer" parent="Chapter2-1/CharacterBody2D"]
+stream = ExtResource("35_ks44t")
+volume_db = 24.0
+pitch_scale = 1.74
+
+[node name="roll" type="AudioStreamPlayer" parent="Chapter2-1/CharacterBody2D"]
+stream = ExtResource("44_srkaq")
+volume_db = 9.176
+pitch_scale = 1.27
+
+[node name="attack" type="AudioStreamPlayer" parent="Chapter2-1/CharacterBody2D"]
+stream = ExtResource("37_cuak4")
+volume_db = -3.083
+pitch_scale = 1.29
+
 [node name="Enemy" type="CharacterBody2D" parent="Chapter2-1"]
 position = Vector2(11853, 714)
 collision_mask = 0
@@ -14595,16 +14668,242 @@ dialogue_resource = ExtResource("34_8ncxi")
 position = Vector2(-1, 21)
 shape = SubResource("CircleShape2D_8ncxi")
 
-[node name="Health" parent="Chapter2-1" instance=ExtResource("25_rujle")]
+[node name="CanvasLayer" type="CanvasLayer" parent="Chapter2-1/Enemy"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Chapter2-1"]
-
-[node name="Pause_Menu" parent="Chapter2-1/CanvasLayer" instance=ExtResource("28_vimia")]
+[node name="Pause_Menu" parent="Chapter2-1/Enemy/CanvasLayer" instance=ExtResource("28_vimia")]
 visible = false
 offset_left = 779.0
 offset_top = -94.0
 offset_right = 779.0
 offset_bottom = -94.0
+
+[node name="Health" parent="Chapter2-1" instance=ExtResource("25_rujle")]
+
+[node name="coins" type="Node" parent="Chapter2-1"]
+
+[node name="Coin226" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(1536, -127)
+
+[node name="Coin227" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(1556, -127)
+
+[node name="Coin228" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(851, -60)
+
+[node name="Coin229" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(871, -60)
+
+[node name="Coin14" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(2016, -253)
+
+[node name="Coin15" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(2037, -252)
+
+[node name="Coin25" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(3876, 72)
+
+[node name="Coin26" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(3896, 72)
+
+[node name="Coin212" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(3335, -163)
+
+[node name="Coin213" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(3355, -163)
+
+[node name="Coin214" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(2562, -129)
+
+[node name="Coin215" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(2582, -129)
+
+[node name="Coin217" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(2856, -271)
+
+[node name="Coin221" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(2285, -195)
+
+[node name="Coin231" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(1144, -29)
+
+[node name="Coin232" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(3054, -135)
+
+[node name="Coin233" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(594, -126)
+
+[node name="Coin34" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(4519, -242)
+
+[node name="Coin35" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(4539, -242)
+
+[node name="Coin43" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(5730, -79)
+
+[node name="Coin44" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(5750, -79)
+
+[node name="Coin45" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(4850, -207)
+
+[node name="Coin52" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(6318, -139)
+
+[node name="Coin53" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(6420, -132)
+
+[node name="Coin54" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(6463, -160)
+
+[node name="Coin58" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(7098, -199)
+
+[node name="Coin60" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(7022, -158)
+
+[node name="Coin178" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(7522, -231)
+
+[node name="Coin179" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(7543, -230)
+
+[node name="Coin184" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(6795, -41)
+
+[node name="Coin191" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(5487, -42)
+
+[node name="Coin203" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(5215, -97)
+
+[node name="Coin204" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(5236, -96)
+
+[node name="Coin207" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(4119, -74)
+
+[node name="Coin208" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(3606, -173)
+
+[node name="Coin173" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(7861, -4)
+
+[node name="Coin174" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(7828, -55)
+
+[node name="Coin171" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(7999, 83)
+
+[node name="Coin73" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(9050, -160)
+
+[node name="Coin156" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(9978, -175)
+
+[node name="Coin162" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(9656, -72)
+
+[node name="Coin159" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(9750, -74)
+
+[node name="Coin160" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(9775, -54)
+
+[node name="Coin167" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(8418, -3)
+
+[node name="Coin168" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(8439, -2)
+
+[node name="Coin82" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(10407, -251)
+
+[node name="Coin84" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(10490, -223)
+
+[node name="Coin155" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(10710, -235)
+
+[node name="Coin100" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(12034, -163)
+
+[node name="Coin101" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(12054, -163)
+
+[node name="Coin102" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(12075, -162)
+
+[node name="Coin121" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(14183, -115)
+
+[node name="Coin122" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(14203, -115)
+
+[node name="Coin125" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(13578, -167)
+
+[node name="Coin126" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(13598, -167)
+
+[node name="Coin131" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(12680, -157)
+
+[node name="Coin132" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(12700, -157)
+
+[node name="Coin133" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(12564, -78)
+
+[node name="Coin137" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(11568, -150)
+
+[node name="Coin138" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(11588, -150)
+
+[node name="Coin141" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(11263, -159)
+
+[node name="Coin142" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(11739, -99)
+
+[node name="Coin145" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(12395, -184)
+
+[node name="Coin146" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(13042, -256)
+
+[node name="Coin148" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(13372, -263)
+
+[node name="Coin151" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(13951, -103)
+
+[node name="Coin153" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(14047, -151)
+
+[node name="Coin152" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(14069, -120)
+
+[node name="Coin147" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(12993, -238)
+
+[node name="Coin140" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
+position = Vector2(10916, -139)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_6rjlp")
+position = Vector2(6833, -150)
+scale = Vector2(21.4469, 1.21568)
+amount = 1000
+preprocess = 0.5
+visibility_rect = Rect2(-350, -200, 700, 400)
+process_material = SubResource("ParticleProcessMaterial_dg2qy")
+
+[node name="pendant" parent="." instance=ExtResource("42_5vn1b")]
+position = Vector2(-344, 509)
+rotation = -1.80173
+scale = Vector2(-0.077185, -0.111191)
 
 [connection signal="body_entered" from="Chapter2-1/Welcome/Area2D" to="Chapter2-1/Welcome/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Chapter2-1/Door/DoorArea" to="Chapter2-1/Door/DoorArea" method="_on_body_entered"]

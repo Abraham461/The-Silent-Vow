@@ -1,4 +1,4 @@
-[gd_scene load_steps=188 format=4 uid="uid://sesfcnsxqkb3"]
+[gd_scene load_steps=193 format=4 uid="uid://sesfcnsxqkb3"]
 
 [ext_resource type="Texture2D" uid="uid://4x8rlmrgyasm" path="res://Assets/Objects/Enviroment.png" id="1_5rbj5"]
 [ext_resource type="Texture2D" uid="uid://xnaslibwh3u5" path="res://Assets/Objects/Enviroment 1.png" id="2_nq87i"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://k7aljivoe3r6" path="res://Assets/Objects/PixelSpaces Free Pack.png" id="4_nq87i"]
 [ext_resource type="Texture2D" uid="uid://bjph6g1sgervc" path="res://Assets/Objects/light.png" id="5_y1klk"]
 [ext_resource type="Texture2D" uid="uid://dh60jab1do2uh" path="res://Assets/Sprites/Attacks.png" id="6_8fjog"]
+[ext_resource type="AudioStream" uid="uid://vurjtjl3qmfb" path="res://running-on-concrete-268478.mp3" id="7_7kg6b"]
 [ext_resource type="Texture2D" uid="uid://cbxvfelaq0kcd" path="res://Assets/Sprites/Climb.png" id="7_lhmll"]
 [ext_resource type="Texture2D" uid="uid://cplsu82m7ob8u" path="res://Assets/Sprites/crouch_idle.png" id="8_7kg6b"]
 [ext_resource type="Texture2D" uid="uid://b5yhprilfv46y" path="res://Assets/Sprites/crouch_attacks.png" id="9_lqph6"]
@@ -21,8 +22,11 @@
 [ext_resource type="Texture2D" uid="uid://ca7av0y4qyfup" path="res://Assets/Sprites/Run.png" id="18_vvvd5"]
 [ext_resource type="Texture2D" uid="uid://douwh6y8f15rp" path="res://Assets/Sprites/Slide.png" id="19_o88it"]
 [ext_resource type="Texture2D" uid="uid://dii21ix70y2qb" path="res://Assets/Sprites/Hurt.png" id="20_tktth"]
-[ext_resource type="Script" path="res://Assets/Chapters/Hitbox.gd" id="21_16uqj"]
+[ext_resource type="Script" uid="uid://mrf3eewg8u0a" path="res://Assets/Chapters/Hitbox.gd" id="21_16uqj"]
 [ext_resource type="Script" uid="uid://biiem8sx7o64w" path="res://Assets/Chapters/door_area_5.gd" id="23_73ahe"]
+[ext_resource type="AudioStream" uid="uid://bgfuyb5md4kjj" path="res://jumpingonconcrete-91439.mp3" id="25_lqph6"]
+[ext_resource type="AudioStream" uid="uid://bmtol1owj2cor" path="res://air-blow-380645.mp3" id="26_tfhk5"]
+[ext_resource type="AudioStream" uid="uid://cns8qlrkdybef" path="res://sword-blade-slicing-flesh-352708.mp3" id="27_510pl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b27qs"]
 texture = ExtResource("1_5rbj5")
@@ -13826,7 +13830,11 @@ sources/0 = SubResource("TileSetAtlasSource_gmmwo")
 sources/1 = SubResource("TileSetAtlasSource_agtqy")
 sources/2 = SubResource("TileSetAtlasSource_p7gpd")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6i4e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq87i"]
+size = Vector2(29, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qpbic"]
+radius = 11.5385
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nic5y"]
 atlas = ExtResource("6_8fjog")
@@ -14328,7 +14336,7 @@ region = Rect2(128, 0, 128, 64)
 atlas = ExtResource("20_tktth")
 region = Rect2(0, 64, 128, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rfhph"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ltjei"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -15332,8 +15340,8 @@ _data = {
 &"TakeHit": SubResource("Animation_6rjlp")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq87i"]
-size = Vector2(29, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_01mdg"]
+radius = 43.0
 
 [node name="House 3" type="Node2D"]
 
@@ -15353,9 +15361,45 @@ tile_set = SubResource("TileSet_hmome")
 tile_map_data = PackedByteArray("AAAUAP3/AAAJABEAAAAUAP7/AAAJABIAAAAVAPz/AAAKABAAAAAVAP3/AAAKABEAAAAVAP7/AAAKABIAAAAUAAAAAAAJABEAAAAUAAEAAAAJABIAAAAVAP//AAAKABAAAAAVAAAAAAAKABEAAAAVAAEAAAAKABIAAAABAPz/AAAKABAAABACAP3/AAAJABEAABABAP3/AAAKABEAABACAP7/AAAJABIAABABAP7/AAAKABIAABABAP//AAAKABAAABACAAAAAAAJABEAABABAAAAAAAKABEAABACAAEAAAAJABIAABABAAEAAAAKABIAABA=")
 tile_set = SubResource("TileSet_4qmwl")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(42, 338)
+[node name="Darkness" type="CanvasModulate" parent="."]
+color = Color(0.305882, 0.305882, 0.305882, 1)
+
+[node name="DoorArea5" type="Area2D" parent="."]
+script = ExtResource("23_73ahe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea5"]
+position = Vector2(33, 352)
+shape = SubResource("RectangleShape2D_nq87i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="DoorArea5"]
+
+[node name="Door5Label" type="Label" parent="DoorArea5/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -22.3333
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Start" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(35, 239)
+
+[node name="House03" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(35, 254)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(80, 300)
+collision_mask = 17
 script = ExtResource("4_h5q4y")
+
+[node name="running" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("7_7kg6b")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 offset = Vector2(0, -50)
@@ -15363,12 +15407,13 @@ zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" groups=["player"]]
 position = Vector2(2, 8)
 scale = Vector2(1.3, 1.3)
-shape = SubResource("CapsuleShape2D_m6i4e")
+shape = SubResource("CapsuleShape2D_qpbic")
 
 [node name="TorchLight" type="PointLight2D" parent="CharacterBody2D"]
+visible = false
 position = Vector2(106, -24)
 color = Color(1, 0.8, 0.533333, 1)
 energy = 2.0
@@ -15376,7 +15421,7 @@ shadow_enabled = true
 texture = ExtResource("5_y1klk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-sprite_frames = SubResource("SpriteFrames_rfhph")
+sprite_frames = SubResource("SpriteFrames_ltjei")
 animation = &"Atk1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
@@ -15414,45 +15459,40 @@ one_shot = true
 ignore_time_scale = true
 
 [node name="HitBox" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("21_16uqj")
+damage = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HitBox"]
 position = Vector2(20, 8)
 scale = Vector2(1.3, 1.3)
-shape = SubResource("CapsuleShape2D_m6i4e")
+shape = SubResource("CapsuleShape2D_qpbic")
 
-[node name="Darkness" type="CanvasModulate" parent="."]
-color = Color(0.305882, 0.305882, 0.305882, 1)
+[node name="Direction" type="Marker2D" parent="CharacterBody2D" groups=["player"]]
 
-[node name="DoorArea5" type="Area2D" parent="."]
-script = ExtResource("23_73ahe")
+[node name="ActionableFinder" type="Area2D" parent="CharacterBody2D/Direction" groups=["player"]]
+collision_layer = 16
+collision_mask = 17
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea5"]
-position = Vector2(33, 352)
-shape = SubResource("RectangleShape2D_nq87i")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Direction/ActionableFinder" groups=["player"]]
+position = Vector2(6, 6)
+shape = SubResource("CircleShape2D_01mdg")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="DoorArea5"]
+[node name="player_jump" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("25_lqph6")
+volume_db = 24.0
+pitch_scale = 1.74
 
-[node name="Door5Label" type="Label" parent="DoorArea5/CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -22.3333
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="roll" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("26_tfhk5")
+volume_db = 9.176
+pitch_scale = 1.27
 
-[node name="SpawnPoints" type="Node2D" parent="."]
-
-[node name="Start" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(35, 239)
-
-[node name="House03" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(35, 254)
+[node name="attack" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("27_510pl")
+volume_db = 24.0
+pitch_scale = 1.29
 
 [connection signal="body_entered" from="DoorArea5" to="DoorArea5" method="_on_body_entered"]
 [connection signal="body_exited" from="DoorArea5" to="DoorArea5" method="_on_body_exited"]
