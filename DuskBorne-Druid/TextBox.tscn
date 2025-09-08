@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://tf36gyo5ljv7"]
+
+[sub_resource type="GDScript" id="GDScript_7akti"]
+script/source = "extends CanvasLayer
+
+@onready var panel = $Panel
+@onready var label = $Panel/Label
+
+func show_message(text: String):
+	label.text = text
+	panel.visible = true
+
+func hide_message():
+	panel.visible = false
+	queue_free()  # remove textbox from scene
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xe2ct"]
+bg_color = Color(0.0687983, 0.0687983, 0.0687982, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.960351, 0.960351, 0.960351, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_7akti"]
+font_names = PackedStringArray("Times New Roman")
+
+[node name="TextBox" type="CanvasLayer"]
+script = SubResource("GDScript_7akti")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xe2ct")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_7akti")
+text = "*"
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_7akti")
+text = "Hi there"
+
+[node name="End" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_7akti")
+text = "-> "

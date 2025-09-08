@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://0ywej4fuel7v"]
+[gd_scene load_steps=27 format=3 uid="uid://0ywej4fuel7v"]
 
 [ext_resource type="Script" uid="uid://8aei47uogisb" path="res://Main_menu/menu/main_menu.gd" id="1_7u1x5"]
 [ext_resource type="Texture2D" uid="uid://c5pwkps3g7i4o" path="res://Main_menu/Image/Main_back.jpg" id="2_88t6w"]
@@ -10,21 +10,39 @@
 [sub_resource type="SystemFont" id="SystemFont_3g516"]
 font_names = PackedStringArray("Times New Roman")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6qaoq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f112c"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88t6w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xxa18"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w7g5f"]
 
 [sub_resource type="SystemFont" id="SystemFont_88t6w"]
 font_names = PackedStringArray("Times New Roman")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ddt8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_icty0"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8s76n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sh6yu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7u1x5"]
 
 [sub_resource type="SystemFont" id="SystemFont_8s76n"]
 font_names = PackedStringArray("Times New Roman")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_47s5y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wjal"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mriae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhxki"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3g516"]
 
@@ -100,7 +118,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.831373, 0.686275, 0.215686, 1)
 theme_override_fonts/font = SubResource("SystemFont_3g516")
 theme_override_font_sizes/font_size = 22
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6qaoq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_f112c")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_88t6w")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xxa18")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_w7g5f")
 text = "Start Game"
 metadata/_edit_use_anchors_ = true
@@ -119,7 +140,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.92549, 0.701961, 1)
 theme_override_fonts/font = SubResource("SystemFont_88t6w")
 theme_override_font_sizes/font_size = 17
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1ddt8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_icty0")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8s76n")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sh6yu")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7u1x5")
 text = "Options"
 metadata/_edit_use_anchors_ = true
@@ -138,7 +162,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0.831373, 0.686275, 0.215686, 1)
 theme_override_fonts/font = SubResource("SystemFont_8s76n")
 theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_47s5y")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wjal")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_mriae")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lhxki")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3g516")
 text = "Exit"
 metadata/_edit_use_anchors_ = true

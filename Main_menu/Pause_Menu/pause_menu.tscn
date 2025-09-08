@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://2qug76wnw8xm"]
+[gd_scene load_steps=20 format=3 uid="uid://2qug76wnw8xm"]
 
 [ext_resource type="Script" uid="uid://uowdrajprce0" path="res://Main_menu/Pause_Menu/pause_menu.gd" id="1_e2wrh"]
 
@@ -24,7 +24,7 @@ corner_radius_bottom_left = 1
 expand_margin_left = 1.0
 expand_margin_top = 1.0
 expand_margin_right = 1.0
-expand_margin_bottom = 5.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pl0rd"]
 
@@ -33,6 +33,30 @@ expand_margin_bottom = 5.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vx1cu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e2wrh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qb4hv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.886275, 0.705882, 0.317647, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ymt7a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lul6h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b2voe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yu3jn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl0rd"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -48,7 +72,7 @@ corner_radius_bottom_left = 1
 expand_margin_left = 1.0
 expand_margin_top = 1.0
 expand_margin_right = 1.0
-expand_margin_bottom = 4.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xpfm"]
 
@@ -56,7 +80,11 @@ expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i20a8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lul6h"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8o6lo"]
+
+[sub_resource type="SystemFont" id="SystemFont_qb4hv"]
+font_names = PackedStringArray("Times New Roman")
+subpixel_positioning = 0
 
 [node name="Pause_Menu" type="Control"]
 process_mode = 3
@@ -78,19 +106,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.25098, 0.25098, 0.25098, 0.705882)
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.433594
-anchor_top = 0.281944
-anchor_right = 0.566406
-anchor_bottom = 0.718056
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -63.0
+offset_right = 51.0
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/v_separation = 8
-metadata/_edit_use_anchors_ = true
+theme_override_constants/v_separation = 10
 
-[node name="Pause label" type="Label" parent="GridContainer"]
+[node name="Pause label" type="Label" parent="ColorRect/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
@@ -98,9 +129,10 @@ theme_override_fonts/font = SubResource("SystemFont_pl0rd")
 theme_override_font_sizes/font_size = 20
 text = "    Paused     "
 horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Resume" type="Button" parent="GridContainer"]
+[node name="Resume" type="Button" parent="ColorRect/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
@@ -114,7 +146,18 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_e2wrh")
 text = "
 "
 
-[node name="Exit" type="Button" parent="GridContainer"]
+[node name="Options" type="Button" parent="ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_qb4hv")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ymt7a")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lul6h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_b2voe")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yu3jn")
+text = "
+"
+
+[node name="Exit" type="Button" parent="ColorRect/GridContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
@@ -124,40 +167,62 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_pl0rd")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1xpfm")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_kxq2d")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_i20a8")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_lul6h")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8o6lo")
 text = "
 "
 
-[node name="Label2" type="Label" parent="."]
-layout_mode = 2
-anchor_left = 0.426562
-anchor_top = 0.369444
-anchor_right = 0.573438
-anchor_bottom = 0.452778
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420312
+anchor_top = 0.430556
+anchor_right = 0.579687
+anchor_bottom = 0.491667
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
-theme_override_fonts/font = SubResource("SystemFont_pl0rd")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = SubResource("SystemFont_qb4hv")
+theme_override_font_sizes/font_size = 16
 text = "{ Resume }"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
-[node name="Label3" type="Label" parent="."]
-layout_mode = 2
-anchor_left = 0.428125
-anchor_top = 0.475
-anchor_right = 0.573438
-anchor_bottom = 0.541667
-offset_top = -6.0
-offset_bottom = -6.0
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.421875
+anchor_top = 0.605556
+anchor_right = 0.578125
+anchor_bottom = 0.658333
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -1.0
+offset_bottom = 2.99998
 grow_horizontal = 2
 size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
-theme_override_fonts/font = SubResource("SystemFont_pl0rd")
-theme_override_font_sizes/font_size = 20
-text = "{ Exit }"
+theme_override_fonts/font = SubResource("SystemFont_qb4hv")
+theme_override_font_sizes/font_size = 16
+text = "{ Levels }"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="GridContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="GridContainer/Exit" to="." method="_on_exit_pressed"]
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.41875
+anchor_top = 0.516667
+anchor_right = 0.575
+anchor_bottom = 0.577778
+offset_top = 1.52588e-05
+offset_bottom = -1.52588e-05
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
+theme_override_fonts/font = SubResource("SystemFont_qb4hv")
+theme_override_font_sizes/font_size = 16
+text = "{ Options }"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ColorRect/GridContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/Exit" to="." method="_on_exit_pressed"]

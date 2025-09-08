@@ -1,18 +1,8 @@
-class_name HurtBox
-extends Area2D
+extends "res://Assets/Combat/CombatHurtBox.gd"
 
-
-
-signal recieved_damage(damage: int)
-
-
-
-@export var health: Health = null
+# This script now extends CombatHurtBox which provides enhanced functionality
+# You can override or extend any methods here for custom behavior
 
 func _ready():
-	connect("area_entered", _on_area_entered)
-
-func _on_area_entered(hitbox: HitBox) -> void:
-	if hitbox != null:
-		health.health -= hitbox.damage
-		recieved_damage.emit(hitbox.damage)
+	super._ready()
+	# Any additional initialization for this hurtbox

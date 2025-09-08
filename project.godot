@@ -30,7 +30,6 @@ GameManager="*res://game_manager.tscn"
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [editor_plugins]
 
@@ -132,7 +131,7 @@ teleport={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/main.dialogue", "res://Assets/Chapters/dialogue/npc_intro.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Assets/Chapters/dialogue/npc_intro.dialogue", "res://dialogue/main.dialogue", "res://DuskBorne-Druid/introdia.dialogue.dialogue")
 
 [layer_names]
 

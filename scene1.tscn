@@ -201,7 +201,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xw712"]
-radius = 89.56
+radius = 474.128
 
 [node name="Parallax" type="Node2D"]
 
@@ -212,7 +212,7 @@ motion_scale = Vector2(0.05, 0.05)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/1"]
 position = Vector2(1, 0)
-scale = Vector2(1.11285, 1.10494)
+scale = Vector2(1.17882, 1.10494)
 texture = ExtResource("1_ho7oe")
 centered = false
 
@@ -220,7 +220,7 @@ centered = false
 motion_scale = Vector2(0.05, 0.05)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/2"]
-scale = Vector2(1.11458, 1.1142)
+scale = Vector2(1.18229, 1.1142)
 texture = ExtResource("2_nmhtg")
 centered = false
 
