@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxd6hynwjhrk8"]
+
+[ext_resource type="Texture2D" uid="uid://crjbh7jiip621" path="res://1/5.png" id="1_7ol8i"]
+[ext_resource type="Texture2D" uid="uid://b65s0fcwhgufo" path="res://2/4.png" id="2_ycvem"]
+[ext_resource type="Texture2D" uid="uid://b3fcns4arsefr" path="res://2/2.png" id="3_5kee3"]
+[ext_resource type="Texture2D" uid="uid://vbrxc6018ygi" path="res://2/3.png" id="4_l2ku0"]
+[ext_resource type="Texture2D" uid="uid://dx0ykiatf1g01" path="res://2/1.png" id="5_hn7p5"]
+[ext_resource type="PackedScene" uid="uid://bsft61g7ss3xl" path="res://player/character.tscn" id="6_ycvem"]
+
+[node name="chapter3_1" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-2, 180)
+scale = Vector2(0.167187, 0.131828)
+texture = ExtResource("1_7ol8i")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+scale = Vector2(0.166406, 0.200846)
+texture = ExtResource("2_ycvem")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+scale = Vector2(0.166667, 0.193323)
+texture = ExtResource("3_5kee3")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(1.90735e-06, 0)
+scale = Vector2(0.219897, 0.273292)
+texture = ExtResource("4_l2ku0")
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+scale = Vector2(0.166667, 0.451694)
+texture = ExtResource("5_hn7p5")
+centered = false
+
+[node name="Playable" parent="." instance=ExtResource("6_ycvem")]

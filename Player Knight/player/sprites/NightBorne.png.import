@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://l3lcvvcjiee8"
-path="res://.godot/imported/NightBorne.png-3d5adc708cc6b8999e6822dd0e50f739.ctex"
+path="res://.godot/imported/NightBorne.png-cc22287601bf2e9fa74b67d33195f1cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/NightBorne.png"
-dest_files=["res://.godot/imported/NightBorne.png-3d5adc708cc6b8999e6822dd0e50f739.ctex"]
+source_file="res://Player Knight/player/sprites/NightBorne.png"
+dest_files=["res://.godot/imported/NightBorne.png-cc22287601bf2e9fa74b67d33195f1cb.ctex"]
 
 [params]
 

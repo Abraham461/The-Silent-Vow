@@ -34,21 +34,42 @@ const SLIDE_SPEED := 310
 const SLIDE_COOLDOWN := 0.8
 const COMBO_WINDOW := 0.8
 const ROLL_COOLDOWN := 0.8
-const JUMP_ATK_DROP := 200
-const JUMP_ATK_HOLD_FRAME := 1
-const JUMP_ATK_RESUME_FRAME := 2
+
+const JUMP_ATK_DROP := 200      # tweak this to control how fast you slam down (higher -> faster)
+const JUMP_ATK_HOLD_FRAME := 1     # 0-based frame index to hold (1 = second frame)
+const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landing (frame 3 -> index 2)
+# Animation references
+
+
+# Timers (only essential ones)
+
+
+
+
+@onready var roll: AudioStreamPlayer = $roll
+@onready var attack: AudioStreamPlayer = $attack
+
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var combo_timer: Timer = $ComboTimer
+#@onready var roll_cooldown_timer: eadTimer = $RollCooldownTimer
 @onready var roll_cooldown_timer: Timer = $RollCooldownTimer
 @onready var roll_timer: Timer = $RollTimer
 @onready var slide_cooldown_timer: Timer = $SlideCooldownTimer
-@onready var slide_timer: Timer = $SlideTimer
+
 @onready var player = $CollisionShape2D
-@onready var effects: AnimationPlayer = $AnimationPlayer
-@onready var hurtTimer: Timer = $HurtTimer
+
+@onready var effects = $AnimationPlayer
+@onready var hurtTimer = $HurtTimer
+@onready var slide_timer := $SlideTimer  # Make sure you add this Timer node in scene
+@onready var running: AudioStreamPlayer = $running
+@onready var player_jump: AudioStreamPlayer = $player_jump
+#@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
 @onready var devil: AnimatedSprite2D = $"../enemydevil/AnimatedSprite2D"
 @onready var animMod: AnimatedSprite2D = $"../enemy1/AnimatedSprite2D"
+
 @onready var torch_light = $TorchLight
 
 var torch_on: bool = false
@@ -81,6 +102,8 @@ var knockbackPower: float = 250.0
 var jumpatk_lock: bool = false
 var was_on_floor: bool = false
 
+
+	
 @export var enemy1_path: NodePath
 @export var exit_distance: float = 220.0
 @export var exit_duration: float = 6.0
@@ -94,16 +117,50 @@ var devil_in_aggro: bool = false
 var has_triggeredmod := false
 var devil_attack_loop_running: bool = false
 var devil_aggro_body: CharacterBody2D = null
+
+
 func _process(_delta):
 	if Input.is_action_just_pressed("toggle_torch"):
 		torch_on = !torch_on
 		torch_light.visible = torch_on
 	if is_frozen:
-		return
-	if Input.is_action_just_pressed("pause"):
-		get_tree().paused = !get_tree().paused
+
+		return  # skip input actions like torch toggle, teleport, etc.
+		
+	# Footstep sound logic - based on AnimatedSprite2D's current animation
+	if sprite.animation == "Run":
+		if not running.playing:
+			running.play()
+	else:
+		if running.playing:
+			running.stop()
+			
+	if sprite.animation == "Jump":
+		if not player_jump.playing:
+			player_jump.play()
+	else:
+		if player_jump.playing:
+			player_jump.stop()
+			
+	if sprite.animation == "Roll":
+		if not roll.playing:
+			roll.play()
+	else:
+		if roll.playing:
+			roll.stop()
+		
+	if sprite.animation == "Atk":
+		if not attack.playing:
+			attack.play()
+	else:
+		if attack.playing:
+			attack.stop()
+
+	
+
 
 func _ready() -> void:
+
 	torch_light.visible = torch_on
 	combo_timer.wait_time = COMBO_WINDOW
 	combo_timer.one_shot = true
@@ -170,7 +227,15 @@ func _ready() -> void:
 	if frames.has_animation("Pray"):
 		frames.set_animation_loop("Pray", false)
 
+		return
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = !get_tree().paused
+#var was_on_floor = false
+
+
+
 func _physics_process(delta: float) -> void:
+
 	if is_frozen:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -342,7 +407,12 @@ func start_roll() -> void:
 	if col and col is CollisionShape2D:
 		col.set_deferred("disabled", true)
 
+#func start_attack():
+		# If in air, play JumpAtk and do not run ground combo logic
+	# If in air, play JumpAtk and hold a specific frame until landing
+
 func start_attack() -> void:
+	print(">> start_attack() fired! current_state was:", current_state)
 	# Improved combat: input buffering, cancel windows, and combo scaling
 	if current_state == State.ATTACK:
 		# buffer if already attacking
@@ -394,6 +464,8 @@ func update_animation() -> void:
 			sprite.play("Idle")
 		State.RUN:
 			sprite.play("Run")
+			#if not $running_on_concrete.playing:
+				#$running_on_concrete.play()
 		State.JUMP:
 			sprite.play("Jump" if velocity.y < 0 else "Fall")
 

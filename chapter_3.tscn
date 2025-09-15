@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7vycvoy2g8yk"]
+
+[ext_resource type="Texture2D" uid="uid://crjbh7jiip621" path="res://1/5.png" id="1_wgaie"]
+[ext_resource type="Texture2D" uid="uid://qx5xx3hdqb1d" path="res://1/4.png" id="2_dxypl"]
+[ext_resource type="Texture2D" uid="uid://c6eqnmvp3skdv" path="res://1/3.png" id="3_ok3sr"]
+[ext_resource type="Texture2D" uid="uid://bynqchjd4qvq4" path="res://1/2.png" id="4_tw4ri"]
+[ext_resource type="Texture2D" uid="uid://d0ypn5k3p8ki4" path="res://1/1.png" id="5_jlcj0"]
+[ext_resource type="PackedScene" uid="uid://bsft61g7ss3xl" path="res://player/character.tscn" id="6_dxypl"]
+
+[node name="Chapter3" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(0, 206)
+scale = Vector2(0.166667, 0.112163)
+texture = ExtResource("1_wgaie")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(1, -1)
+scale = Vector2(0.166667, 0.264031)
+texture = ExtResource("2_dxypl")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(281, 51)
+scale = Vector2(0.158405, 0.147959)
+texture = ExtResource("3_ok3sr")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+scale = Vector2(0.166667, 0.245132)
+texture = ExtResource("4_tw4ri")
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+position = Vector2(0, -2)
+scale = Vector2(0.166667, 0.395628)
+texture = ExtResource("5_jlcj0")
+centered = false
+
+[node name="Playable" parent="." instance=ExtResource("6_dxypl")]
