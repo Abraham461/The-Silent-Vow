@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b554gw5i4r3n3"
-path="res://.godot/imported/Hurt.png-8740b5746ad837028a901dba6668bf56.ctex"
+path="res://.godot/imported/Hurt.png-fbf192375dd3847c77fb15bde6a9a057.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/Hurt.png"
-dest_files=["res://.godot/imported/Hurt.png-8740b5746ad837028a901dba6668bf56.ctex"]
+source_file="res://background 1/Player Knight/player/sprites/Hurt.png"
+dest_files=["res://.godot/imported/Hurt.png-fbf192375dd3847c77fb15bde6a9a057.ctex"]
 
 [params]
 

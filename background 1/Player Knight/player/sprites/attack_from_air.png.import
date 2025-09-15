@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckoo0gk0xkf77"
-path="res://.godot/imported/attack_from_air.png-da6633ee2d1c53cd6d348a31e914cb08.ctex"
+path="res://.godot/imported/attack_from_air.png-4e5ea41fd8c4fd8934d2419bef81cd52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/attack_from_air.png"
-dest_files=["res://.godot/imported/attack_from_air.png-da6633ee2d1c53cd6d348a31e914cb08.ctex"]
+source_file="res://background 1/Player Knight/player/sprites/attack_from_air.png"
+dest_files=["res://.godot/imported/attack_from_air.png-4e5ea41fd8c4fd8934d2419bef81cd52.ctex"]
 
 [params]
 

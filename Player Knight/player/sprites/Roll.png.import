@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b53cxf2hqm5j1"
-path="res://.godot/imported/Roll.png-9171f996c68da860dd6fe2b5a78068c7.ctex"
+path="res://.godot/imported/Roll.png-77db814944b6f2221bc118c4faa198ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/Roll.png"
-dest_files=["res://.godot/imported/Roll.png-9171f996c68da860dd6fe2b5a78068c7.ctex"]
+source_file="res://Player Knight/player/sprites/Roll.png"
+dest_files=["res://.godot/imported/Roll.png-77db814944b6f2221bc118c4faa198ea.ctex"]
 
 [params]
 

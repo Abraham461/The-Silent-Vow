@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwmw2l34g6rf"
-path="res://.godot/imported/Health.png-3d9c97da05fbbb08c98b7821829f94fd.ctex"
+path="res://.godot/imported/Health.png-f4c777b259c3533eba61a94b86878a93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/Health.png"
-dest_files=["res://.godot/imported/Health.png-3d9c97da05fbbb08c98b7821829f94fd.ctex"]
+source_file="res://Player Knight/player/sprites/Health.png"
+dest_files=["res://.godot/imported/Health.png-f4c777b259c3533eba61a94b86878a93.ctex"]
 
 [params]
 
