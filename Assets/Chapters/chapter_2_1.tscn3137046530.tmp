@@ -1,4 +1,4 @@
-[gd_scene load_steps=541 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=538 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -43,6 +43,7 @@
 [ext_resource type="AudioStream" uid="uid://bgfuyb5md4kjj" path="res://jumpingonconcrete-91439.mp3" id="35_ks44t"]
 [ext_resource type="AudioStream" uid="uid://cns8qlrkdybef" path="res://sword-blade-slicing-flesh-352708.mp3" id="37_cuak4"]
 [ext_resource type="Script" uid="uid://brmwwvx2fwfan" path="res://Assets/Chapters/playerhurt_box.gd" id="39_0gqn2"]
+[ext_resource type="Script" uid="uid://jr83tcqw3omd" path="res://Assets/Chapters/playerhealth.gd" id="40_0gqn2"]
 [ext_resource type="PackedScene" uid="uid://dfeffspxcid2k" path="res://Coin.tscn" id="40_6rjlp"]
 [ext_resource type="Script" uid="uid://b50wrvf20sfvl" path="res://Assets/Chapters/nightborne.gd" id="40_p04e3"]
 [ext_resource type="Texture2D" uid="uid://bqma83k4r2dcb" path="res://DuskBorne-Druid/SpriteSheet/DruidBasicAtk1-Sheet.png" id="41_f3ovl"]
@@ -12572,22 +12573,6 @@ region = Rect2(256, 128, 128, 64)
 atlas = ExtResource("19_fr5cv")
 region = Rect2(384, 128, 128, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_83op5"]
-atlas = ExtResource("19_fr5cv")
-region = Rect2(0, 128, 128, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5gn7n"]
-atlas = ExtResource("19_fr5cv")
-region = Rect2(128, 128, 128, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lxshi"]
-atlas = ExtResource("19_fr5cv")
-region = Rect2(256, 128, 128, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pnyla"]
-atlas = ExtResource("19_fr5cv")
-region = Rect2(384, 128, 128, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0k8y"]
 atlas = ExtResource("20_vx4nc")
 region = Rect2(0, 0, 128, 64)
@@ -12849,7 +12834,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_x6npn")
 }, {
 "duration": 1.0,
@@ -13063,23 +13048,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"Pray",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_83op5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5gn7n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lxshi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pnyla")
-}],
-"loop": true,
-"name": &"Respawn",
 "speed": 5.0
 }, {
 "frames": [{
@@ -14319,8 +14287,8 @@ _data = {
 radius = 442.092
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lw5t0"]
-radius = 36.0
-height = 112.0
+radius = 34.0
+height = 104.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p04e3"]
 radius = 314.002
@@ -16282,6 +16250,7 @@ collision_layer = 16
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/CharacterBody2D/Direction/ActionableFinder" groups=["player"]]
+visible = false
 position = Vector2(2, 3)
 shape = SubResource("CircleShape2D_k0sts")
 
@@ -16301,7 +16270,8 @@ volume_db = -3.083
 pitch_scale = 1.29
 
 [node name="HitBox2" type="Area2D" parent="Chapter2-1/CharacterBody2D"]
-collision_layer = 4
+visible = false
+collision_layer = 15
 collision_mask = 0
 script = ExtResource("24_eqqdr")
 
@@ -16311,7 +16281,8 @@ scale = Vector2(1.3, 1.3)
 shape = SubResource("CapsuleShape2D_pt7p7")
 
 [node name="HitBox3" type="Area2D" parent="Chapter2-1/CharacterBody2D"]
-collision_layer = 8
+visible = false
+collision_layer = 15
 collision_mask = 0
 script = ExtResource("24_eqqdr")
 
@@ -16322,7 +16293,7 @@ shape = SubResource("CapsuleShape2D_pt7p7")
 
 [node name="HurtBox" type="Area2D" parent="Chapter2-1/CharacterBody2D"]
 collision_layer = 0
-collision_mask = 256
+collision_mask = 15
 script = ExtResource("39_0gqn2")
 metadata/_custom_type_script = "uid://dlh6v4qgohbp6"
 
@@ -16331,7 +16302,8 @@ position = Vector2(4, 11)
 shape = SubResource("CapsuleShape2D_6rjlp")
 
 [node name="HitBox4" type="Area2D" parent="Chapter2-1/CharacterBody2D"]
-collision_layer = 16
+visible = false
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("24_eqqdr")
 
@@ -16344,8 +16316,7 @@ shape = SubResource("CapsuleShape2D_pt7p7")
 [node name="deviltimer" type="Timer" parent="Chapter2-1/CharacterBody2D"]
 
 [node name="Health" type="Node" parent="Chapter2-1/CharacterBody2D"]
-script = ExtResource("31_fr5cv")
-max_health = 500
+script = ExtResource("40_0gqn2")
 
 [node name="Enemy" type="CharacterBody2D" parent="Chapter2-1"]
 position = Vector2(11853, 714)
@@ -16377,9 +16348,8 @@ script = ExtResource("31_fr5cv")
 max_health = 100
 
 [node name="HurtBox" type="Area2D" parent="Chapter2-1/Enemy"]
-visible = false
 collision_layer = 0
-collision_mask = 31
+collision_mask = 15
 script = ExtResource("43_cnvpc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy/HurtBox"]
@@ -16397,27 +16367,24 @@ dialogue_resource = ExtResource("34_8ncxi")
 position = Vector2(-1, 21)
 shape = SubResource("CircleShape2D_8ncxi")
 
-[node name="HitBox" type="Area2D" parent="Chapter2-1/Enemy" groups=["player"]]
-collision_layer = 256
+[node name="HitBox" type="Area2D" parent="Chapter2-1/Enemy"]
+collision_layer = 15
 collision_mask = 0
-monitoring = false
 script = ExtResource("24_eqqdr")
 damage = 50
 metadata/_custom_type_script = "uid://mrf3eewg8u0a"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy/HitBox"]
-position = Vector2(-14, 19)
+position = Vector2(20, 8)
 shape = SubResource("CapsuleShape2D_lw5t0")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="NightborneAggro" type="Area2D" parent="Chapter2-1/Enemy"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy/NightborneAggro"]
 shape = SubResource("CircleShape2D_p04e3")
 
 [node name="AttackZone" type="Area2D" parent="Chapter2-1/Enemy"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy/AttackZone"]
 position = Vector2(-2, 27)
@@ -16848,8 +16815,6 @@ scale = Vector2(-0.077185, -0.111191)
 [connection signal="area_entered" from="Chapter2-1/CharacterBody2D/HitBox4" to="Chapter2-1/enemydevil/HurtBox" method="_on_hit_box_4_area_entered"]
 [connection signal="health_depleted" from="Chapter2-1/CharacterBody2D/Health" to="Chapter2-1/CharacterBody2D" method="_on_health_health_depleted"]
 [connection signal="health_depleted" from="Chapter2-1/Enemy/Health" to="Chapter2-1/Enemy" method="_on_health_health_depleted"]
-[connection signal="area_entered" from="Chapter2-1/Enemy/HitBox" to="Chapter2-1/CharacterBody2D/HurtBox" method="_on_hit_box_area_entered"]
-[connection signal="area_exited" from="Chapter2-1/Enemy/HitBox" to="Chapter2-1/CharacterBody2D/HurtBox" method="_on_hit_box_area_exited"]
 [connection signal="body_entered" from="Chapter2-1/Enemy/NightborneAggro" to="Chapter2-1/CharacterBody2D" method="_on_nightborne_aggro_body_entered"]
 [connection signal="body_exited" from="Chapter2-1/Enemy/NightborneAggro" to="Chapter2-1/CharacterBody2D" method="_on_nightborne_aggro_body_exited"]
 [connection signal="body_entered" from="Chapter2-1/Enemy/AttackZone" to="Chapter2-1/CharacterBody2D" method="_on_attack_zone_body_entered"]

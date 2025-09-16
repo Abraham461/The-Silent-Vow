@@ -6,6 +6,8 @@ extends Node2D
 @onready var smoe: AnimatedSprite2D = $smoe
 @onready var crow: AnimatedSprite2D = $crow/AnimatedSprite2D
 @onready var devilanim: AnimatedSprite2D = $enemydevil/AnimatedSprite2D
+@onready var enemy: AnimatedSprite2D = $Enemy/Enemy
+
 var devildeath := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,5 +19,6 @@ func _ready():
 	holyaura.play("fire")
 	smoe.play("smoke")
 	crow.play("crowidle")
+	enemy.play("NightborneIdle")
 	if not devildeath:
 		devilanim.play("devilidle")
