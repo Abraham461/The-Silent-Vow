@@ -16347,14 +16347,13 @@ shape = SubResource("CapsuleShape2D_pt7p7")
 script = ExtResource("31_fr5cv")
 max_health = 500
 
+[node name="Healthbar" parent="Chapter2-1/CharacterBody2D" instance=ExtResource("25_rujle")]
+
 [node name="Enemy" type="CharacterBody2D" parent="Chapter2-1"]
 position = Vector2(11853, 714)
-collision_layer = 0
 script = ExtResource("40_p04e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy"]
-light_mask = 0
-visibility_layer = 2
 position = Vector2(5, 37)
 shape = SubResource("CapsuleShape2D_gmtg2")
 debug_color = Color(1, 0, 0, 0.419608)
@@ -16374,7 +16373,7 @@ speed_scale = 0.207
 
 [node name="Health" type="Node" parent="Chapter2-1/Enemy"]
 script = ExtResource("31_fr5cv")
-max_health = 100
+max_health = 500
 
 [node name="HurtBox" type="Area2D" parent="Chapter2-1/Enemy"]
 visible = false
@@ -16428,8 +16427,6 @@ shape = SubResource("CircleShape2D_cnvpc")
 [node name="Enemy2" type="CharacterBody2D" parent="Chapter2-1"]
 z_index = 100
 position = Vector2(11853, 714)
-
-[node name="Health" parent="Chapter2-1" instance=ExtResource("25_rujle")]
 
 [node name="enemy1" type="CharacterBody2D" parent="Chapter2-1"]
 visible = false
@@ -16847,6 +16844,7 @@ scale = Vector2(-0.077185, -0.111191)
 [connection signal="area_entered" from="Chapter2-1/CharacterBody2D/HitBox3" to="Chapter2-1/enemydevil/HurtBox" method="_on_hit_box_3_area_entered"]
 [connection signal="area_entered" from="Chapter2-1/CharacterBody2D/HitBox4" to="Chapter2-1/enemydevil/HurtBox" method="_on_hit_box_4_area_entered"]
 [connection signal="health_depleted" from="Chapter2-1/CharacterBody2D/Health" to="Chapter2-1/CharacterBody2D" method="_on_health_health_depleted"]
+[connection signal="visibility_changed" from="Chapter2-1/CharacterBody2D/Healthbar" to="Chapter2-1/CharacterBody2D/Health" method="_on_healthbar_visibility_changed"]
 [connection signal="health_depleted" from="Chapter2-1/Enemy/Health" to="Chapter2-1/Enemy" method="_on_health_health_depleted"]
 [connection signal="area_entered" from="Chapter2-1/Enemy/HitBox" to="Chapter2-1/CharacterBody2D/HurtBox" method="_on_hit_box_area_entered"]
 [connection signal="area_exited" from="Chapter2-1/Enemy/HitBox" to="Chapter2-1/CharacterBody2D/HurtBox" method="_on_hit_box_area_exited"]

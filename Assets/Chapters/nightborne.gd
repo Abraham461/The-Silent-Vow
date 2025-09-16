@@ -8,13 +8,14 @@ extends CharacterBody2D
 @export var attack_hit_offset: float = 28.0             # horizontal offset of hitbox from enemy center
 # Set frames where hitbox should be active (frame indices, 0-based)
 # Default below activates on frames 9 and 10 (0-based). Use [8,9] if you meant 1-based 9 & 10.
-const ATTACK_HIT_FRAMES := [9, 10]
+const ATTACK_HIT_FRAMES := [9]
 var chase_target: Node2D = null
 @onready var sprite: AnimatedSprite2D = $Enemy
 # adjust this path to the actual Aggro Area2D node on the enemy
 @onready var aggro_area: Area2D = $AggroArea
 @onready var health: Health = $Health   # assuming your Health node is a child
 @onready var attack_hitbox: HitBox = $HitBox
+@onready var nightborne: CharacterBody2D = $"."
 
 
 func start_chase(target: Node2D) -> void:
@@ -139,13 +140,14 @@ func _on_sprite_animation_finished() -> void:
 func _on_health_health_depleted() -> void:
 	if Nightbornedeath:
 		return
-	Nightbornedeath = true
+
 	print("Signal received")
-	sprite.play("Nightbornedeath")
 	print("Now playing: ", sprite.animation)
 	print("Total frames: ", sprite.sprite_frames.get_frame_count("Nightbornedeath"))
 	print("Current frame: ", sprite.frame)
 	print("Is playing: ", sprite.is_playing())
+	Nightbornedeath = true
+	sprite.play("Nightbornedeath")
 	await sprite.animation_finished
-	queue_free()
+	nightborne.queue_free()
 	

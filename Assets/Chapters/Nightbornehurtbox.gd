@@ -44,7 +44,7 @@ func _on_area_entered(area: Area2D) -> void:
 		is_hurt = true
 
 		# start iFrame timer
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(2).timeout
 		is_hurt = false
 		_hitboxes_in_contact.erase(hb.get_instance_id())
 		print("It's a HitBox! Damage = ", hb.damage)

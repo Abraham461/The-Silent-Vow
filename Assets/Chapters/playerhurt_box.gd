@@ -38,7 +38,7 @@ func _ready() -> void:
 
 
 func _on_devil_animation_finished() -> void:
-	if playeranim.animation == "TakeHit":
+	if playeranim.animation == "Death":
 		is_hurt = false
 		# only return to idle if still alive
 		if not player:
@@ -56,18 +56,14 @@ func _on_health_depleted() -> void:
 
 
 
-func _on_area_exited(area: Area2D) -> void:
+#func _on_area_exited(area: Area2D) -> void:
+
+func _on_hit_box_area_exited(area: Area2D) -> void:
 	if area is HitBox:
 		var id := area.get_instance_id()
 		if id in _hitboxes_in_contact:
 			_hitboxes_in_contact.erase(id)
 			print("HitBox exit, cleared from contact set: ", area)
-
-
-func _on_hit_box_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.
-
-
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if player or (hurt_cooldown and not hurt_cooldown.is_stopped()):
@@ -80,9 +76,10 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		received_damage.emit(hb.damage)
 		playeranim.play("TakeHit")
 		is_hurt = true
-
 		# start iFrame timer
 		await get_tree().create_timer(0.3).timeout
+		playeranim.play("TakeHit")
+		await get_tree().create_timer(1).timeout
 		is_hurt = false
 		_hitboxes_in_contact.erase(hb.get_instance_id())
 		print("It's a HitBox! Damage = ", hb.damage)
