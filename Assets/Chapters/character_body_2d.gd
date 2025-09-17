@@ -22,8 +22,8 @@ func set_facing(left: bool) -> void:
 
 # Movement parameters
 var can_enter_house: bool = false
-var currentHealth: int = 100
-var maxHealth: int = 100
+#var currentHealth: int = 100
+#var maxHealth: int = 100
 var isHurt: bool = false
 const WALK_SPEED := 200
 const ROLL_SPEED := 300
@@ -85,9 +85,10 @@ var is_frozen: bool = false
 @onready var hitbox3_shape: CollisionShape2D = $HitBox3/CollisionShape2D if has_node("HitBox3/CollisionShape2D") else null
 @onready var hitbox4: Area2D = $HitBox4 if has_node("HitBox4") else null
 @onready var hitbox4_shape: CollisionShape2D = $HitBox4/CollisionShape2D if has_node("HitBox4/CollisionShape2D") else null
-@onready var health: Node = $Health
+#@onready var health: Node = $Healtha
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, CLIMB, HEAL, PRAY }
 @export var textbox_scene: PackedScene = preload("res://DuskBorne-Druid/Textboxmod.tscn")
+@onready var health_bar: ProgressBar = $"../../CanvasLayer2/UHD/HealthBar"
 
 # State management
 var current_state: State = State.IDLE
@@ -460,8 +461,12 @@ func start_attack() -> void:
 	var dmg := base_damage + int(3 * (combo_step - 1))
 	_set_hitboxes_damage(dmg)
 
+@onready var health: playerHealth = $playerHealth
+
 func start_heal() -> void:
 	current_state = State.HEAL
+	health_bar.value +=40
+	health.set_health(health.get_health() + 40)
 	sprite.play("Heal")
 
 func start_pray() -> void:

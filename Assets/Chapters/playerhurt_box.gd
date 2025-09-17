@@ -2,14 +2,16 @@ extends Area2D
 
 signal received_damage(damage: int)
 
+@onready var health: playerHealth = $"../playerHealth"
 
 
-@onready var health: Health = $"../Health"
 @onready var playeranim: AnimatedSprite2D = $"../AnimatedSprite2D"
 
 var _hitboxes_in_contact := {}
 var is_hurt: bool = false
 var player: bool = false
+
+@onready var health_bar: ProgressBar = $"../../../CanvasLayer2/UHD/HealthBar"
 
 @onready var hurt_cooldown: Timer = $"../HurtTimer"
 @onready var hurt_box: Area2D = $"."
@@ -73,6 +75,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		var hb: HitBox = area
 		_hitboxes_in_contact[hb.get_instance_id()] = true
 		health.set_health(health.get_health() - hb.damage)
+		health_bar.value -= hb.damage
 		received_damage.emit(hb.damage)
 		playeranim.play("TakeHit")
 		is_hurt = true
