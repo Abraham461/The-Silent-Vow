@@ -1,4 +1,4 @@
-[gd_scene load_steps=543 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=554 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -47,6 +47,7 @@
 [ext_resource type="Script" uid="uid://b50wrvf20sfvl" path="res://Assets/Chapters/nightborne.gd" id="40_p04e3"]
 [ext_resource type="Texture2D" uid="uid://bqma83k4r2dcb" path="res://DuskBorne-Druid/SpriteSheet/DruidBasicAtk1-Sheet.png" id="41_f3ovl"]
 [ext_resource type="Texture2D" uid="uid://c2hff437ca1vx" path="res://DuskBorne-Druid/SpriteSheet/DruidIdle001-Sheet.png" id="41_lw5t0"]
+[ext_resource type="Texture2D" uid="uid://1fux5p67b6wf" path="res://DuskBorne-Druid/ThunderEffects/VFX6/Sprite-sheet/Sprite-sheet.png" id="42_0gqn2"]
 [ext_resource type="PackedScene" uid="uid://cf47qeryogghb" path="res://pendant.tscn" id="42_5vn1b"]
 [ext_resource type="Texture2D" uid="uid://dl0gf7yw8dnvp" path="res://DuskBorne-Druid/SpriteSheet/DruidHurt001-Sheet.png" id="42_6vvgp"]
 [ext_resource type="Texture2D" uid="uid://0xlyl3332mwg" path="res://DuskBorne-Druid/SpriteSheet/DruidDeath001-Sheet.png" id="42_ks44t"]
@@ -13716,6 +13717,68 @@ radius = 43.0
 radius = 12.0
 height = 38.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7brnf"]
+atlas = ExtResource("42_0gqn2")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hawhc"]
+atlas = ExtResource("42_0gqn2")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uybw8"]
+atlas = ExtResource("42_0gqn2")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t2pr"]
+atlas = ExtResource("42_0gqn2")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6vsx"]
+atlas = ExtResource("42_0gqn2")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewe6m"]
+atlas = ExtResource("42_0gqn2")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwk1h"]
+atlas = ExtResource("42_0gqn2")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bfwpx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7brnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hawhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uybw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t2pr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6vsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewe6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwk1h")
+}],
+"loop": true,
+"name": &"aura",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmtg2"]
 radius = 19.0
 height = 48.0
@@ -14327,6 +14390,17 @@ radius = 314.002
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnvpc"]
 radius = 42.0119
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxn60"]
+bg_color = Color(0.18359, 0.18359, 0.18359, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvkcm"]
+bg_color = Color(0.369278, 0.697824, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3ovl"]
 radius = 79.0253
@@ -16000,8 +16074,8 @@ bg_color = Color(0.278486, 0.711478, 0, 1)
 
 [node name="Chapter 2_1" type="Node2D"]
 position = Vector2(779, -94)
-metadata/_edit_horizontal_guides_ = [572.0, -204.0, -256.0, 553.0, 554.0]
-metadata/_edit_vertical_guides_ = [11905.0, 1884.0, 11551.0, 11039.0]
+metadata/_edit_horizontal_guides_ = [572.0, -204.0, -256.0, 553.0, 554.0, 1169.0]
+metadata/_edit_vertical_guides_ = [11905.0, 1884.0, 11551.0, 11039.0, 11904.0]
 
 [node name="Pause_Menu" parent="." instance=ExtResource("28_vimia")]
 visible = false
@@ -16356,6 +16430,13 @@ script = ExtResource("40_0gqn2")
 position = Vector2(11853, 714)
 script = ExtResource("40_p04e3")
 
+[node name="lightningAura" type="AnimatedSprite2D" parent="Chapter2-1/Enemy"]
+position = Vector2(2, 30)
+scale = Vector2(0.656248, 0.674821)
+sprite_frames = SubResource("SpriteFrames_bfwpx")
+animation = &"aura"
+frame_progress = 0.0141649
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy"]
 position = Vector2(5, 37)
 shape = SubResource("CapsuleShape2D_gmtg2")
@@ -16376,10 +16457,8 @@ speed_scale = 0.207
 
 [node name="Health" type="Node" parent="Chapter2-1/Enemy"]
 script = ExtResource("31_fr5cv")
-max_health = 500
 
 [node name="HurtBox" type="Area2D" parent="Chapter2-1/Enemy"]
-visible = false
 collision_layer = 0
 collision_mask = 31
 script = ExtResource("43_cnvpc")
@@ -16426,6 +16505,17 @@ position = Vector2(-2, 27)
 shape = SubResource("CircleShape2D_cnvpc")
 
 [node name="AttackCooldownTimer" type="Timer" parent="Chapter2-1/Enemy"]
+
+[node name="ProgressBar" type="ProgressBar" parent="Chapter2-1/Enemy"]
+offset_left = -13.0
+offset_top = 2.0
+offset_right = 26.0
+offset_bottom = 8.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qxn60")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rvkcm")
+max_value = 500.0
+value = 500.0
+show_percentage = false
 
 [node name="Enemy2" type="CharacterBody2D" parent="Chapter2-1"]
 z_index = 100

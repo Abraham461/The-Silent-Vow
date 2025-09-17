@@ -4,6 +4,8 @@ signal received_damage(damage: int)
 
 @onready var health: Health = $"../Health"
 @onready var enemy: AnimatedSprite2D = $"../Enemy"
+@onready var health_bar: ProgressBar = $"../ProgressBar"
+@onready var enemyNightborne: CharacterBody2D = $".."
 
 
 var _hitboxes_in_contact := {}
@@ -19,8 +21,8 @@ func _ready() -> void:
 		connect("area_exited", Callable(self, "_on_area_exited"))
 
 	# ensure the 'NightborneTakeHit' animation is NOT looping
-	if enemy.sprite_frames and enemy.sprite_frames.has_animation("NightborneTakeHit"):
-		enemy.sprite_frames.set_animation_loop("NightborneTakeHit", false)
+	#if enemy.sprite_frames and enemy.sprite_frames.has_animation("NightborneTakeHit"):
+		#enemy.sprite_frames.set_animation_loop("NightborneTakeHit", false)
 
 	# connect AnimatedSprite2D's animation_finished
 	if not enemy.is_connected("animation_finished", Callable(self, "_on_devil_animation_finished")):
@@ -39,8 +41,9 @@ func _on_area_entered(area: Area2D) -> void:
 		var hb: HitBox = area
 		_hitboxes_in_contact[hb.get_instance_id()] = true
 		health.set_health(health.get_health() - hb.damage)
+		health_bar.value -= hb.damage
 		received_damage.emit(hb.damage)
-		enemy.play("NightborneTakeHit")
+		#enemy.play("NightborneTakeHit")
 		is_hurt = true
 
 		# start iFrame timer
@@ -50,12 +53,12 @@ func _on_area_entered(area: Area2D) -> void:
 		print("It's a HitBox! Damage = ", hb.damage)
 
 
-func _on_devil_animation_finished() -> void:
-	if enemy.animation == "NightborneTakeHit":
-		is_hurt = false
-		# only return to idle if still alive
-		if not nightborne:
-			enemy.play("NightborneIdle")
+#func _on_devil_animation_finished() -> void:
+	#if enemy.animation == "NightborneTakeHit":
+		#is_hurt = false
+		## only return to idle if still alive
+		#if not nightborne:
+			#enemy.play("NightborneIdle")
 			
 
 
@@ -63,8 +66,9 @@ func _on_health_depleted() -> void:
 	# mark death so HurtBox ignores future hits
 	nightborne = true
 	is_hurt = false
-	enemy.play("nightborne")
+	enemy.play("NightborneDeath")
 	print("Devil died! HurtBox disabled.")
+	enemyNightborne.queue_free()
 
 
 

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@onready var lightning_aura: AnimatedSprite2D = $lightningAura
 
 @export var chase_speed: float = 160.0
 @export var accel: float = 2000.0
@@ -16,7 +17,8 @@ var chase_target: Node2D = null
 @onready var health: Health = $Health   # assuming your Health node is a child
 @onready var attack_hitbox: HitBox = $HitBox
 @onready var nightborne: CharacterBody2D = $"."
-
+@onready var attack_zone: Area2D = $AttackZone
+@onready var hurt_box: Area2D = $HurtBox
 
 func start_chase(target: Node2D) -> void:
 	chase_target = target
@@ -36,11 +38,16 @@ func disable_aggro() -> void:
 	# also stop chasing immediately
 	stop_chase()
 	velocity.x = 0.0
-
+#
+#func disable_hurt() ->void:
+	#if is_instance_valid(hurt_box):
+		#hurt_box.set_deferred("monitoring",false)
 func enable_aggro() -> void:
 	if is_instance_valid(aggro_area):
 		aggro_area.set_deferred("monitoring", true)
-
+#func disable_attack() ->void:
+	#if is_instance_valid(attack_zone):
+		#attack_zone.set_deferred("monitoring",false)
 func attack_player() -> void:
 	# encapsulate attack behavior: disable aggro and play attack anim
 	disable_aggro()
@@ -137,17 +144,18 @@ func _on_sprite_animation_finished() -> void:
 	if is_instance_valid(attack_hitbox):
 		attack_hitbox.set_deferred("monitoring", false)
 
+
 func _on_health_health_depleted() -> void:
 	if Nightbornedeath:
 		return
-
 	print("Signal received")
 	print("Now playing: ", sprite.animation)
 	print("Total frames: ", sprite.sprite_frames.get_frame_count("Nightbornedeath"))
 	print("Current frame: ", sprite.frame)
 	print("Is playing: ", sprite.is_playing())
 	Nightbornedeath = true
+	stop_chase()
 	sprite.play("Nightbornedeath")
 	await sprite.animation_finished
-	nightborne.queue_free()
+	queue_free()
 	
