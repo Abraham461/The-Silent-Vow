@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://cda2216oi7x1e"]
+
+[ext_resource type="Texture2D" uid="uid://cil2u4itsswia" path="res://DuskBorne-Druid/ThunderEffects/VFX3/Sprite-sheet/Sprite-sheet.png" id="1_cep6t"]
+[ext_resource type="Script" uid="uid://bmvww5d8tcoeh" path="res://lightning.gd" id="2_888k8"]
+[ext_resource type="Script" uid="uid://dxew2gdq7maya" path="res://lightningchild.gd" id="3_mwoj2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_888k8"]
+atlas = ExtResource("1_cep6t")
+region = Rect2(0, 0, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwoj2"]
+atlas = ExtResource("1_cep6t")
+region = Rect2(128, 0, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auma5"]
+atlas = ExtResource("1_cep6t")
+region = Rect2(256, 0, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m683h"]
+atlas = ExtResource("1_cep6t")
+region = Rect2(384, 0, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8xya"]
+atlas = ExtResource("1_cep6t")
+region = Rect2(512, 0, 128, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cep6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_888k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwoj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auma5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m683h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8xya")
+}],
+"loop": true,
+"name": &"lightningran",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+visible = false
+script = ExtResource("2_888k8")
+
+[node name="lightning" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cep6t")
+animation = &"lightningran"
+frame_progress = 0.620893
+script = ExtResource("3_mwoj2")
+
+[node name="Timer" type="Timer" parent="."]

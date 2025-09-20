@@ -67,7 +67,7 @@ func _on_health_depleted() -> void:
 		deathani.sprite_frames.set_animation_loop("deathanim", false)
 	freeze_node(enemyNightborne)
 	deathani.play("deathanim")
-	await deathani.animation_finished
+	await get_tree().create_timer(1.2).timeout
 	enemyNightborne.queue_free()
 
 

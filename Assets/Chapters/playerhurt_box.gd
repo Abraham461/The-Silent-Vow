@@ -78,7 +78,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		received_damage.emit(hb.damage)
 		playeranim.play("TakeHit")
 		is_hurt = true
-		frameFreeze(0.05, 1.0)
+		#frameFreeze(0.05, 1.0)
 
 		# do not reference `hb` after awaits — use hb_id when you need to remove it
 		await get_tree().create_timer(0.3).timeout

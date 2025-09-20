@@ -8,6 +8,8 @@ extends Node2D
 @onready var devilanim: AnimatedSprite2D = $enemydevil/AnimatedSprite2D
 @onready var enemy: AnimatedSprite2D = $Enemy/Enemy
 @onready var lightning_aura: AnimatedSprite2D = $Enemy/lightningAura
+@onready var gate2: AnimatedSprite2D = $AnimatedSprite2D3
+@onready var gate3: AnimatedSprite2D = $AnimatedSprite2D
 
 var devildeath := false
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +19,8 @@ func _ready():
 	$CharacterBody2D.global_position = spawn_position
 	anim.play("modIdle")
 	animgate.play("gate")
+	gate2.play("gate")
+	gate3.play("gate")
 	holyaura.play("fire")
 	smoe.play("smoke")
 	crow.play("crowidle")
