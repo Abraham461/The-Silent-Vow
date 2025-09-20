@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @onready var lightning_aura: AnimatedSprite2D = $lightningAura
 
-@export var chase_speed: float = 160.0
+@export var chase_speed: float = 130.0
 @export var accel: float = 2000.0
 @export var gravity: float = 1000.0
 @export var stopping_distance: float = 20.0
@@ -13,7 +13,7 @@ const ATTACK_HIT_FRAMES := [9]
 var chase_target: Node2D = null
 @onready var sprite: AnimatedSprite2D = $Enemy
 # adjust this path to the actual Aggro Area2D node on the enemy
-@onready var aggro_area: Area2D = $AggroArea
+@onready var aggro_area: Area2D = $NightborneAggro
 @onready var health: Health = $Health   # assuming your Health node is a child
 @onready var attack_hitbox: HitBox = $HitBox
 @onready var nightborne: CharacterBody2D = $"."

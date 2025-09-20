@@ -114,6 +114,8 @@ var devildeath = false
 @onready var devil_aggro_zone: Area2D = $"../enemydevil/AggroZone"
 @onready var devil_attackeffect: AnimatedSprite2D = $"../enemydevil/AnimatedSprite2D2"
 @onready var enemyNightborne: CharacterBody2D = $"../Enemy"
+@onready var enemymino: CharacterBody2D = $"../enemymino"
+
 @export var respawn_invul_time: float = 1.5   # seconds of invulnerability after respawn
 var playerDeath: bool = false  # make sure this exists at the top of your script
 var is_hurt: bool = false
@@ -903,13 +905,31 @@ func _on_nightborne_aggro_body_entered(body: Node2D) -> void:
 	if is_instance_valid(enemyNightborne):
 		if enemyNightborne.has_method("start_chase"):
 			enemyNightborne.start_chase(body)
-
+func _on_minoaggro_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemymino):
+		if enemymino.has_method("start_mino_chase"):
+			enemymino.start_mino_chase(body)
+			
+			
 func _on_nightborne_aggro_body_exited(body: Node2D) -> void:
 	if not body.is_in_group("player"):
 		return
 	if is_instance_valid(enemyNightborne):
 		if enemyNightborne.has_method("stop_chase"):
 			enemyNightborne.stop_chase()
+			
+			
+			
+func _on_minoaggro_body_exited(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemymino):
+		if enemymino.has_method("stop_mino_chase"):
+			enemymino.stop_mino_chase()
+			
+			
 
 func _on_attack_zone_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("player"):
@@ -917,6 +937,14 @@ func _on_attack_zone_body_entered(body: Node2D) -> void:
 	if is_instance_valid(enemyNightborne):
 		if enemyNightborne.has_method("attack_player"):
 			enemyNightborne.attack_player()
+
+
+func _on_mino_attack_zone_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemymino):
+		if enemymino.has_method("attack_mino_player"):
+			enemymino.attack_mino_player()
 
 func _on_attack_zone_body_exited(body: Node2D) -> void:
 	if not body.is_in_group("player"):
@@ -928,6 +956,18 @@ func _on_attack_zone_body_exited(body: Node2D) -> void:
 		if enemyNightborne.has_method("start_chase"):
 			enemyNightborne.start_chase(body)
   # seconds to wait AFTER Death animation, before respawn
+
+
+func _on_mino_attack_zone_body_exited(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemymino):
+		# re-enable the aggro area and resume chasing the player
+		if enemymino.has_method("enable_mino_aggro"):
+			enemymino.enable_mino_aggro()
+		if enemymino.has_method("start_mino_chase"):
+			enemymino.start_mino_chase(body)
+
 func _on_health_health_depleted() -> void:
 	# 1) guard so we don't run twice
 	if playerDeath:
@@ -986,6 +1026,3 @@ func _on_health_health_depleted() -> void:
 		#print("Changing scene to: ", scene_path)
 		# Note: once the scene actually changes, this node will be freed along with the current scene,
 		# so no need to manually reset flags here.
-
-func _on_hit_box_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
