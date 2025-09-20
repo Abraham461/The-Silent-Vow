@@ -14,6 +14,7 @@ var nightborne: bool = false
 @onready var hurt_cooldown: Timer = $"../HurtCooldown"
 
 func _ready() -> void:
+	
 	# connect area signals
 	if not is_connected("area_entered", Callable(self, "_on_area_entered")):
 		connect("area_entered", Callable(self, "_on_area_entered"))
