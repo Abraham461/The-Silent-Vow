@@ -45,10 +45,16 @@ var _start_pos: Vector2 = Vector2.ZERO
 # facing
 var facing_right: bool = true
 
+var main_theme_paused_pos: float = 0.0
+#@onready var battle_theme: AudioStreamPlayer = $BattleTheme
 # hitbox info
 var _hitbox_orig_pos: Vector2 = Vector2.ZERO
 var _hitbox_offset: float = 0.0
+#const SILENCE_DB: float = -80.0   # effectively silent for volume_db
+#const DEFAULT_FADE_TIME: float = 1.0
 
+#var _battle_fade_tween: Tween = null
+#var tween: Tween
 func _ready() -> void:
 	_start_pos = global_position
 	facing_right = sprite_default_faces_right
@@ -147,16 +153,30 @@ func _do_attack() -> void:
 	elif _player_ref.has_method("apply_damage"):
 		_player_ref.apply_damage(damage)
 
-
 # --- Area callbacks ---
 func _on_demonaggrozone_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		_player_in_aggro = true
 		_player_ref = body
+		#if tween and tween.is_valid():
+			#tween.kill()
+		#battle_theme.volume_db = 0
+		#battle_theme.play()
+
+
+	else:
+		push_warning("main_theme_song is null. Check node path or scene structure.")
 		_update_facing_towards_point(body.global_position)
 		if debug: print("Aggro enter:", body)
 
 func _on_demonaggrozone_body_exited(body: Node) -> void:
+	#if tween and tween.is_valid():
+		#tween.kill()
+		#
+	## Create new tween for fade-out
+	#tween = create_tween()
+	#tween.tween_property(battle_theme, "volume_db", -80, 2.0) # fade out over 2s
+	#tween.tween_callback(Callable(battle_theme, "stop"))
 	if body == _player_ref:
 		_player_in_aggro = false
 		if not _player_in_attack:
@@ -170,6 +190,7 @@ func _on_demonattackzone_body_entered(body: Node) -> void:
 		_attack_timer = 0.0
 		_update_facing_towards_point(body.global_position)
 		if debug: print("Attack zone enter:", body)
+
 
 func _on_demonattackzone_body_exited(body: Node) -> void:
 	if body == _player_ref:

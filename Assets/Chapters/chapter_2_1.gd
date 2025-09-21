@@ -19,6 +19,8 @@ extends Node2D
 @onready var scene_change_tp: AnimatedSprite2D = $SceneChangeTP
 @onready var scenechange_area: Area2D = $SceneChangeTP/ScenechangeArea
 
+#@onready var main_theme_song: AudioStreamPlayer2D = $mainThemeSong
+@onready var main_theme_song: AudioStreamPlayer = $mainThemeSong
 
 
 var nightborne: bool = false
@@ -28,6 +30,7 @@ func _ready():
 	var spawn_name = GameState.spawn_point_name
 	var spawn_position = $SpawnPoints.get_node(spawn_name).global_position
 	$CharacterBody2D.global_position = spawn_position
+	main_theme_song.play()
 	anim.play("modIdle")
 	animgate.play("gate")
 	gate2.play("gate")

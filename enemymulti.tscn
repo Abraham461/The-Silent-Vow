@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bqbn5u5xfvjo6"]
+[gd_scene load_steps=62 format=3 uid="uid://bqbn5u5xfvjo6"]
 
 [ext_resource type="Script" uid="uid://b8wy0nq6kddaw" path="res://enemymulti.gd" id="1_1xtda"]
 [ext_resource type="Texture2D" uid="uid://ct5ce7b6ck1p6" path="res://DuskBorne-Druid/Flying Demon 2D Pixel Art/Sprites/with_outline/ATTACK.png" id="1_p1cvm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cctjim4jcsx5b" path="res://flydemonhit_box.gd" id="8_whwcb"]
 [ext_resource type="Texture2D" uid="uid://h8buud8ymo5m" path="res://DuskBorne-Druid/ThunderEffects/VFX5/Sprite-sheet/Sprite-sheet.png" id="9_wbj4c"]
 [ext_resource type="Texture2D" uid="uid://dpiji54p73a7s" path="res://DuskBorne-Druid/Free/03.png" id="10_rog0q"]
+[ext_resource type="AudioStream" uid="uid://cgv7ob27tvemk" path="res://ThemeSongs/Action 1.ogg" id="11_hdgqa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ytys"]
 atlas = ExtResource("1_p1cvm")
@@ -439,3 +440,6 @@ sprite_frames = SubResource("SpriteFrames_llmci")
 animation = &"deathanim"
 frame = 11
 frame_progress = 0.262102
+
+[node name="BattleTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_hdgqa")
