@@ -8,12 +8,13 @@ signal received_damage(damage: int)
 @onready var enemyNightborne: CharacterBody2D = $".."
 
 @onready var death_n_banim: AnimatedSprite2D = $"../deathNBanim"
-
+@export var textbox_scene: PackedScene = preload("res://DuskBorne-Druid/Textboxmod.tscn")
 var _hitboxes_in_contact := {}
 var is_hurt: bool = false
 var nightborne: bool = false
 @onready var hurt_cooldown: Timer = $"../HurtCooldown"
-
+@onready var scene_change_tp: AnimatedSprite2D = $"../../SceneChangeTP"
+@onready var scenechange_area: Area2D = $"../../SceneChangeTP/ScenechangeArea"
 func _ready() -> void:
 	
 	# connect area signals
@@ -64,26 +65,35 @@ func _on_area_entered(area: Area2D) -> void:
 			
 
 
+
 func _on_health_depleted() -> void:
 	# mark death so HurtBox ignores future hits
 	nightborne = true
 	is_hurt = false
-	#enemy.play("NightborneDeath")
-	#print("Devil died! HurtBox disabled.")
-	#enemyNightborne.queue_free()
+
 	if death_n_banim is AnimatedSprite2D:
 		death_n_banim.sprite_frames.set_animation_loop("deathNB", false)
+
 	freeze_node(enemyNightborne)
+	death_n_banim.visible = true
 	death_n_banim.play("deathNB")
+
+	# --- NEW: lock player input immediately ---
+	# wait for death anim
 	await get_tree().create_timer(1.2).timeout
 	enemyNightborne.queue_free()
+	# show dialogue
+	var txt = textbox_scene.instantiate()
+	get_tree().current_scene.add_child(txt)
+	if txt.has_method("enqueue_message"):
+		txt.enqueue_message("Zakcoff: 'Forgive me, Kaelen. This is not who you were.' ")
+		txt.enqueue_message("Kaelen: 'Then... may your vow carry you further than mine did...' ")
 
-
-
-
-
-
-
+	# --- NEW: after dialogue, restore inputs ---
+	await get_tree().create_timer(2.0).timeout
+		# resume player's local input state
+	scene_change_tp.visible = true
+	scenechange_area.monitoring = true
 
 func _on_area_exited(area: Area2D) -> void:
 	if area is HitBox:

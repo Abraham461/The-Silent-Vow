@@ -89,6 +89,9 @@ var is_frozen: bool = false
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, CLIMB, HEAL, PRAY }
 @export var textbox_scene: PackedScene = preload("res://DuskBorne-Druid/Textboxmod.tscn")
 @onready var health_bar: ProgressBar = $"../../CanvasLayer2/UHD/HealthBar"
+@onready var Cha3cutscene_scene: PackedScene = preload("res://more cutscene/cutscene_third.tscn")
+@onready var scene_change_tp: AnimatedSprite2D = $"../SceneChangeTP"
+@onready var scenechange_area: Area2D = $"../SceneChangeTP/ScenechangeArea"
 
 # State management
 var current_state: State = State.IDLE
@@ -255,6 +258,17 @@ func _physics_process(delta: float) -> void:
 
 	if is_frozen:
 		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+	# NEW: honor external/local and global input locks
+	# This forces the player to stop horizontally and play Idle while locked.
+	if external_input_blocked or (Engine.has_singleton("AutoLoad") and not AutoLoad.enabled):
+		# stop horizontal motion but allow vertical gravity to apply if you want:
+		velocity.x = 0
+		# If you prefer to completely freeze Y as well, set velocity.y = 0
+		current_state = State.IDLE
+		if sprite:
+			sprite.play("Idle")
 		move_and_slide()
 		return
 	if Input.is_action_just_pressed("teleport"):
@@ -428,6 +442,32 @@ func start_roll() -> void:
 #func start_attack():
 		# If in air, play JumpAtk and do not run ground combo logic
 	# If in air, play JumpAtk and hold a specific frame until landing
+# --- Control API for external systems to force-stop / resume the player ---
+
+# Force-stop motion and lock player input locally.
+# play_idle: whether to force the Idle animation immediately.
+func stop_immediately(play_idle: bool = true) -> void:
+	external_input_blocked = true
+	# stop horizontal motion immediately
+	velocity.x = 0
+	# clear attack/slide/roll states so no motion resumes unexpectedly
+	if current_state in [State.ROLL, State.SLIDE]:
+		current_state = State.IDLE
+	# force Idle animation if requested
+	if play_idle and sprite:
+		sprite.play("Idle")
+	# stop any timers that could re-enable movement
+	if combo_timer: combo_timer.stop()
+	if roll_timer: roll_timer.stop()
+	if slide_timer: slide_timer.stop()
+	# optionally disable hurtbox or other systems if desired:
+	# if has_node("HurtBox"): $HurtBox.set_deferred("monitoring", false)
+
+# Resume normal player behavior
+func resume_input() -> void:
+	external_input_blocked = false
+	# optionally restart timers if they should continue (usually not)
+	# combo_timer.start()  # only if needed
 
 func start_attack() -> void:
 	print(">> start_attack() fired! current_state was:", current_state)
@@ -608,8 +648,6 @@ func trigger_dialogue(dialogue_resource) -> void:
 		var DialogueManager = Engine.get_singleton("DialogueManager")
 		DialogueManager.show_dialogue(dialogue_resource)
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("Collision with: ", body.name)
 
 # Handle incoming enemy HitBoxes
 func _on_area_entered(area: Area2D) -> void:
@@ -779,6 +817,7 @@ func _set_hitboxes_damage(dmg: int) -> void:
 		hitbox4.set("damage", dmg)
 		
 		# after the dialogue ends, run the exit sequence for enemy1
+
 func _on_enemyarea_body_entered(body: Node2D) -> void:
 	if has_triggeredmod:
 		return
@@ -789,19 +828,29 @@ func _on_enemyarea_body_entered(body: Node2D) -> void:
 		# 1) Play death animation once
 		animMod.sprite_frames.set_animation_loop("moddeath", false)
 		animMod.play("moddeath")
+	# FORCE player to stop immediately (safe API call)
+		if body.has_method("stop_immediately"):
+			body.stop_immediately(true)
 
+		# then block global inputs (events + InputMap)
+		AutoLoad.block_all_except_space()
 		# Show dialogue immediately after death animation starts
 		var txt = textbox_scene.instantiate()
 		get_tree().current_scene.add_child(txt)
 		if txt.has_method("enqueue_message"):
-			txt.enqueue_message("Hi welcome")
-
+			txt.enqueue_message("Lo, the Hollow Star doth awaken, and from its dread breath rise the beasts of shadow. ")
+			txt.enqueue_message("Tread not where the sun shineth not, for there the dark claimeth thee, and none return unbroken. ")
 		await animMod.animation_finished  # wait until death finishes
-
+		
 		# 2) Play idle animation for 2 seconds
 		animMod.play("modIdle")
 		await get_tree().create_timer(2.0).timeout
-
+		
+		AutoLoad.restore_all_input()
+		# resume player's local input state
+		if body.has_method("resume_input"):
+			body.resume_input()
+		
 		# 3) Play walk animation while moving left
 		animMod.play("modwalk")
 		var target_pos = enemy1.position + Vector2(-280, 0)
@@ -823,9 +872,8 @@ func _on_enemyarea_body_entered(body: Node2D) -> void:
 
 		# 6) Remove enemy node from scene
 		enemy1.queue_free()
-
-
-
+		#scene_change_tp.visible = true
+		#scenechange_area.monitoring = true
 
 
 func _on_minoarea_body_entered(body: Node2D) -> void:
@@ -835,6 +883,14 @@ func _on_minoarea_body_entered(body: Node2D) -> void:
 func _on_tparea_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # make sure only the player teleports
 		body.global_position = Vector2(1871, -254)
+		
+
+func _on_scenechange_area_body_entered(body: Node2D) -> void:
+	# change_scene_to accepts a PackedScene resource in Godot 4
+	if body.is_in_group("player"): 
+		get_tree().change_scene_to_packed(Cha3cutscene_scene)
+
+
 func _on_aggro_zone_body_entered(body: Node2D) -> void:
 	if devildeath:
 		return
@@ -1026,3 +1082,14 @@ func _on_health_health_depleted() -> void:
 		#print("Changing scene to: ", scene_path)
 		# Note: once the scene actually changes, this node will be freed along with the current scene,
 		# so no need to manually reset flags here.
+		#if body.has_method("stop_immediately"):
+			#body.stop_immediately(true)
+#
+		## then block global inputs (events + InputMap)
+		#AutoLoad.block_all_except_space()
+		
+		
+		#AutoLoad.restore_all_input()
+		## resume player's local input state
+		#if body.has_method("resume_input"):
+			#body.resume_input()
