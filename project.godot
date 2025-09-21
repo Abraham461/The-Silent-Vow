@@ -24,6 +24,7 @@ AudioPlayer="*res://Main_menu/Global Transition/audio_player.tscn"
 GameState="*res://game_state.gd"
 Inventory="*res://inventory.gd"
 GameManager="*res://game_manager.tscn"
+AutoLoad="*res://InputBlocker.gd"
 
 [display]
 

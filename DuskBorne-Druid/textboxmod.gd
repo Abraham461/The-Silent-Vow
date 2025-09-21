@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const CHAR_READ_RATE = 0.05
+const CHAR_READ_RATE = 0.08
 
 @onready var textbox_container = $TextboxContainer
 @onready var start_symbol = $TextboxContainer/MarginContainer/HBoxContainer/start
@@ -11,6 +11,7 @@ const CHAR_READ_RATE = 0.05
 enum State { READY, READING, FINISHED }
 var current_state = State.READY
 var text_queue: Array[String] = []  # <-- initialized with your message
+signal finished
 
 func _ready():
 	hide_textbox()
@@ -73,3 +74,8 @@ func _on_tween_finished():
 
 func change_state(new_state):
 	current_state = new_state
+
+func _process_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		if State.FINISHED:
+			emit_signal("finished")

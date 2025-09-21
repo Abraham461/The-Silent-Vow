@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://lnj4h16rqpxa"
+path="res://.godot/imported/Action 3.wav-5fc4d57010f4742033f4d5f5e212dfdf.sample"
+
+[deps]
+
+source_file="res://ThemeSongs/Action 3.wav"
+dest_files=["res://.godot/imported/Action 3.wav-5fc4d57010f4742033f4d5f5e212dfdf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

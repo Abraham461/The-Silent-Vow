@@ -24,12 +24,12 @@ func set_facing(left: bool) -> void:
 
 # Movement parameters
 var can_enter_house: bool = false
-var currentHealth: int = 100
-var maxHealth: int = 100
+#var currentHealth: int = 100
+#var maxHealth: int = 100
 var isHurt: bool = false
-const WALK_SPEED := 500
+const WALK_SPEED := 200
 const ROLL_SPEED := 300
-const JUMP_FORCE := -600
+const JUMP_FORCE := -400
 const GRAVITY := 1000
 const MAX_COMBO := 4
 const SLIDE_SPEED := 310
@@ -89,9 +89,13 @@ var is_frozen: bool = false
 @onready var hitbox3_shape: CollisionShape2D = $HitBox3/CollisionShape2D if has_node("HitBox3/CollisionShape2D") else null
 @onready var hitbox4: Area2D = $HitBox4 if has_node("HitBox4") else null
 @onready var hitbox4_shape: CollisionShape2D = $HitBox4/CollisionShape2D if has_node("HitBox4/CollisionShape2D") else null
-
+#@onready var health: Node = $Healtha
 enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, CLIMB, HEAL, PRAY }
 @export var textbox_scene: PackedScene = preload("res://DuskBorne-Druid/Textboxmod.tscn")
+@onready var health_bar: ProgressBar = $"../../CanvasLayer2/UHD/HealthBar"
+@onready var Cha3cutscene_scene: PackedScene = preload("res://more cutscene/cutscene_third.tscn")
+@onready var scene_change_tp: AnimatedSprite2D = $"../SceneChangeTP"
+@onready var scenechange_area: Area2D = $"../SceneChangeTP/ScenechangeArea"
 
 # State management
 var current_state: State = State.IDLE
@@ -116,6 +120,16 @@ var was_on_floor: bool = false
 var devildeath = false
 @onready var devil_aggro_zone: Area2D = $"../enemydevil/AggroZone"
 @onready var devil_attackeffect: AnimatedSprite2D = $"../enemydevil/AnimatedSprite2D2"
+@onready var enemyNightborne: CharacterBody2D = $"../Enemy"
+@onready var enemymino: CharacterBody2D = $"../enemymino"
+
+@export var respawn_invul_time: float = 1.5   # seconds of invulnerability after respawn
+var playerDeath: bool = false  # make sure this exists at the top of your script
+var is_hurt: bool = false
+var is_invulnerable: bool = false
+@onready var hurt_box: Area2D = $HurtBox
+var external_input_blocked: bool = false
+@export var respawn_delay_after_death: float = 0.8 
 
 var devil_in_aggro: bool = false
 var has_triggeredmod := false
@@ -124,6 +138,11 @@ var devil_aggro_body: CharacterBody2D = null
 
 
 func _process(_delta):
+	if is_instance_valid(enemyNightborne):
+				# reset vertical velocity so gravity is applied fresh next physics frame
+		enemyNightborne.velocity.y = 0
+	else:
+		push_warning("enemyNightborne not found or freed")
 	if Input.is_action_just_pressed("toggle_torch"):
 		torch_on = !torch_on
 		torch_light.visible = torch_on
@@ -160,8 +179,6 @@ func _process(_delta):
 		if attack.playing:
 			attack.stop()
 
-	
-	
 	
 func _ready() -> void:
 
@@ -235,7 +252,7 @@ func _ready() -> void:
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = !get_tree().paused
 #var was_on_floor = false
-
+	health.health_depleted.connect(_on_health_health_depleted)
 
 
 func _physics_process(delta: float) -> void:
@@ -244,7 +261,19 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
-	
+	# NEW: honor external/local and global input locks
+	# This forces the player to stop horizontally and play Idle while locked.
+	if external_input_blocked or (Engine.has_singleton("AutoLoad") and not AutoLoad.enabled):
+		# stop horizontal motion but allow vertical gravity to apply if you want:
+		velocity.x = 0
+		# If you prefer to completely freeze Y as well, set velocity.y = 0
+		current_state = State.IDLE
+		if sprite:
+			sprite.play("Idle")
+		move_and_slide()
+		return
+	if Input.is_action_just_pressed("teleport"):
+		global_position = Vector2(11040, 550)
 	# Apply variable jump height (better control)
 	if Input.is_action_just_released("Jump") and velocity.y < 0:
 		velocity.y *= 0.5
@@ -285,10 +314,6 @@ func _physics_process(delta: float) -> void:
 	was_on_floor = now_on_floor
 	update_animation()
 	
-	if $LadderRayCast.is_colliding():
-		is_on_ladder = true
-	else:
-		is_on_ladder = false
 	   
 	
 	
@@ -414,13 +439,43 @@ func start_roll() -> void:
 		var hb := get_node("HurtBox")
 		if hb and hb is Area2D:
 			hb.set_deferred("monitoring", false)
+
 	var col := $CollisionShape2D if has_node("CollisionShape2D") else null
+
+	#var col := $CollisionShape2D if has_node("CollisionShape2D") else null
+
 	#if col and col is CollisionShape2D:
 		#col.set_deferred("disabled", true)
 
 #func start_attack():
 		# If in air, play JumpAtk and do not run ground combo logic
 	# If in air, play JumpAtk and hold a specific frame until landing
+# --- Control API for external systems to force-stop / resume the player ---
+
+# Force-stop motion and lock player input locally.
+# play_idle: whether to force the Idle animation immediately.
+func stop_immediately(play_idle: bool = true) -> void:
+	external_input_blocked = true
+	# stop horizontal motion immediately
+	velocity.x = 0
+	# clear attack/slide/roll states so no motion resumes unexpectedly
+	if current_state in [State.ROLL, State.SLIDE]:
+		current_state = State.IDLE
+	# force Idle animation if requested
+	if play_idle and sprite:
+		sprite.play("Idle")
+	# stop any timers that could re-enable movement
+	if combo_timer: combo_timer.stop()
+	if roll_timer: roll_timer.stop()
+	if slide_timer: slide_timer.stop()
+	# optionally disable hurtbox or other systems if desired:
+	# if has_node("HurtBox"): $HurtBox.set_deferred("monitoring", false)
+
+# Resume normal player behavior
+func resume_input() -> void:
+	external_input_blocked = false
+	# optionally restart timers if they should continue (usually not)
+	# combo_timer.start()  # only if needed
 
 func start_attack() -> void:
 	print(">> start_attack() fired! current_state was:", current_state)
@@ -456,8 +511,12 @@ func start_attack() -> void:
 	var dmg := base_damage + int(3 * (combo_step - 1))
 	_set_hitboxes_damage(dmg)
 
+@onready var health: playerHealth = $playerHealth
+
 func start_heal() -> void:
 	current_state = State.HEAL
+	health_bar.value +=40
+	health.set_health(health.get_health() + 40)
 	sprite.play("Heal")
 
 func start_pray() -> void:
@@ -561,44 +620,42 @@ func _on_animation_finished() -> void:
 			# for slide we also fall back when velocity decays
 			if current_state in [State.HEAL, State.PRAY]:
 				current_state = State.IDLE
-
-func hurtByEnemy(area: Area2D) -> void:
-	var dmg: int = 20
-	if area != null:
-		if area.has_method("get_damage"):
-			var maybe: Variant = area.get_damage()
-			if typeof(maybe) == TYPE_INT:
-				dmg = int(maybe)
-		elif "damage" in area:
-			var v: Variant = area.get("damage")
-			if typeof(v) == TYPE_INT:
-				dmg = int(v)
-	currentHealth -= dmg
-	if currentHealth < 0:
-		currentHealth = maxHealth
-
-	isHurt = true
-	healthChanged.emit()
-
-	knockback(area.get_parent().velocity)
-	effects.play("TakeHit")
-	hurtTimer.start()
-	await hurtTimer.timeout
-	effects.play("RESET")
-	isHurt = false
-
-func knockback(enemyVelocity: Vector2) -> void:
-	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
-	velocity = knockbackDirection
-	move_and_slide()
+#
+#func hurtByEnemy(area: Area2D) -> void:
+	#var dmg: int = 20
+	#if area != null:
+		#if area.has_method("get_damage"):
+			#var maybe: Variant = area.get_damage()
+			#if typeof(maybe) == TYPE_INT:
+				#dmg = int(maybe)
+		#elif "damage" in area:
+			#var v: Variant = area.get("damage")
+			#if typeof(v) == TYPE_INT:
+				#dmg = int(v)
+	#currentHealth -= dmg
+	#if currentHealth < 0:
+		#currentHealth = maxHealth
+#
+	#isHurt = true
+	#healthChanged.emit()
+#
+	#knockback(area.get_parent().velocity)
+	#effects.play("TakeHit")
+	#hurtTimer.start()
+	#await hurtTimer.timeout
+	#effects.play("RESET")
+	#isHurt = false
+#
+#func knockback(enemyVelocity: Vector2) -> void:
+	#var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	#velocity = knockbackDirection
+	#move_and_slide()
 
 func trigger_dialogue(dialogue_resource) -> void:
 	if dialogue_resource and Engine.has_singleton("DialogueManager"):
 		var DialogueManager = Engine.get_singleton("DialogueManager")
 		DialogueManager.show_dialogue(dialogue_resource)
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("Collision with: ", body.name)
 
 # Handle incoming enemy HitBoxes
 func _on_area_entered(area: Area2D) -> void:
@@ -768,6 +825,7 @@ func _set_hitboxes_damage(dmg: int) -> void:
 		hitbox4.set("damage", dmg)
 		
 		# after the dialogue ends, run the exit sequence for enemy1
+
 func _on_enemyarea_body_entered(body: Node2D) -> void:
 	if has_triggeredmod:
 		return
@@ -778,19 +836,29 @@ func _on_enemyarea_body_entered(body: Node2D) -> void:
 		# 1) Play death animation once
 		animMod.sprite_frames.set_animation_loop("moddeath", false)
 		animMod.play("moddeath")
+	# FORCE player to stop immediately (safe API call)
+		if body.has_method("stop_immediately"):
+			body.stop_immediately(true)
 
+		# then block global inputs (events + InputMap)
+		AutoLoad.block_all_except_space()
 		# Show dialogue immediately after death animation starts
 		var txt = textbox_scene.instantiate()
 		get_tree().current_scene.add_child(txt)
 		if txt.has_method("enqueue_message"):
-			txt.enqueue_message("Hi welcome")
-
+			txt.enqueue_message("Lo, the Hollow Star doth awaken, and from its dread breath rise the beasts of shadow. ")
+			txt.enqueue_message("Tread not where the sun shineth not, for there the dark claimeth thee, and none return unbroken. ")
 		await animMod.animation_finished  # wait until death finishes
-
+		
 		# 2) Play idle animation for 2 seconds
 		animMod.play("modIdle")
 		await get_tree().create_timer(2.0).timeout
-
+		
+		AutoLoad.restore_all_input()
+		# resume player's local input state
+		if body.has_method("resume_input"):
+			body.resume_input()
+		
 		# 3) Play walk animation while moving left
 		animMod.play("modwalk")
 		var target_pos = enemy1.position + Vector2(-280, 0)
@@ -812,9 +880,8 @@ func _on_enemyarea_body_entered(body: Node2D) -> void:
 
 		# 6) Remove enemy node from scene
 		enemy1.queue_free()
-
-
-
+		#scene_change_tp.visible = true
+		#scenechange_area.monitoring = true
 
 
 func _on_minoarea_body_entered(body: Node2D) -> void:
@@ -824,6 +891,14 @@ func _on_minoarea_body_entered(body: Node2D) -> void:
 func _on_tparea_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # make sure only the player teleports
 		body.global_position = Vector2(1871, -254)
+		
+
+func _on_scenechange_area_body_entered(body: Node2D) -> void:
+	# change_scene_to accepts a PackedScene resource in Godot 4
+	if body.is_in_group("player"): 
+		get_tree().change_scene_to_packed(Cha3cutscene_scene)
+
+
 func _on_aggro_zone_body_entered(body: Node2D) -> void:
 	if devildeath:
 		return
@@ -887,3 +962,142 @@ func start_attack_cycle() -> void:
 
 	# call next attack safely
 	start_attack_cycle()
+
+func _on_nightborne_aggro_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemyNightborne):
+		if enemyNightborne.has_method("start_chase"):
+			enemyNightborne.start_chase(body)
+func _on_minoaggro_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemymino):
+		if enemymino.has_method("start_mino_chase"):
+			enemymino.start_mino_chase(body)
+			
+			
+func _on_nightborne_aggro_body_exited(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemyNightborne):
+		if enemyNightborne.has_method("stop_chase"):
+			enemyNightborne.stop_chase()
+			
+			
+			
+func _on_minoaggro_body_exited(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemymino):
+		if enemymino.has_method("stop_mino_chase"):
+			enemymino.stop_mino_chase()
+			
+			
+
+func _on_attack_zone_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemyNightborne):
+		if enemyNightborne.has_method("attack_player"):
+			enemyNightborne.attack_player()
+
+
+func _on_mino_attack_zone_body_entered(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemymino):
+		if enemymino.has_method("attack_mino_player"):
+			enemymino.attack_mino_player()
+
+func _on_attack_zone_body_exited(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemyNightborne):
+		# re-enable the aggro area and resume chasing the player
+		if enemyNightborne.has_method("enable_aggro"):
+			enemyNightborne.enable_aggro()
+		if enemyNightborne.has_method("start_chase"):
+			enemyNightborne.start_chase(body)
+  # seconds to wait AFTER Death animation, before respawn
+
+
+func _on_mino_attack_zone_body_exited(body: Node2D) -> void:
+	if not body.is_in_group("player"):
+		return
+	if is_instance_valid(enemymino):
+		# re-enable the aggro area and resume chasing the player
+		if enemymino.has_method("enable_mino_aggro"):
+			enemymino.enable_mino_aggro()
+		if enemymino.has_method("start_mino_chase"):
+			enemymino.start_mino_chase(body)
+
+func _on_health_health_depleted() -> void:
+	# 1) guard so we don't run twice
+	if playerDeath:
+		return
+	playerDeath = true
+
+	# 2) stop input & movement
+	is_frozen = true
+	is_hurt = false
+	velocity = Vector2.ZERO
+
+	# 3) disable collisions / hurtboxes so no more hits or pushes
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.set_deferred("disabled", true)
+	if has_node("HurtBox"):
+		var hb = $HurtBox
+		if hb is Area2D:
+			hb.set_deferred("monitoring", false)
+
+	# 4) stop timers/ongoing actions that might re-enable behaviors (optional)
+	if has_node("ComboTimer"):
+		$ComboTimer.stop()
+	if has_node("RollCooldownTimer"):
+		$RollCooldownTimer.stop()
+
+	# 5) play Death animation if present (ensure it does NOT loop), otherwise short delay
+	var death_anim := "Death"
+	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(death_anim):
+		sprite.sprite_frames.set_animation_loop(death_anim, false)
+		sprite.play(death_anim)
+		print("player died! playing:", death_anim)
+		await sprite.animation_finished
+	else:
+		push_warning("Death animation missing or sprite invalid; continuing after short delay")
+		await get_tree().create_timer(0.25).timeout
+
+	# ---- EXTRA PAUSE AFTER DEATH (so the death frame lingers) ----
+	#if respawn_delay_after_death > 0.0:
+		#await get_tree().create_timer(respawn_delay_after_death).timeout
+
+	# ----------------- CHANGE SCENE TO CHAPTER_2_1 -----------------
+	# Replace this path with the correct one in your project if needed:
+	var scene_path: String = "res://Assets/Chapters/chapter_2_1.tscn"
+
+	# Optional: do any cleanup you want before switching (stop music, reset singletons, etc.)
+	# For example:
+	# if Engine.has_singleton("MusicPlayer"):
+	#     var m = Engine.get_singleton("MusicPlayer")
+	#     m.stop()
+
+	# Attempt to change scene
+	var err := get_tree().change_scene_to_file(scene_path)
+	#if err != OK:
+		#push_warning("Failed to change scene to '%s' (error code %d). Check the path.".format(scene_path, err))
+	#else:
+		#print("Changing scene to: ", scene_path)
+		# Note: once the scene actually changes, this node will be freed along with the current scene,
+		# so no need to manually reset flags here.
+		#if body.has_method("stop_immediately"):
+			#body.stop_immediately(true)
+#
+		## then block global inputs (events + InputMap)
+		#AutoLoad.block_all_except_space()
+		
+		
+		#AutoLoad.restore_all_input()
+		## resume player's local input state
+		#if body.has_method("resume_input"):
+			#body.resume_input()

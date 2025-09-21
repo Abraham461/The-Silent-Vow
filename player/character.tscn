@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bsft61g7ss3xl"]
 
-[ext_resource type="PackedScene" uid="uid://cvcq4v6pdk17n" path="res://player/player.tscn" id="1_1sv7u"]
+[ext_resource type="PackedScene" uid="uid://cvcq4v6pdk17n" path="res://Player Knight/player/player.tscn" id="1_1sv7u"]
 [ext_resource type="Script" uid="uid://qv2e58kp8oow" path="res://player/Playable.gd" id="1_xx22o"]
 [ext_resource type="AudioStream" uid="uid://vurjtjl3qmfb" path="res://running-on-concrete-268478.mp3" id="3_xx22o"]
 

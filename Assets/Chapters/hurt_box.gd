@@ -4,7 +4,10 @@ extends Area2D
 signal received_damage(damage: int)
 
 @onready var devilanim: AnimatedSprite2D = $"../AnimatedSprite2D"
-@onready var health: Health = $"../Health"
+#@onready var health: Health = $"../Health"
+@onready var health: devilHealth = $"../devilHealth"
+@onready var enemydevil: CharacterBody2D = $".."
+@onready var health_bar: ProgressBar = $"../ProgressBar"
 
 var _hitboxes_in_contact := {}
 var is_hurt: bool = false
@@ -40,22 +43,23 @@ func _on_area_entered(area: Area2D) -> void:
 		_hitboxes_in_contact[hb.get_instance_id()] = true
 		health.set_health(health.get_health() - hb.damage)
 		received_damage.emit(hb.damage)
-		devilanim.play("devilhurt")
+		health_bar.value -= hb.damage
+		#devilanim.play("devilhurt")
 		is_hurt = true
 
 		# start iFrame timer
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.5).timeout
 		is_hurt = false
 		_hitboxes_in_contact.erase(hb.get_instance_id())
 		print("It's a HitBox! Damage = ", hb.damage)
 
 
 func _on_devil_animation_finished() -> void:
-	if devilanim.animation == "devilhurt":
-		is_hurt = false
-		# only return to idle if still alive
-		if not devildeath:
-			devilanim.play("devilidle")
+
+	is_hurt = false
+	# only return to idle if still alive
+	if not devildeath:
+		devilanim.play("devilidle")
 			
 
 
@@ -65,6 +69,8 @@ func _on_health_depleted() -> void:
 	is_hurt = false
 	devilanim.play("devildeath")
 	print("Devil died! HurtBox disabled.")
+	enemydevil.queue_free()
+	
 
 
 

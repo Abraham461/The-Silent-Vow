@@ -63,5 +63,6 @@ shape = SubResource("CircleShape2D_k2l7r")
 
 [node name="retro_coin" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ufda5")
+volume_db = -22.621
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
