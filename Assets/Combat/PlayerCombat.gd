@@ -266,11 +266,12 @@ func start_combo_attack():
 	# Activate hitbox with appropriate damage
 	if not hitboxes.is_empty():
 		var hitbox = hitboxes[0] as CombatHitBox
+		
 		if hitbox:
 			hitbox.set_attack_properties(damage, 200 + combo_step * 50, "normal")
 			# Delay activation to match animation
-			await get_tree().create_timer(0.1).timeout
-			hitbox.activate(damage, 0.2)
+		await get_tree().create_timer(0.1).timeout
+		hitbox.activate(damage, 0.2)
 	
 	# Play animation
 	if animation_player:

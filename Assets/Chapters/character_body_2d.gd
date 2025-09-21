@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal healthChanged
 
+var is_on_ladder := false
+
 var facing_left: bool = false
 
 func set_facing(left: bool) -> void:
@@ -25,9 +27,9 @@ var can_enter_house: bool = false
 var currentHealth: int = 100
 var maxHealth: int = 100
 var isHurt: bool = false
-const WALK_SPEED := 200
+const WALK_SPEED := 500
 const ROLL_SPEED := 300
-const JUMP_FORCE := -400
+const JUMP_FORCE := -600
 const GRAVITY := 1000
 const MAX_COMBO := 4
 const SLIDE_SPEED := 310
@@ -38,13 +40,15 @@ const ROLL_COOLDOWN := 0.8
 const JUMP_ATK_DROP := 200      # tweak this to control how fast you slam down (higher -> faster)
 const JUMP_ATK_HOLD_FRAME := 1     # 0-based frame index to hold (1 = second frame)
 const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landing (frame 3 -> index 2)
+
+const SPEED = -200.0			#for ladder climbing
 # Animation references
 
 
 # Timers (only essential ones)
 
-
-
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var ladder_ray_cast: RayCast2D = $LadderRayCast		#for ladder climbing
 
 @onready var roll: AudioStreamPlayer = $roll
 @onready var attack: AudioStreamPlayer = $attack
@@ -157,8 +161,8 @@ func _process(_delta):
 			attack.stop()
 
 	
-
-
+	
+	
 func _ready() -> void:
 
 	torch_light.visible = torch_on
@@ -280,7 +284,14 @@ func _physics_process(delta: float) -> void:
 
 	was_on_floor = now_on_floor
 	update_animation()
-
+	
+	if $LadderRayCast.is_colliding():
+		is_on_ladder = true
+	else:
+		is_on_ladder = false
+	   
+	
+	
 func _end_jumpatk() -> void:
 	jumpatk_lock = false
 	if sprite.sprite_frames.has_animation("JumpAtk"):
@@ -404,8 +415,8 @@ func start_roll() -> void:
 		if hb and hb is Area2D:
 			hb.set_deferred("monitoring", false)
 	var col := $CollisionShape2D if has_node("CollisionShape2D") else null
-	if col and col is CollisionShape2D:
-		col.set_deferred("disabled", true)
+	#if col and col is CollisionShape2D:
+		#col.set_deferred("disabled", true)
 
 #func start_attack():
 		# If in air, play JumpAtk and do not run ground combo logic

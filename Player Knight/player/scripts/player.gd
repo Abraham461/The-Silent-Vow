@@ -1,5 +1,4 @@
 extends "res://Assets/Combat/PlayerCombat.gd"
-
 # This script now extends PlayerCombat which provides all combat functionality
 # You can override or extend any methods here for custom behavior
 
