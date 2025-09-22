@@ -1,6 +1,6 @@
 extends AudioStreamPlayer
 
-const level_music = preload("res://Main_menu/Audios/Boris - Mystery Tension.mp3")
+const level_music = preload("res://Main_menu/Audios/Boris_Skalsky_Mystery_Tension_epic_relaxation_music_Mind_Drifter256k.mp3")
 
 func _play_music(music: AudioStream, volume = 0.0):
 	if stream == music:

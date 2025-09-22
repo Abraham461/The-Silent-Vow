@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://8aei47uogisb" path="res://Main_menu/menu/main_menu.gd" id="1_7u1x5"]
 [ext_resource type="Texture2D" uid="uid://c5pwkps3g7i4o" path="res://Main_menu/Image/Main_back.jpg" id="2_88t6w"]
 [ext_resource type="Texture2D" uid="uid://dhkxj7r1rulau" path="res://Main_menu/Image/Knight.png" id="3_3g516"]
-[ext_resource type="Texture2D" uid="uid://bjb566jhmdff2" path="res://Main_menu/Image/FinalBG.png" id="3_8s76n"]
-[ext_resource type="AudioStream" uid="uid://6i4ohnbe15d5" path="res://Main_menu/Audios/Boris - Mystery Tension.mp3" id="5_eseue"]
+[ext_resource type="Texture2D" uid="uid://d3wmmt1om8i3a" path="res://Main_menu/Image/BG1.png" id="3_eseue"]
+[ext_resource type="AudioStream" uid="uid://bxrp5gpdray2b" path="res://Main_menu/Audios/Boris_Skalsky_Mystery_Tension_epic_relaxation_music_Mind_Drifter256k.mp3" id="5_f112c"]
 [ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="6_f112c"]
 
 [sub_resource type="SystemFont" id="SystemFont_3g516"]
@@ -77,13 +77,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 1.0
-offset_right = 2.0
-offset_bottom = 1.0
+offset_left = -181.0
+offset_top = 2.0
+offset_right = 181.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_8s76n")
+texture = ExtResource("3_eseue")
 expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -107,15 +107,15 @@ grow_vertical = 2
 [node name="Start_Button" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.420312
-anchor_top = 0.472222
-anchor_right = 0.589061
-anchor_bottom = 0.558333
+anchor_left = 0.421875
+anchor_top = 0.477778
+anchor_right = 0.590624
+anchor_bottom = 0.563889
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.831373, 0.686275, 0.215686, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.831373, 0.686275, 0.215686, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.71864, 0.540873, 0.154396, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_3g516")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6qaoq")
@@ -129,15 +129,15 @@ metadata/_edit_use_anchors_ = true
 [node name="Options_Button" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.454688
-anchor_top = 0.702778
-anchor_right = 0.570311
-anchor_bottom = 0.788889
+anchor_left = 0.451562
+anchor_top = 0.708333
+anchor_right = 0.567186
+anchor_bottom = 0.794444
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_color = Color(1, 0.92549, 0.701961, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.92549, 0.701961, 1)
+theme_override_colors/font_hover_color = Color(0.02, 0.0185, 0.014, 1)
+theme_override_colors/font_color = Color(1, 0.92549, 0.701961, 1)
+theme_override_colors/font_pressed_color = Color(0.01, 0.00925, 0.007, 1)
 theme_override_fonts/font = SubResource("SystemFont_88t6w")
 theme_override_font_sizes/font_size = 17
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1ddt8")
@@ -151,15 +151,15 @@ metadata/_edit_use_anchors_ = true
 [node name="Exit_Button" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.440625
-anchor_top = 0.913889
-anchor_right = 0.562501
-anchor_bottom = 1.0
+anchor_left = 0.439063
+anchor_top = 0.919444
+anchor_right = 0.560938
+anchor_bottom = 1.00556
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.831373, 0.686275, 0.215686, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.831373, 0.686275, 0.215686, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.717647, 0.541176, 0.152941, 1)
+theme_override_colors/font_pressed_color = Color(0.01, 0.00827333, 0.0026, 1)
 theme_override_fonts/font = SubResource("SystemFont_8s76n")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_47s5y")
@@ -177,7 +177,7 @@ anchor_left = 0.33125
 anchor_top = 0.291667
 anchor_right = 0.66875
 anchor_bottom = 0.402778
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.717647, 0.541176, 0.152941, 1)
 theme_override_fonts/font = SubResource("SystemFont_w7g5f")
 theme_override_font_sizes/font_size = 33
 text = "The Silent Vow"
@@ -187,14 +187,46 @@ metadata/_edit_use_anchors_ = true
 [node name="Party_A" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.39375
-anchor_top = 0.0305556
-anchor_right = 0.609375
-anchor_bottom = 0.0944445
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+anchor_left = 0.560938
+anchor_top = 0.0305555
+anchor_right = 0.664063
+anchor_bottom = 0.0944444
+rotation = 0.18675
+theme_override_colors/font_color = Color(0.717647, 0.541176, 0.152941, 1)
 theme_override_fonts/font = SubResource("SystemFont_7u1x5")
 theme_override_font_sizes/font_size = 16
-text = "Created by Party A"
+text = "Party A"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Created" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3375
+anchor_top = 0.0666667
+anchor_right = 0.433886
+anchor_bottom = 0.092676
+offset_right = -3.68735
+offset_bottom = 13.6366
+rotation = -0.23911
+theme_override_colors/font_color = Color(0.717647, 0.541176, 0.152941, 1)
+theme_override_fonts/font = SubResource("SystemFont_7u1x5")
+theme_override_font_sizes/font_size = 16
+text = "Created"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="By" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.0222222
+anchor_right = 0.553125
+anchor_bottom = 0.0861111
+theme_override_colors/font_color = Color(0.717647, 0.541176, 0.152941, 1)
+theme_override_fonts/font = SubResource("SystemFont_7u1x5")
+theme_override_font_sizes/font_size = 16
+text = "By"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -213,7 +245,7 @@ expand_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_eseue")
+stream = ExtResource("5_f112c")
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

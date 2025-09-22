@@ -1,0 +1,178 @@
+[gd_scene load_steps=16 format=3 uid="uid://bnotiaqqay4sg"]
+
+[ext_resource type="Script" uid="uid://gno6jl6u2630" path="res://Main_menu/Game_Over_Menu/game_over_menu.gd" id="1_gmeij"]
+[ext_resource type="Texture2D" uid="uid://d2k63py2eb5ds" path="res://Main_menu/Image/button-frame 2.png" id="1_yhdqr"]
+[ext_resource type="Texture2D" uid="uid://dj8dj7i5maw05" path="res://Main_menu/Image/GameOverFrame2.png" id="2_6tgj4"]
+[ext_resource type="AudioStream" uid="uid://b7v2368kahwoi" path="res://Main_menu/Audios/select-button-ui.mp3" id="4_6tgj4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6tgj4"]
+texture = ExtResource("1_yhdqr")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+modulate_color = Color(0.886275, 0.705882, 0.0823529, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b5sec"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7xsix"]
+texture = ExtResource("1_yhdqr")
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_elhfv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btea2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhdqr"]
+texture = ExtResource("1_yhdqr")
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+modulate_color = Color(0.886275, 0.705882, 0.0823529, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhggk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b5sec"]
+texture = ExtResource("1_yhdqr")
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7xsix"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfst4"]
+
+[sub_resource type="SystemFont" id="SystemFont_gfst4"]
+font_names = PackedStringArray("Times New Roman")
+subpixel_positioning = 0
+
+[node name="GameOverMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gmeij")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.02, 0.02, 0.639216)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 3.0
+offset_right = -98.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6tgj4")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Restart_btn" type="Button" parent="ColorRect/Panel"]
+layout_mode = 2
+offset_left = -112.0
+offset_top = 2.0
+offset_right = 105.0
+offset_bottom = 29.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_6tgj4")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_b5sec")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7xsix")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_elhfv")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_btea2")
+text = "
+"
+
+[node name="Exit_btn" type="Button" parent="ColorRect/Panel"]
+layout_mode = 2
+offset_left = -99.0
+offset_top = 49.0
+offset_right = 97.0
+offset_bottom = 72.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_yhdqr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_fhggk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_b5sec")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7xsix")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gfst4")
+text = "
+"
+
+[node name="Label" type="Label" parent="ColorRect/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.352344
+anchor_top = 0.447222
+anchor_right = 0.622656
+anchor_bottom = 0.508333
+offset_left = -122.0
+offset_top = -96.0
+offset_right = 165.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
+theme_override_fonts/font = SubResource("SystemFont_gfst4")
+theme_override_font_sizes/font_size = 20
+text = "\" Out of lives, 
+            but never out of love! \""
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.346875
+anchor_top = 0.513889
+anchor_right = 0.639063
+anchor_bottom = 0.575
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
+theme_override_fonts/font = SubResource("SystemFont_gfst4")
+theme_override_font_sizes/font_size = 16
+text = "Another chance at forever?"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.401563
+anchor_top = 0.641667
+anchor_right = 0.59375
+anchor_bottom = 0.702778
+offset_bottom = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
+theme_override_fonts/font = SubResource("SystemFont_gfst4")
+theme_override_font_sizes/font_size = 16
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="Button_Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6tgj4")
+
+[connection signal="pressed" from="ColorRect/Panel/Restart_btn" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="ColorRect/Panel/Exit_btn" to="." method="_on_exit_pressed"]

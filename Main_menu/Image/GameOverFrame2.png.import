@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dby06ky72be3o"
-path="res://.godot/imported/Gamelevel.jpg-b287851578f68f9b07326b1d35e8e126.ctex"
+uid="uid://dj8dj7i5maw05"
+path="res://.godot/imported/GameOverFrame2.png-e94c3d19aeda87c0746b0ece5df6808e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main_menu/Image/Gamelevel.jpg"
-dest_files=["res://.godot/imported/Gamelevel.jpg-b287851578f68f9b07326b1d35e8e126.ctex"]
+source_file="res://Main_menu/Image/GameOverFrame2.png"
+dest_files=["res://.godot/imported/GameOverFrame2.png-e94c3d19aeda87c0746b0ece5df6808e.ctex"]
 
 [params]
 

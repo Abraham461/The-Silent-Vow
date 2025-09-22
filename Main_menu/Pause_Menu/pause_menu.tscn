@@ -1,82 +1,79 @@
-[gd_scene load_steps=20 format=3 uid="uid://2qug76wnw8xm"]
+[gd_scene load_steps=23 format=3 uid="uid://2qug76wnw8xm"]
 
 [ext_resource type="Script" uid="uid://uowdrajprce0" path="res://Main_menu/Pause_Menu/pause_menu.gd" id="1_e2wrh"]
+[ext_resource type="Texture2D" uid="uid://y4khhyfcvhnc" path="res://Main_menu/Image/Pause_Menu.png" id="2_qb4hv"]
+[ext_resource type="Texture2D" uid="uid://bw1afptugxa2f" path="res://Main_menu/Image/button-frame.png" id="3_qb4hv"]
 
 [sub_resource type="SystemFont" id="SystemFont_pl0rd"]
 font_names = PackedStringArray("Times New Roman")
 subpixel_positioning = 0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lul6h"]
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+
 [sub_resource type="SystemFont" id="SystemFont_e2wrh"]
 font_names = PackedStringArray("Times New Roman")
 subpixel_positioning = 0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2wrh"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.886275, 0.705882, 0.317647, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kxq2d"]
+texture = ExtResource("3_qb4hv")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+modulate_color = Color(0.886275, 0.705882, 0.0823529, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pl0rd"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qb4hv"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pl0rd"]
+texture = ExtResource("3_qb4hv")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vx1cu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e2wrh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qb4hv"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.886275, 0.705882, 0.317647, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1xpfm"]
+texture = ExtResource("3_qb4hv")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+modulate_color = Color(0.886275, 0.705882, 0.0823529, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ymt7a"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lul6h"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qb4hv"]
+texture = ExtResource("3_qb4hv")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b2voe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yu3jn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl0rd"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.886275, 0.705882, 0.317647, 1)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i20a8"]
+texture = ExtResource("3_qb4hv")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+modulate_color = Color(0.886275, 0.705882, 0.0823529, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xpfm"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kxq2d"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vx1cu"]
+texture = ExtResource("3_qb4hv")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i20a8"]
 
@@ -104,7 +101,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.25098, 0.25098, 0.25098, 0.705882)
+color = Color(0.25098, 0.25098, 0.25098, 0.941176)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = -116.0
+offset_right = 159.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qb4hv")
+expand_mode = 1
 
 [node name="GridContainer" type="GridContainer" parent="ColorRect"]
 layout_mode = 1
@@ -127,7 +140,8 @@ size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
 theme_override_fonts/font = SubResource("SystemFont_pl0rd")
 theme_override_font_sizes/font_size = 20
-text = "    Paused     "
+theme_override_styles/normal = SubResource("StyleBoxTexture_lul6h")
+text = "  \"Pause life, replay love.\"    "
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -138,9 +152,9 @@ theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_e2wrh")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxFlat_e2wrh")
+theme_override_styles/focus = SubResource("StyleBoxTexture_kxq2d")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_pl0rd")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_qb4hv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pl0rd")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vx1cu")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e2wrh")
 text = "
@@ -149,9 +163,9 @@ text = "
 [node name="Options" type="Button" parent="ColorRect/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_styles/focus = SubResource("StyleBoxFlat_qb4hv")
+theme_override_styles/focus = SubResource("StyleBoxTexture_1xpfm")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ymt7a")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_lul6h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qb4hv")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_b2voe")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_yu3jn")
 text = "
@@ -163,9 +177,9 @@ theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_e2wrh")
 theme_override_font_sizes/font_size = 22
-theme_override_styles/focus = SubResource("StyleBoxFlat_pl0rd")
+theme_override_styles/focus = SubResource("StyleBoxTexture_i20a8")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1xpfm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_kxq2d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vx1cu")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_i20a8")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8o6lo")
 text = "
@@ -178,13 +192,17 @@ anchor_left = 0.420312
 anchor_top = 0.430556
 anchor_right = 0.579687
 anchor_bottom = 0.491667
+offset_left = 0.000335693
+offset_top = -3.00015
+offset_right = 0.000335693
+offset_bottom = -3.00015
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
 theme_override_fonts/font = SubResource("SystemFont_qb4hv")
 theme_override_font_sizes/font_size = 16
-text = "{ Resume }"
+text = "Resume"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
@@ -194,16 +212,14 @@ anchor_left = 0.421875
 anchor_top = 0.605556
 anchor_right = 0.578125
 anchor_bottom = 0.658333
-offset_left = -1.0
-offset_top = -1.0
-offset_right = -1.0
-offset_bottom = 2.99998
+offset_top = 0.999832
+offset_bottom = 4.99982
 grow_horizontal = 2
 size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
 theme_override_fonts/font = SubResource("SystemFont_qb4hv")
 theme_override_font_sizes/font_size = 16
-text = "{ Levels }"
+text = "Levels"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="."]
@@ -220,7 +236,7 @@ size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
 theme_override_fonts/font = SubResource("SystemFont_qb4hv")
 theme_override_font_sizes/font_size = 16
-text = "{ Options }"
+text = "Options"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="ColorRect/GridContainer/Resume" to="." method="_on_resume_pressed"]
