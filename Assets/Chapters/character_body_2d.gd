@@ -94,9 +94,10 @@ enum State { IDLE, RUN, JUMP, ATTACK, ROLL, SLIDE, CLIMB, HEAL, PRAY }
 @export var textbox_scene: PackedScene = preload("res://DuskBorne-Druid/Textboxmod.tscn")
 @onready var health_bar: ProgressBar = $"../../CanvasLayer2/UHD/HealthBar"
 @onready var Cha3cutscene_scene: PackedScene = preload("res://more cutscene/cutscene_third.tscn")
+@onready var Cha3Dungeoncutscene_scene: PackedScene = preload("res://Assets/Chapters/chapter_3__2.tscn")
 @onready var scene_change_tp: AnimatedSprite2D = $"../SceneChangeTP"
 @onready var scenechange_area: Area2D = $"../SceneChangeTP/ScenechangeArea"
-
+@onready var tween = get_tree().create_tween()
 # State management
 var current_state: State = State.IDLE
 var combo_step: int = 0
@@ -898,6 +899,9 @@ func _on_scenechange_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"): 
 		get_tree().change_scene_to_packed(Cha3cutscene_scene)
 
+func _on_cha_3_cutscene_tp_zone_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"): 
+		get_tree().change_scene_to_file("res://Assets/Chapters/chapter_3__2.tscn")
 
 func _on_aggro_zone_body_entered(body: Node2D) -> void:
 	if devildeath:

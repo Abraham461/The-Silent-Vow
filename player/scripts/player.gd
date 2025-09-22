@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+#class_name Player
 
 # === Movement ===
 const RUN_SPEED = 180.0
@@ -97,17 +97,7 @@ func _ready():
 		DialogueManager.dialogue_finished.connect(_on_dialogue_finished)
 
 	change_state(PlayerState.IDLE)
-	
-			
-func _porcess(_delta):
-	var current_animation = animation_player.current_animation
-	if current_animation == "run":
-		if not running_on_concrete.playing:
-			running_on_concrete.play()
-	else:
-		if running_on_concrete.playing:
-			running_on_concrete.stop()
-			
+
 func _on_dialogue_started():
 	# enable blocking walls and freeze the player controls for dialogue only
 	dialogue_active = true

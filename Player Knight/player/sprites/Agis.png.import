@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbi1payu1puin"
-path="res://.godot/imported/Agis.png-b012f02395b42b4ec8a00e78998b97cc.ctex"
+path="res://.godot/imported/Agis.png-d28cb7d257b0f2494e1c832b696faefe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player Knight/player/sprites/Agis.png"
-dest_files=["res://.godot/imported/Agis.png-b012f02395b42b4ec8a00e78998b97cc.ctex"]
+source_file="res://player/sprites/Agis.png"
+dest_files=["res://.godot/imported/Agis.png-d28cb7d257b0f2494e1c832b696faefe.ctex"]
 
 [params]
 

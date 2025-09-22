@@ -7451,10 +7451,12 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_adxt7")
 
 [node name="Chapter 3 -2" type="Node2D"]
+position = Vector2(-8448, 1185)
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="Upperground" type="ParallaxLayer" parent="Background"]
+position = Vector2(-8448, 1185)
 motion_mirroring = Vector2(384, 426)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Upperground"]
@@ -7464,6 +7466,7 @@ scale = Vector2(5, 5)
 texture = ExtResource("1_wmwd1")
 
 [node name="Lowerground" type="ParallaxLayer" parent="Background"]
+position = Vector2(-8448, 1185)
 motion_mirroring = Vector2(324, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Lowerground"]
@@ -7497,3 +7500,5 @@ color = Color(0.305882, 0.305882, 0.305882, 1)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_bwj24")]
 position = Vector2(8878, -897)
+
+[editable path="CharacterBody2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://b7vycvoy2g8yk"]
+[gd_scene load_steps=23 format=4 uid="uid://b7vycvoy2g8yk"]
 
 [ext_resource type="Texture2D" uid="uid://crjbh7jiip621" path="res://1/5.png" id="1_wgaie"]
 [ext_resource type="Texture2D" uid="uid://qx5xx3hdqb1d" path="res://1/4.png" id="2_dxypl"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c34ojy4306usd" path="res://Assets/Chapters/character_body_2d.tscn" id="6_ok3sr"]
 [ext_resource type="Texture2D" uid="uid://nrgjr17jbmfb" path="res://Assets/Chapter 3 objects/tileset.png" id="7_tw4ri"]
 [ext_resource type="Texture2D" uid="uid://cadkslsxgihhk" path="res://Assets/Chapter 3 objects/Assets.png" id="8_tw4ri"]
+[ext_resource type="Texture2D" uid="uid://bg44at5w6r8fe" path="res://DuskBorne-Druid/moreeffects/Dimensional_Portal.png" id="9_jlcj0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jlcj0"]
 texture = ExtResource("7_tw4ri")
@@ -504,6 +505,59 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tw4ri"]
 normal = Vector2(-1, 0)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad1jk"]
+atlas = ExtResource("9_jlcj0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl6qv"]
+atlas = ExtResource("9_jlcj0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aymdr"]
+atlas = ExtResource("9_jlcj0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpe3a"]
+atlas = ExtResource("9_jlcj0")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdr0g"]
+atlas = ExtResource("9_jlcj0")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_easx5"]
+atlas = ExtResource("9_jlcj0")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_odc3h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad1jk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl6qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aymdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpe3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdr0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_easx5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlcj0"]
+radius = 4.12903
+
 [node name="Chapter3" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -563,3 +617,20 @@ shape = SubResource("WorldBoundaryShape2D_ok3sr")
 [node name="End" type="CollisionShape2D" parent="Border"]
 position = Vector2(574, 197)
 shape = SubResource("WorldBoundaryShape2D_tw4ri")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(539, 251)
+scale = Vector2(1.9375, 1.9375)
+sprite_frames = SubResource("SpriteFrames_odc3h")
+frame_progress = 0.41421
+
+[node name="cha3CutsceneTpZone" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/cha3CutsceneTpZone"]
+position = Vector2(1.03226, 0.516121)
+shape = SubResource("CapsuleShape2D_jlcj0")
+
+[connection signal="body_entered" from="AnimatedSprite2D/cha3CutsceneTpZone" to="CharacterBody2D" method="_on_cha_3_cutscene_tp_zone_body_entered"]
+
+[editable path="CharacterBody2D"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://41weg67jm5wk"
-path="res://.godot/imported/forrest_mage_spell.png-041625836b41cc08c318f25ff962b46b.ctex"
+uid="uid://bg44at5w6r8fe"
+path="res://.godot/imported/Dimensional_Portal.png-e0bf63e33fb15b944c9a1d6699a0b55c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/forrest_mage_spell.png"
-dest_files=["res://.godot/imported/forrest_mage_spell.png-041625836b41cc08c318f25ff962b46b.ctex"]
+source_file="res://DuskBorne-Druid/moreeffects/Dimensional_Portal.png"
+dest_files=["res://.godot/imported/Dimensional_Portal.png-e0bf63e33fb15b944c9a1d6699a0b55c.ctex"]
 
 [params]
 
