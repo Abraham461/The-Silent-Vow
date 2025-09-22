@@ -1,10 +1,12 @@
 extends CharacterBody2D
-class_name Player
+#class_name Playerd
 
 # === Movement ===
 const RUN_SPEED = 180.0
 const GRAVITY = 900.0
 const JUMP_FORCE = -400.0
+var dialogue_active: bool = false
+var movement_disabled: bool = false   # NEW: hard freeze flag
 
 # === Combat ===
 var is_attacking = false
@@ -45,16 +47,125 @@ var current_state: PlayerState = PlayerState.IDLE
 var previous_state: PlayerState = PlayerState.IDLE
 
 # === Node References ===
+@export var speed: int = 200
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var camera = $Camera2D
+@onready var actionable_finder: Area2D = $Direction/ActionableFinder
+var _dialogue_triggered := false
+@onready var running_on_concrete: AudioStreamPlayer = $Running_on_concrete
+
+# walls: Expect LeftWall and RightWall to have CollisionShape2D children.
+@onready var left_wall_shape: CollisionShape2D = $LeftWall/CollisionShape2D
+@onready var right_wall_shape: CollisionShape2D = $RightWall/CollisionShape2D
+
+# store original parent collision layers so we can restore them if we toggle layers
+var left_wall_parent_original_layer := 0
+var right_wall_parent_original_layer := 0
 
 func _ready():
+	# Save original parent layers if parent exists
+	if left_wall_shape and left_wall_shape.get_parent():
+		left_wall_parent_original_layer = left_wall_shape.get_parent().collision_layer
+	if right_wall_shape and right_wall_shape.get_parent():
+		right_wall_parent_original_layer = right_wall_shape.get_parent().collision_layer
+
+	# Ensure shapes are disabled initially (won't block player until dialogue)
+	# Use set_deferred so we don't upset physics step timing.
+	if left_wall_shape:
+		left_wall_shape.set_deferred("disabled", true)
+	if right_wall_shape:
+		right_wall_shape.set_deferred("disabled", true)
+
+	# Debug print to confirm node setup
+	print("Left parent:", left_wall_shape.get_parent() if left_wall_shape else null)
+	print("Right parent:", right_wall_shape.get_parent() if right_wall_shape else null)
+	print("Player collision_mask:", collision_mask)
+
+	# Connect spawn and animation finished
+	NavigationManager.on_trigger_player_spawn.connect(_on_spawn)
 	animation_player.connect("animation_finished", Callable(self, "_on_animation_finished"))
+
+	# Actionable finder signals
+	actionable_finder.connect("area_entered", Callable(self, "_on_actionable_entered"))
+	actionable_finder.connect("area_exited",  Callable(self, "_on_actionable_exited"))
+
+	# Dialogue signals (if provided by your DialogueManager)
+	if DialogueManager.has_signal("dialogue_started"):
+		DialogueManager.dialogue_started.connect(_on_dialogue_started)
+	if DialogueManager.has_signal("dialogue_finished"):
+		DialogueManager.dialogue_finished.connect(_on_dialogue_finished)
+
 	change_state(PlayerState.IDLE)
 
+func _on_dialogue_started():
+	# enable blocking walls and freeze the player controls for dialogue only
+	dialogue_active = true
+	_enable_walls()
+	freeze_player()  # note: freeze_player no longer toggles movement_disabled
+
+func _on_dialogue_finished():
+	# disable blocking walls and unfreeze the player controls
+	dialogue_active = false
+	_disable_walls()
+	unfreeze_player()
+
+# Helper: enable/disable walls (works with CollisionShape2D.disabled primarily)
+func _enable_walls():
+	if left_wall_shape:
+		left_wall_shape.set_deferred("disabled", false)
+		# if parent is StaticBody2D and you prefer layers: restore layer if it was zeroed
+		var p = left_wall_shape.get_parent()
+		if p and p.has_method("set_deferred") and left_wall_parent_original_layer != 0:
+			p.set_deferred("collision_layer", left_wall_parent_original_layer)
+	if right_wall_shape:
+		right_wall_shape.set_deferred("disabled", false)
+		var p2 = right_wall_shape.get_parent()
+		if p2 and p2.has_method("set_deferred") and right_wall_parent_original_layer != 0:
+			p2.set_deferred("collision_layer", right_wall_parent_original_layer)
+
+func _disable_walls():
+	if left_wall_shape:
+		left_wall_shape.set_deferred("disabled", true)
+		# optionally zero parent's layer to fully disable (comment out if not desired)
+		var p = left_wall_shape.get_parent()
+		if p and p.has_method("set_deferred"):
+			p.set_deferred("collision_layer", 0)
+	if right_wall_shape:
+		right_wall_shape.set_deferred("disabled", true)
+		var p2 = right_wall_shape.get_parent()
+		if p2 and p2.has_method("set_deferred"):
+			p2.set_deferred("collision_layer", 0)
+
+# Freeze / unfreeze player movement & inputs
+func freeze_player():
+	# Do NOT change movement_disabled here — keep movement_disabled for other usages.
+	# Dialogue flow uses dialogue_active to block movement. Here we just stop input processing & animations.
+	velocity = Vector2.ZERO
+	# make sure to stop motion immediately
+	move_and_slide()
+	animation_player.play("Idle")
+	# stop _input callbacks (optional). Physics still runs so dialogue walls and collisions work.
+	set_process_input(false)
+
+func unfreeze_player():
+	# Do NOT touch movement_disabled here.
+	set_process_input(true)
+
+func is_frozen() -> bool:
+	# keep same semantics but also include movement_disabled
+	return dialogue_active or is_dead or is_hurt or movement_disabled
+
+func _on_spawn(position:Vector2,direction:String):
+	global_position = position
+	animation_player.play("move_"+direction)
+	animation_player.stop()
+
 func _physics_process(delta):
-	if is_dead:
-		handle_death()
+	# If we are frozen (dialogue_active or movement_disabled or death/hurt), don't allow movement or physics-controlled velocity changes
+	if dialogue_active or movement_disabled or is_dead or is_hurt:
+		velocity = Vector2.ZERO
+		# ensure we still run move_and_slide so collisions update
 		move_and_slide()
 		return
 
@@ -64,12 +175,16 @@ func _physics_process(delta):
 	if is_rolling:
 		handle_roll()
 	else:
-		if not is_state_locked():
-			handle_movement()
+		handle_movement()
 		apply_gravity(delta)
 
 	move_and_slide()
 	update_animation()
+	
+	if animation_player.current_animation == "Run":
+		if not running_on_concrete.playing: running_on_concrete.play()
+	else:
+		if running_on_concrete.playing: running_on_concrete.stop()
 
 	if combo_step > 0:
 		combo_timer -= delta
@@ -100,7 +215,30 @@ func update_timers(delta):
 	if roll_cooldown_timer > 0:
 		roll_cooldown_timer -= delta
 
+func _on_actionable_entered(area: Area2D) -> void:
+	if _dialogue_triggered:
+		return
+	if area.has_method("action"):
+		area.action()
+		call_deferred("_set_dialogue_triggered")
+
+func _set_dialogue_triggered():
+	_dialogue_triggered = true
+
+func _on_actionable_exited(area: Area2D) -> void:
+	if area.has_method("action"):
+		_dialogue_triggered = false
+
 func handle_input():
+	# block input handling if movement is disabled OR dialogue is active
+	if movement_disabled or dialogue_active:
+		animated_sprite.play("Idle")
+		return
+
+	# keep dialogue_active effect for visuals (redundant guard)
+	if dialogue_active:
+		animated_sprite.play("Idle")
+
 	if Input.is_action_just_pressed("Roll") and not is_state_locked() and roll_cooldown_timer <= 0:
 		start_roll()
 
@@ -124,7 +262,10 @@ func handle_input():
 		animation_player.play("Jump111")
 
 func handle_movement():
-	var direction := Input.get_action_strength("right") - Input.get_action_strength("left")
+	if dialogue_active or movement_disabled:
+		velocity.x = 0  # stop horizontal movement
+		return
+	var direction := Input.get_action_strength("Right") - Input.get_action_strength("Left")
 	velocity.x = direction * RUN_SPEED
 
 	if direction != 0:
@@ -155,6 +296,8 @@ func handle_death():
 		animation_player.play("Dead")
 
 func start_combo_attack():
+	# respect dialogue_active and hard freeze
+	if movement_disabled or dialogue_active: return
 	if attack_delay_timer > 0:
 		return
 
@@ -175,6 +318,7 @@ func start_combo_attack():
 		4: animation_player.play("NormalAtk4")
 
 func start_jump_attack():
+	if movement_disabled or dialogue_active: return
 	is_attacking = true
 	has_jumped_attack = true
 	attack_timer = ATTACK_COOLDOWN
@@ -183,6 +327,7 @@ func start_jump_attack():
 	animation_player.play("JumpAtk")
 
 func start_roll():
+	if movement_disabled or dialogue_active: return
 	is_rolling = true
 	roll_timer = ROLL_DURATION
 	roll_cooldown_timer = ROLL_COOLDOWN
@@ -194,11 +339,11 @@ func start_roll():
 	velocity.y = 0
 
 func start_pray():
+	if movement_disabled or dialogue_active: return
 	change_state(PlayerState.PRAY)
 	animation_player.play("Pray")
 
 func handle_roll():
-	# Roll motion handled in start_roll
 	pass
 
 func reset_combo():
@@ -224,7 +369,8 @@ func take_damage(damage: int):
 		velocity = -velocity.normalized() * 100
 
 func is_state_locked() -> bool:
-	return current_state in [
+	# Include dialogue_active/movement_disabled so actions won't start during dialogue
+	return dialogue_active or movement_disabled or current_state in [
 		PlayerState.ATTACK,
 		PlayerState.HURT,
 		PlayerState.DEAD,

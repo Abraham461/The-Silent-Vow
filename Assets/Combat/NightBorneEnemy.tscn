@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=3 uid="uid://djo22gbno6ruh"]
+
+[ext_resource type="Script" uid="uid://dud3x3hobbsnc" path="res://Assets/Chapters/Enemy.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://l3lcvvcjiee8" path="res://Player Knight/player/sprites/NightBorne.png" id="2"]
+[ext_resource type="Script" uid="uid://bf2knaih1j5kt" path="res://Assets/Combat/HealthComponent.gd" id="3"]
+[ext_resource type="Script" uid="uid://btxfm3nkrsnvo" path="res://Assets/Combat/CombatEffects.gd" id="4"]
+[ext_resource type="Script" uid="uid://cm36kcc6a53as" path="res://Assets/Combat/CombatHitBox.gd" id="5"]
+[ext_resource type="Script" uid="uid://ckglqtgf3hqjp" path="res://Assets/Combat/CombatHurtBox.gd" id="6"]
+
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}],
+"loop": false,
+"name": &"NightBorneAtk",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}],
+"loop": false,
+"name": &"NightBorneDeath",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}],
+"loop": true,
+"name": &"NightBorneIdle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}],
+"loop": true,
+"name": &"NightBorneRun",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}],
+"loop": false,
+"name": &"NightBorneTakeHit",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(30, 50)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(40, 60)
+
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(35, 55)
+
+[sub_resource type="CircleShape2D" id="6"]
+radius = 260.0
+
+[node name="NightBorneEnemy" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("2")
+animation = &"NightBorneIdle"
+autoplay = "NightBorneIdle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("3")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3")
+
+[node name="CombatEffects" type="Node2D" parent="."]
+script = ExtResource("4")
+
+[node name="HitBox" type="Area2D" parent="." groups=["enemy_hitbox"]]
+collision_layer = 4
+monitoring = false
+script = ExtResource("5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(25, 0)
+shape = SubResource("4")
+disabled = true
+
+[node name="HurtBox" type="Area2D" parent="." groups=["enemy_hurtbox"]]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -5)
+shape = SubResource("5")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("6")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_body_entered"]

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://hrvcwx2yvwmw" path="res://Assets/Chapters/HealthBar.gd" id="1_v2lfg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg4cr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37rai"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2lfg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qrqu"]
 bg_color = Color(0, 1, 0, 1)
 border_width_left = 1
 border_width_top = 1
@@ -16,12 +16,12 @@ border_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
 [node name="UI" type="CanvasLayer"]
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 12.0
-offset_top = 11.0
-offset_right = 235.0
-offset_bottom = 38.0
+offset_left = 11.0
+offset_top = 7.0
+offset_right = 234.0
+offset_bottom = 34.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_styles/background = SubResource("StyleBoxFlat_tg4cr")
-theme_override_styles/fill = SubResource("StyleBoxFlat_v2lfg")
+theme_override_styles/background = SubResource("StyleBoxFlat_37rai")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0qrqu")
 value = 100.0
 script = ExtResource("1_v2lfg")

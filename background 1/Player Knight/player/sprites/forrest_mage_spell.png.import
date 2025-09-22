@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://41weg67jm5wk"
-path="res://.godot/imported/forrest_mage_spell.png-041625836b41cc08c318f25ff962b46b.ctex"
+path="res://.godot/imported/forrest_mage_spell.png-baee2063ed388bf488563e8ae647be8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprites/forrest_mage_spell.png"
-dest_files=["res://.godot/imported/forrest_mage_spell.png-041625836b41cc08c318f25ff962b46b.ctex"]
+source_file="res://background 1/Player Knight/player/sprites/forrest_mage_spell.png"
+dest_files=["res://.godot/imported/forrest_mage_spell.png-baee2063ed388bf488563e8ae647be8a.ctex"]
 
 [params]
 

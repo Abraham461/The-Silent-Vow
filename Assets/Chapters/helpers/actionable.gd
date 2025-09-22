@@ -2,6 +2,9 @@ extends Area2D
 @export var dialogue_start: String = "start2"
 @export var dialogue_resource: DialogueResource
 var has_triggered := false
+@onready var boss_theme: AudioStreamPlayer = $"../BossTheme"
+var stream = preload("res://ThemeSongs/Action 3.ogg")
+@onready var main_theme_song: AudioStreamPlayer = $"../../mainThemeSong"
 
 func _ready() -> void:
 	monitoring = true
@@ -13,6 +16,10 @@ func _on_body_entered(body: Node) -> void:
 		print("Triggering dialogue!")
 		# freeze player
 		body.is_frozen = true
+		main_theme_song.stop()
+		stream.loop = true
+		boss_theme.stream = stream
+		boss_theme.play()
 # show dialogue
 		DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_start)
 

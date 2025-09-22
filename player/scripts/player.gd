@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+#class_name Player
 
 # === Movement ===
 const RUN_SPEED = 180.0
