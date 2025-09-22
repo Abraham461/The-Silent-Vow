@@ -1,8 +1,8 @@
 [gd_scene load_steps=28 format=3 uid="uid://dafw0yxq5cvep"]
 
 [ext_resource type="Script" uid="uid://bcyrhu1fsojdt" path="res://Main_menu/menu/game_level.gd" id="1_uxngw"]
-[ext_resource type="Texture2D" uid="uid://bnbou8gqeck0p" path="res://Main_menu/Image/Gamelevel.jpg" id="2_uxngw"]
-[ext_resource type="AudioStream" uid="uid://6i4ohnbe15d5" path="res://Main_menu/Audios/Boris - Mystery Tension.mp3" id="3_3eenj"]
+[ext_resource type="Texture2D" uid="uid://dby06ky72be3o" path="res://Main_menu/Image/Gamelevel.jpg" id="2_tyhta"]
+[ext_resource type="AudioStream" uid="uid://bxrp5gpdray2b" path="res://Main_menu/Audios/Boris_Skalsky_Mystery_Tension_epic_relaxation_music_Mind_Drifter256k.mp3" id="3_tyhta"]
 [ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="4_tyhta"]
 
 [sub_resource type="SystemFont" id="SystemFont_uxngw"]
@@ -69,19 +69,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_uxngw")
+texture = ExtResource("2_tyhta")
+expand_mode = 1
 
 [node name="Chapter1" type="Button" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.439063
-anchor_top = 0.383333
-anchor_right = 0.581249
-anchor_bottom = 0.452778
+anchor_left = 0.429688
+anchor_top = 0.35
+anchor_right = 0.571873
+anchor_bottom = 0.419445
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
-theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tyhta")
@@ -95,14 +97,15 @@ metadata/_edit_use_anchors_ = true
 [node name="Chapter2" type="Button" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.203125
-anchor_top = 0.483425
-anchor_right = 0.353125
-anchor_bottom = 0.552869
+anchor_left = 0.18125
+anchor_top = 0.461111
+anchor_right = 0.33125
+anchor_bottom = 0.530555
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
-theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_hover_color = Color(0.89, 0.89, 0.89, 1)
+theme_override_colors/font_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_pressed_color = Color(0.89, 0.89, 0.89, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gt0s2")
@@ -116,14 +119,17 @@ metadata/_edit_use_anchors_ = true
 [node name="Chapter3" type="Button" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.435937
-anchor_top = 0.572222
-anchor_right = 0.582812
-anchor_bottom = 0.641667
+anchor_left = 0.421875
+anchor_top = 0.55
+anchor_right = 0.56875
+anchor_bottom = 0.619445
+offset_left = 5.0
+offset_right = 5.00003
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
-theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_hover_color = Color(0.89, 0.887182, 0.8811, 1)
+theme_override_colors/font_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_pressed_color = Color(0.89, 0.884363, 0.8722, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_c518x")
@@ -137,15 +143,18 @@ metadata/_edit_use_anchors_ = true
 [node name="Chapter4" type="Button" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.642187
-anchor_top = 0.48895
-anchor_right = 0.784375
-anchor_bottom = 0.558395
-offset_right = 3.05176e-05
+anchor_left = 0.673437
+anchor_top = 0.469444
+anchor_right = 0.815625
+anchor_bottom = 0.538889
+offset_top = -3.0
+offset_right = 6.10352e-05
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
-theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_hover_color = Color(0.89, 0.89, 0.89, 1)
+theme_override_colors/font_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_pressed_color = Color(0.89, 0.89, 0.89, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_htinp")
@@ -159,12 +168,13 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.3875
-anchor_top = 0.183333
-anchor_right = 0.617188
-anchor_bottom = 0.258333
+anchor_left = 0.385938
+anchor_top = 0.194444
+anchor_right = 0.615626
+anchor_bottom = 0.280556
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.886275, 0.705882, 0.317647, 1)
 theme_override_fonts/font = SubResource("SystemFont_5vbcs")
 theme_override_font_sizes/font_size = 27
 text = "Game Levels"
@@ -173,14 +183,15 @@ metadata/_edit_use_anchors_ = true
 [node name="Back_Button" type="Button" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.440625
-anchor_top = 0.761111
-anchor_right = 0.582812
-anchor_bottom = 0.830556
+anchor_left = 0.4375
+anchor_top = 0.744444
+anchor_right = 0.579687
+anchor_bottom = 0.813889
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.886275, 0.705882, 0.317647, 1)
-theme_override_colors/font_pressed_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_hover_color = Color(0.89, 0.89, 0.89, 1)
+theme_override_colors/font_color = Color(0.886275, 0.705882, 0.317647, 1)
+theme_override_colors/font_pressed_color = Color(0.89, 0.89, 0.89, 1)
 theme_override_fonts/font = SubResource("SystemFont_uxngw")
 theme_override_font_sizes/font_size = 21
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kf0uj")
@@ -192,7 +203,7 @@ text = "Back "
 metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_3eenj")
+stream = ExtResource("3_tyhta")
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

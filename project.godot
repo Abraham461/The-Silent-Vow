@@ -28,8 +28,8 @@ Inventory="*res://inventory.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/window_width_override=1080
-window/size/window_height_override=720
+window/size/window_width_override=1152
+window/size/window_height_override=648
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

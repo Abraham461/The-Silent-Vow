@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dby06ky72be3o"
-path="res://.godot/imported/Gamelevel.jpg-b287851578f68f9b07326b1d35e8e126.ctex"
+uid="uid://bw1afptugxa2f"
+path="res://.godot/imported/button-frame.png-6b8b83f07a896feb4a41fc26cad81228.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main_menu/Image/Gamelevel.jpg"
-dest_files=["res://.godot/imported/Gamelevel.jpg-b287851578f68f9b07326b1d35e8e126.ctex"]
+source_file="res://Main_menu/Image/button-frame.png"
+dest_files=["res://.godot/imported/button-frame.png-6b8b83f07a896feb4a41fc26cad81228.ctex"]
 
 [params]
 
