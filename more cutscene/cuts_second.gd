@@ -11,6 +11,7 @@ const CHAR_READ_RATE = 0.05
 @onready var sfx_player = $SeffPlayer
 @onready var sfx_timer = $SFXTimer
 @onready var tween = get_tree().create_tween()
+@onready var seff_player: AudioStreamPlayer = $SeffPlayer
 
 
 

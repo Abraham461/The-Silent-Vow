@@ -1041,12 +1041,10 @@ func _on_health_health_depleted() -> void:
 	if playerDeath:
 		return
 	playerDeath = true
-
 	# 2) stop input & movement
 	is_frozen = true
 	is_hurt = false
 	velocity = Vector2.ZERO
-
 	# 3) disable collisions / hurtboxes so no more hits or pushes
 	if has_node("CollisionShape2D"):
 		$CollisionShape2D.set_deferred("disabled", true)
@@ -1054,13 +1052,11 @@ func _on_health_health_depleted() -> void:
 		var hb = $HurtBox
 		if hb is Area2D:
 			hb.set_deferred("monitoring", false)
-
 	# 4) stop timers/ongoing actions that might re-enable behaviors (optional)
 	if has_node("ComboTimer"):
 		$ComboTimer.stop()
 	if has_node("RollCooldownTimer"):
 		$RollCooldownTimer.stop()
-
 	# 5) play Death animation if present (ensure it does NOT loop), otherwise short delay
 	var death_anim := "Death"
 	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(death_anim):
@@ -1071,23 +1067,16 @@ func _on_health_health_depleted() -> void:
 	else:
 		push_warning("Death animation missing or sprite invalid; continuing after short delay")
 		await get_tree().create_timer(0.25).timeout
-
 	# ---- EXTRA PAUSE AFTER DEATH (so the death frame lingers) ----
 	#if respawn_delay_after_death > 0.0:
 		#await get_tree().create_timer(respawn_delay_after_death).timeout
 
 	# ----------------- CHANGE SCENE TO CHAPTER_2_1 -----------------
 	# Replace this path with the correct one in your project if needed:
-	var scene_path: String = "res://Assets/Chapters/chapter_2_1.tscn"
-
-	# Optional: do any cleanup you want before switching (stop music, reset singletons, etc.)
-	# For example:
-	# if Engine.has_singleton("MusicPlayer"):
-	#     var m = Engine.get_singleton("MusicPlayer")
-	#     m.stop()
-
-	# Attempt to change scene
-	var err := get_tree().change_scene_to_file(scene_path)
+	
+	#var scene_path: String = "res://Assets/Chapters/chapter_2_1.tscn"
+	on_player_died()
+	#var err := get_tree().change_scene_to_file(scene_path)
 	#if err != OK:
 		#push_warning("Failed to change scene to '%s' (error code %d). Check the path.".format(scene_path, err))
 	#else:
@@ -1105,3 +1094,18 @@ func _on_health_health_depleted() -> void:
 		## resume player's local input state
 		#if body.has_method("resume_input"):
 			#body.resume_input()
+func show_game_over():
+	var game_over_menu = load("res://Main_menu/Game_Over_Menu/Game_over_menu.tscn").instantiate()
+	add_child(game_over_menu)
+	
+	# Set the path of this current scene
+	game_over_menu.set_restart_scene(get_scene_file_path())
+	
+	# Optionally pause the game
+	#get_tree().paused = true
+	#game_over_menu.process_mode = Node.PROCESS_MODE_ALWAYS  # So buttons work while paused
+
+
+#CALLING THE GAME OVER MENU AFTER THE CHARACTER DIE!!
+func on_player_died():
+	show_game_over()
