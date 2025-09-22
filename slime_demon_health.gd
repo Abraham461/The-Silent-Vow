@@ -1,14 +1,13 @@
-class_name playerHealth
+class_name SlimeDemonHealth
 extends Node
 
 signal max_health_changed(diff: int)
 signal health_changed(diff: int)
 signal health_depleted
 @export var player_path: NodePath
-@export var max_health: int = 500 : set = set_max_health, get = get_max_health
+@export var max_health: int = 100 : set = set_max_health, get = get_max_health
 @export var immortality: bool = false : set = set_immortality, get = get_immortality
-#@onready var progress_bar: ProgressBar = $"../ProgressBar"
-@onready var progress_bar: ProgressBar = $"../../CanvasLayer2/UHD/HealthBar"
+@onready var progress_bar: ProgressBar = $"../ProgressBar"
 
 # Use a plain Timer type and assign null — avoids the `|` union syntax error
 var immortality_timer: Timer = null

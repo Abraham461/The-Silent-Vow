@@ -17480,6 +17480,7 @@ script = ExtResource("80_x6npn")
 [editable path="Chapter2-1/AnimatedSprite2D"]
 [editable path="Chapter2-1/holyaura"]
 [editable path="Chapter2-1/smoe"]
+[editable path="Chapter2-1/flyingDemon2"]
 [editable path="AnimatedSprite2D"]
 [editable path="Node2D"]
 [editable path="Node2D2"]

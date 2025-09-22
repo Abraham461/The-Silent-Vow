@@ -24,16 +24,16 @@ func _ready() -> void:
 		connect("area_exited", Callable(self, "_on_area_exited"))
 
 	# ensure the 'TakeHit' animation is NOT looping
-	if playeranim.sprite_frames and playeranim.sprite_frames.has_animation("TakeHit"):
-		playeranim.sprite_frames.set_animation_loop("TakeHit", false)
+	#if playeranim.sprite_frames and playeranim.sprite_frames.has_animation("TakeHit"):
+		#playeranim.sprite_frames.set_animation_loop("TakeHit", false)
 
 	# connect AnimatedSprite2D's animation_finished
-	if not playeranim.is_connected("animation_finished", Callable(self, "_on_devil_animation_finished")):
-		playeranim.connect("animation_finished", Callable(self, "_on_devil_animation_finished"))
-
-	# listen to health depletion → mark as dead
-	if not health.health_depleted.is_connected(Callable(self, "_on_health_depleted")):
-		health.health_depleted.connect(_on_health_depleted)
+	#if not playeranim.is_connected("animation_finished", Callable(self, "_on_devil_animation_finished")):
+		#playeranim.connect("animation_finished", Callable(self, "_on_devil_animation_finished"))
+#
+	## listen to health depletion → mark as dead
+	#if not health.health_depleted.is_connected(Callable(self, "_on_health_depleteddd")):
+		#health.health_depleted.connect(_on_health_depleted)
 
 
 
