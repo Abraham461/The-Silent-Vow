@@ -62,16 +62,16 @@ func _on_health_depleted() -> void:
 #func _on_area_exited(area: Area2D) -> void:
 
 func _on_hit_box_area_exited(area: Area2D) -> void:
-	if area is flydemonHitBox:
+	if area is slimedemonHitBox:
 		var id := area.get_instance_id()
 		if id in _hitboxes_in_contact:
 			_hitboxes_in_contact.erase(id)
-			print("flydemonHitBox exit, cleared from contact set: ", area)
+			print("slimedemonHitBox exit, cleared from contact set: ", area)
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if player or (hurt_cooldown and not hurt_cooldown.is_stopped()):
 		return  # ignore hits if dead or iFrame active
-	if area is flydemonHitBox:
-		var hb: flydemonHitBox = area
+	if area is slimedemonHitBox:
+		var hb: slimedemonHitBox = area
 		var hb_id := hb.get_instance_id()        # store the id now
 		_hitboxes_in_contact[hb_id] = true
 		health.set_health(health.get_health() - hb.damage)
@@ -88,7 +88,7 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		is_hurt = false
 
 		_hitboxes_in_contact.erase(hb_id)
-		#print("It's a flydemonHitBox! Damage = ", hb.damage)  # only safe if you still reference hb here;
+		#print("It's a slimedemonHitBox! Damage = ", hb.damage)  # only safe if you still reference hb here;
 		# if hb might be freed, avoid using hb.* fields after awaits (use stored data instead)
 # ensure this is initialized (e.g. in _ready)
 

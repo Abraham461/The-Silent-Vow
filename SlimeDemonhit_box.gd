@@ -1,5 +1,5 @@
-# flydemonHitBox.gd
-class_name flydemonHitBox
+# slimedemonHitBox.gd
+class_name slimedemonHitBox
 extends Area2D
 
 # backing storage for damage (avoid recursive setter)
@@ -48,7 +48,7 @@ func _ready() -> void:
 		_collision_shape_orig_pos = collision_shape_2d.position
 
 	if debug:
-		print("flydemonHitBox ready. damage=", _damage_internal, "offset_x=", offset_x, "auto_emit=", auto_emit_on_enter)
+		print("slimedemonHitBox ready. damage=", _damage_internal, "offset_x=", offset_x, "auto_emit=", auto_emit_on_enter)
 
 
 # setter/getter (non-recursive)
@@ -77,11 +77,11 @@ func _on_body_entered(body: Node) -> void:
 # right == false => x = -offset_x
 func set_side(right: bool) -> void:
 	if not collision_shape_2d:
-		if debug: print("flydemonHitBox.set_side: no CollisionShape2D found")
+		if debug: print("slimedemonHitBox.set_side: no CollisionShape2D found")
 		return
 	collision_shape_2d.position.x = (offset_x if right else -offset_x)
 	if debug:
-		print("flydemonHitBox.set_side: right=", right, "collision_shape.x=", collision_shape_2d.position.x)
+		print("slimedemonHitBox.set_side: right=", right, "collision_shape.x=", collision_shape_2d.position.x)
 
 
 # Change the offset magnitude (keeps current sign on collision_shape)
@@ -92,7 +92,7 @@ func set_offset_x(value: float) -> void:
 		var sign = 1 if collision_shape_2d.position.x >= 0 else -1
 		collision_shape_2d.position.x = sign * offset_x
 	if debug:
-		print("flydemonHitBox.set_offset_x ->", offset_x)
+		print("slimedemonHitBox.set_offset_x ->", offset_x)
 
 
 # Convenience: set side and pulse in one call (call_deferred from enemy)
@@ -124,7 +124,7 @@ func pulse() -> void:
 	# fallback: if no overlapping players found, broadcast to player_hurtbox group
 	if not handled_any:
 		if debug:
-			print("flydemonHitBox.pulse: no overlapping player found, broadcasting to group:", player_hurtbox_group)
+			print("slimedemonHitBox.pulse: no overlapping player found, broadcasting to group:", player_hurtbox_group)
 		get_tree().call_group(player_hurtbox_group, "receive_damage", _damage_internal, global_position)
 		emit_signal("hit_emitted", _damage_internal, global_position)
 
@@ -139,12 +139,12 @@ func _try_emit_for_body(body: Node) -> void:
 		var elapsed := now_ms - int(_last_hit_ms[id])
 		if elapsed < int(per_target_cooldown * 1000.0):
 			if debug:
-				print("flydemonHitBox: cooldown for target", id, "elapsed", elapsed, "ms")
+				print("slimedemonHitBox: cooldown for target", id, "elapsed", elapsed, "ms")
 			return
 	_last_hit_ms[id] = now_ms
 
 	if debug:
-		print("flydemonHitBox: applying", _damage_internal, "to", body, "at", global_position)
+		print("slimedemonHitBox: applying", _damage_internal, "to", body, "at", global_position)
 
 	# Prefer calling a direct method on the collided body if present
 	if body.has_method("receive_damage"):
@@ -161,7 +161,7 @@ func _try_emit_for_body(body: Node) -> void:
 func clear_cooldowns() -> void:
 	_last_hit_ms.clear()
 	if debug:
-		print("flydemonHitBox: cooldowns cleared")
+		print("slimedemonHitBox: cooldowns cleared")
 
 
 # Restore collision shape to original saved position (optional convenience)
@@ -169,4 +169,4 @@ func restore_collision_shape_position() -> void:
 	if collision_shape_2d:
 		collision_shape_2d.position = _collision_shape_orig_pos
 		if debug:
-			print("flydemonHitBox: collision shape restored to", _collision_shape_orig_pos)
+			print("slimedemonHitBox: collision shape restored to", _collision_shape_orig_pos)
