@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpkrpdl1651m3"]
+
+[ext_resource type="Script" uid="uid://d3tl06vf45a5j" path="res://ThemeSongs/chapter_3_theme.gd" id="1_cjajb"]
+[ext_resource type="AudioStream" uid="uid://denogyunrue74" path="res://ThemeSongs/Epic_War_Drums_-_Music_for_D_D(256k).mp3" id="1_y8fba"]
+
+[node name="Chapter3Theme" type="AudioStreamPlayer"]
+stream = ExtResource("1_y8fba")
+volume_db = -14.514
+script = ExtResource("1_cjajb")

@@ -39,6 +39,7 @@ var sfx_map = {
 }
 
 func _ready():
+	Chapter3Theme._play_music_level()
 	print("Starting state: State.READY")
 	if has_node("BGMPlayer"):
 		$BGMPlayer.stop()

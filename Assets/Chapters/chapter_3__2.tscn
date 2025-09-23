@@ -1,5 +1,6 @@
-[gd_scene load_steps=211 format=4 uid="uid://swtscqw2p1m5"]
+[gd_scene load_steps=230 format=4 uid="uid://swtscqw2p1m5"]
 
+[ext_resource type="Script" uid="uid://ct5jfn8ip5ssq" path="res://Assets/Chapters/chapter_3__2.gd" id="1_avu80"]
 [ext_resource type="Texture2D" uid="uid://62u6iepegns6" path="res://Assets/Chapter 3 objects/01 background.png" id="1_wmwd1"]
 [ext_resource type="Texture2D" uid="uid://bo4481fgvct12" path="res://Assets/Chapter 3 objects/1.png" id="2_5ew2t"]
 [ext_resource type="Texture2D" uid="uid://citrdc44e71ad" path="res://Assets/Chapter 3 objects/tile_castle_grey.png" id="3_5ew2t"]
@@ -37,6 +38,22 @@
 [ext_resource type="Script" path="res://Assets/Chapters/player_health.gd" id="36_046bb"]
 [ext_resource type="Script" path="res://Assets/Chapters/ch3hurt_box.gd" id="36_cu1h5"]
 [ext_resource type="PackedScene" uid="uid://dat14seammiq0" path="res://slime_demon.tscn" id="36_tx2b0"]
+[ext_resource type="Texture2D" uid="uid://buce6lcmpj87e" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_01.png" id="38_a4ilj"]
+[ext_resource type="Texture2D" uid="uid://dv50jd6xexpwk" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_02.png" id="39_avu80"]
+[ext_resource type="Texture2D" uid="uid://mss7p5idj2e0" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_03.png" id="40_ddjo0"]
+[ext_resource type="Texture2D" uid="uid://d37fl1oo4ujy8" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_04.png" id="41_mlsbk"]
+[ext_resource type="Texture2D" uid="uid://bv56gguwgv3ls" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_05.png" id="42_71e8q"]
+[ext_resource type="Texture2D" uid="uid://bh7tov0271blx" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_06.png" id="43_l7hfj"]
+[ext_resource type="Texture2D" uid="uid://b8ou8x6x2mpg" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_07.png" id="44_s6wrs"]
+[ext_resource type="Texture2D" uid="uid://vp0i0kmukw6t" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_08.png" id="45_d47vv"]
+[ext_resource type="Texture2D" uid="uid://bu5tkg5l285mt" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_09.png" id="46_046bb"]
+[ext_resource type="Texture2D" uid="uid://cplkcfalhyk1i" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_10.png" id="47_bgbaj"]
+[ext_resource type="Texture2D" uid="uid://viss1565cpy4" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_11.png" id="48_3ykvt"]
+[ext_resource type="Texture2D" uid="uid://diw84ygb8e5ht" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_12.png" id="49_earty"]
+[ext_resource type="Texture2D" uid="uid://dd2xgrdp7bjxm" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_13.png" id="50_wn6or"]
+[ext_resource type="Texture2D" uid="uid://c28ienxrepwi" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_14.png" id="51_bsdhb"]
+[ext_resource type="Texture2D" uid="uid://bxicjtph4uma8" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_15.png" id="52_al1v6"]
+[ext_resource type="Texture2D" uid="uid://cjahwm60kib0h" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_16.png" id="53_mjumw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xfbc1"]
 texture = ExtResource("11_dunao")
@@ -9033,8 +9050,68 @@ bg_color = Color(0.94931, 0.0970107, 5.77569e-07, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tx2b0"]
 bg_color = Color(0.278486, 0.711478, 0, 1)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ks1vm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_a4ilj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_avu80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_ddjo0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_mlsbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_71e8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_l7hfj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_s6wrs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_d47vv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_046bb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_bgbaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_3ykvt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_earty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_wn6or")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_bsdhb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_al1v6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_mjumw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4ilj"]
+radius = 8.93677
+
 [node name="Chapter 3 -2" type="Node2D"]
 position = Vector2(-8448, 1185)
+script = ExtResource("1_avu80")
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
@@ -9043,9 +9120,9 @@ position = Vector2(-8448, 1185)
 motion_mirroring = Vector2(384, 426)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Upperground"]
-position = Vector2(1065, -543)
+position = Vector2(5254.24, -1740.78)
 rotation = -3.14159
-scale = Vector2(5, 5)
+scale = Vector2(24.6678, 11.2385)
 texture = ExtResource("1_wmwd1")
 
 [node name="Lowerground" type="ParallaxLayer" parent="Background"]
@@ -9095,9 +9172,12 @@ bus = &"Sfx"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D2"]
 offset = Vector2(0, -50)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.2, 1.2)
+limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 100.0
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2" groups=["player"]]
 position = Vector2(2, 8)
@@ -9274,4 +9354,22 @@ position = Vector2(8236, -313)
 [node name="SlimeDemon7" parent="." instance=ExtResource("36_tx2b0")]
 position = Vector2(7228, 98)
 
+[node name="SlimeDemon8" parent="." instance=ExtResource("36_tx2b0")]
+position = Vector2(6905, 590)
+
+[node name="SlimeDemon9" parent="." instance=ExtResource("36_tx2b0")]
+position = Vector2(6879, 1036)
+
+[node name="scenechangeGate" type="AnimatedSprite2D" parent="."]
+position = Vector2(5707.25, 1023.44)
+scale = Vector2(1.31481, 1.31481)
+sprite_frames = SubResource("SpriteFrames_ks1vm")
+frame_progress = 0.215899
+
+[node name="SCgate" type="Area2D" parent="scenechangeGate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scenechangeGate/SCgate"]
+shape = SubResource("CapsuleShape2D_a4ilj")
+
 [connection signal="health_depleted" from="CharacterBody2D2/playerHealth" to="CharacterBody2D2" method="_on_player_health_health_depleted"]
+[connection signal="body_entered" from="scenechangeGate/SCgate" to="CharacterBody2D2" method="_on_s_cgate_body_entered"]
