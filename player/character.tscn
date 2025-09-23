@@ -21,6 +21,7 @@ disable_mode = 1
 
 [node name="Running_on_concrete" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("3_xx22o")
+bus = &"Sfx"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://2qug76wnw8xm"]
+[gd_scene load_steps=24 format=3 uid="uid://2qug76wnw8xm"]
 
 [ext_resource type="Script" uid="uid://uowdrajprce0" path="res://Main_menu/Pause_Menu/pause_menu.gd" id="1_e2wrh"]
 [ext_resource type="Texture2D" uid="uid://y4khhyfcvhnc" path="res://Main_menu/Image/Pause_Menu.png" id="2_qb4hv"]
 [ext_resource type="Texture2D" uid="uid://bw1afptugxa2f" path="res://Main_menu/Image/button-frame.png" id="3_qb4hv"]
+[ext_resource type="AudioStream" uid="uid://b7v2368kahwoi" path="res://Main_menu/Audios/select-button-ui.mp3" id="4_vx1cu"]
 
 [sub_resource type="SystemFont" id="SystemFont_pl0rd"]
 font_names = PackedStringArray("Times New Roman")
@@ -160,7 +161,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_e2wrh")
 text = "
 "
 
-[node name="Options" type="Button" parent="ColorRect/GridContainer"]
+[node name="Restart" type="Button" parent="ColorRect/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/focus = SubResource("StyleBoxTexture_1xpfm")
@@ -236,9 +237,13 @@ size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
 theme_override_fonts/font = SubResource("SystemFont_qb4hv")
 theme_override_font_sizes/font_size = 16
-text = "Options"
+text = "Restart"
 horizontal_alignment = 1
 
+[node name="Button_Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vx1cu")
+bus = &"Sfx"
+
 [connection signal="pressed" from="ColorRect/GridContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="ColorRect/GridContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ColorRect/GridContainer/Restart" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="ColorRect/GridContainer/Exit" to="." method="_on_exit_pressed"]

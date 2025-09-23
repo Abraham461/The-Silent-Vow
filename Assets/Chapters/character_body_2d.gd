@@ -44,6 +44,7 @@ const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landi
 const SPEED = -200.0			#for ladder climbing
 # Animation references
 
+@onready var game_over_menu: Control = $"../../CanvasLayer3/GameOverMenu"
 
 # Timers (only essential ones)
 
@@ -182,6 +183,8 @@ func _process(_delta):
 
 	
 func _ready() -> void:
+	
+	Global.current_level_scene_path = "res://Assets/Chapters/chapter_2_1.tscn"
 
 	torch_light.visible = torch_on
 	combo_timer.wait_time = COMBO_WINDOW
@@ -1075,7 +1078,7 @@ func _on_health_health_depleted() -> void:
 	# Replace this path with the correct one in your project if needed:
 	
 	#var scene_path: String = "res://Assets/Chapters/chapter_2_1.tscn"
-	on_player_died()
+	get_tree().change_scene_to_file("res://Main_menu/Game_Over_Menu/Game_over_menu.tscn")
 	#var err := get_tree().change_scene_to_file(scene_path)
 	#if err != OK:
 		#push_warning("Failed to change scene to '%s' (error code %d). Check the path.".format(scene_path, err))
@@ -1094,18 +1097,3 @@ func _on_health_health_depleted() -> void:
 		## resume player's local input state
 		#if body.has_method("resume_input"):
 			#body.resume_input()
-func show_game_over():
-	var game_over_menu = load("res://Main_menu/Game_Over_Menu/Game_over_menu.tscn").instantiate()
-	add_child(game_over_menu)
-	
-	# Set the path of this current scene
-	game_over_menu.set_restart_scene(get_scene_file_path())
-	
-	# Optionally pause the game
-	#get_tree().paused = true
-	#game_over_menu.process_mode = Node.PROCESS_MODE_ALWAYS  # So buttons work while paused
-
-
-#CALLING THE GAME OVER MENU AFTER THE CHARACTER DIE!!
-func on_player_died():
-	show_game_over()

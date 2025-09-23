@@ -25,13 +25,14 @@ GameState="*res://game_state.gd"
 Inventory="*res://inventory.gd"
 GameManager="*res://game_manager.tscn"
 AutoLoad="*res://InputBlocker.gd"
+Global="*res://Main_menu/Global Transition/global.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/window_width_override=640
-window/size/window_height_override=360
+window/size/window_width_override=1152
+window/size/window_height_override=648
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

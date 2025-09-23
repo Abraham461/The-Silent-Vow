@@ -22,7 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://bgfuyb5md4kjj" path="res://jumpingonconcrete-91439.mp3" id="20_td7qg"]
 [ext_resource type="AudioStream" uid="uid://bmtol1owj2cor" path="res://air-blow-380645.mp3" id="21_xhym0"]
 [ext_resource type="AudioStream" uid="uid://cns8qlrkdybef" path="res://sword-blade-slicing-flesh-352708.mp3" id="22_6jwbu"]
-[ext_resource type="Script" uid="uid://6jbqpdto4r3v" path="res://Assets/Chapters/hurt_box.gd" id="23_or6ru"]
+[ext_resource type="Script" path="res://Assets/Chapters/hurt_box.gd" id="23_or6ru"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qxc53"]
 radius = 11.5385
@@ -1547,6 +1547,7 @@ script = ExtResource("1_egvlp")
 
 [node name="running" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_or6ru")
+bus = &"Sfx"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -50)
@@ -1631,16 +1632,19 @@ shape = SubResource("CircleShape2D_q8i3h")
 stream = ExtResource("20_td7qg")
 volume_db = 24.0
 pitch_scale = 1.74
+bus = &"Sfx"
 
 [node name="roll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_xhym0")
 volume_db = 9.176
 pitch_scale = 1.27
+bus = &"Sfx"
 
 [node name="attack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_6jwbu")
 volume_db = -3.083
 pitch_scale = 1.29
+bus = &"Sfx"
 
 [node name="HitBox2" type="Area2D" parent="."]
 visible = false
@@ -1668,7 +1672,6 @@ shape = SubResource("CapsuleShape2D_qxc53")
 collision_layer = 0
 collision_mask = 15
 script = ExtResource("23_or6ru")
-metadata/_custom_type_script = "uid://dlh6v4qgohbp6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(4, 11)

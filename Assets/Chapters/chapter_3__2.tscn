@@ -34,8 +34,8 @@
 [ext_resource type="AudioStream" uid="uid://bgfuyb5md4kjj" path="res://jumpingonconcrete-91439.mp3" id="32_71e8q"]
 [ext_resource type="AudioStream" uid="uid://bmtol1owj2cor" path="res://air-blow-380645.mp3" id="33_l7hfj"]
 [ext_resource type="AudioStream" uid="uid://cns8qlrkdybef" path="res://sword-blade-slicing-flesh-352708.mp3" id="34_s6wrs"]
-[ext_resource type="Script" uid="uid://bjc0hkhrtgrf4" path="res://Assets/Chapters/player_health.gd" id="36_046bb"]
-[ext_resource type="Script" uid="uid://dyj8qq6nndl8p" path="res://Assets/Chapters/ch3hurt_box.gd" id="36_cu1h5"]
+[ext_resource type="Script" path="res://Assets/Chapters/player_health.gd" id="36_046bb"]
+[ext_resource type="Script" path="res://Assets/Chapters/ch3hurt_box.gd" id="36_cu1h5"]
 [ext_resource type="PackedScene" uid="uid://dat14seammiq0" path="res://slime_demon.tscn" id="36_tx2b0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xfbc1"]
@@ -9091,6 +9091,7 @@ script = ExtResource("13_obkk5")
 [node name="running" type="AudioStreamPlayer" parent="CharacterBody2D2"]
 stream = ExtResource("14_mpn36")
 volume_db = -18.122
+bus = &"Sfx"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D2"]
 offset = Vector2(0, -50)
@@ -9153,16 +9154,19 @@ ignore_time_scale = true
 stream = ExtResource("32_71e8q")
 volume_db = 2.295
 pitch_scale = 1.74
+bus = &"Sfx"
 
 [node name="roll" type="AudioStreamPlayer" parent="CharacterBody2D2"]
 stream = ExtResource("33_l7hfj")
 volume_db = -17.99
 pitch_scale = 1.27
+bus = &"Sfx"
 
 [node name="attack" type="AudioStreamPlayer" parent="CharacterBody2D2"]
 stream = ExtResource("34_s6wrs")
 volume_db = -0.37
 pitch_scale = 1.29
+bus = &"Sfx"
 
 [node name="HitBox" type="Area2D" parent="CharacterBody2D2"]
 collision_layer = 2

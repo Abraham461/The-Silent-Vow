@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://4nsnfs4qvlgu"]
+
+[ext_resource type="Script" uid="uid://ocoo58vvdo4p" path="res://Main_menu/Options_menu/audio_slider_settings.gd" id="1_051l7"]
+
+[sub_resource type="SystemFont" id="SystemFont_sde1f"]
+font_names = PackedStringArray("Times New Roman")
+
+[sub_resource type="SystemFont" id="SystemFont_051l7"]
+font_names = PackedStringArray("Times New Roman")
+
+[node name="Audio_Slider_Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_051l7")
+bus_name = "Master"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 30
+
+[node name="Audio_Name" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_sde1f")
+theme_override_font_sizes/font_size = 20
+text = "Sound Volume"
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+
+[node name="Audio_Number" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_051l7")
+theme_override_font_sizes/font_size = 20
+text = "99.2"

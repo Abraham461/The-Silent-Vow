@@ -140,8 +140,10 @@ mouse_filter = 2
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lhjln")
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [node name="SeffPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
 
 [node name="SFXTimer" type="Timer" parent="."]
