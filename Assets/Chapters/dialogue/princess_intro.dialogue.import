@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c3k4mgbaj7s4q"
+path="res://.godot/imported/princess_intro.dialogue-1f415dc55a2ca8b7e923b3e1053e2629.tres"
+
+[deps]
+
+source_file="res://Assets/Chapters/dialogue/princess_intro.dialogue"
+dest_files=["res://.godot/imported/princess_intro.dialogue-1f415dc55a2ca8b7e923b3e1053e2629.tres"]
+
+[params]
+
+defaults=true

@@ -9043,9 +9043,9 @@ position = Vector2(-8448, 1185)
 motion_mirroring = Vector2(384, 426)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Upperground"]
-position = Vector2(1065, -543)
+position = Vector2(5254.24, -1740.78)
 rotation = -3.14159
-scale = Vector2(5, 5)
+scale = Vector2(24.6678, 11.2385)
 texture = ExtResource("1_wmwd1")
 
 [node name="Lowerground" type="ParallaxLayer" parent="Background"]
@@ -9094,9 +9094,12 @@ volume_db = -18.122
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D2"]
 offset = Vector2(0, -50)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.2, 1.2)
+limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 100.0
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2" groups=["player"]]
 position = Vector2(2, 8)
@@ -9269,5 +9272,11 @@ position = Vector2(8236, -313)
 
 [node name="SlimeDemon7" parent="." instance=ExtResource("36_tx2b0")]
 position = Vector2(7228, 98)
+
+[node name="SlimeDemon8" parent="." instance=ExtResource("36_tx2b0")]
+position = Vector2(6905, 590)
+
+[node name="SlimeDemon9" parent="." instance=ExtResource("36_tx2b0")]
+position = Vector2(6879, 1036)
 
 [connection signal="health_depleted" from="CharacterBody2D2/playerHealth" to="CharacterBody2D2" method="_on_player_health_health_depleted"]
