@@ -40,6 +40,9 @@ var sfx_map = {
 }
 
 func _ready():
+	Chapter3Theme.stop()
+	Chapter3Finaltheme.stop()
+	Chapter3Bosstheme.stop()
 	bgm_player.play()
 	hide_textbox()
 	enqueue_cutscenes()

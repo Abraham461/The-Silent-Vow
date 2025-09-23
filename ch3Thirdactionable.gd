@@ -8,7 +8,7 @@ var _dm = null
 #@onready var running: AudioStreamPlayer = $"../../CharacterBody2D/running"
 
 var stream = preload("res://ThemeSongs/Action 3.ogg")
-@onready var boss_theme: AudioStreamPlayer = $"../../AudioStreamPlayer"
+#@onready var boss_theme: AudioStreamPlayer = $"../../AudioStreamPlayer"
 @onready var tween = get_tree().create_tween()
 
 func _ready() -> void:
@@ -37,8 +37,8 @@ func _on_body_entered(body: Node) -> void:
 
 		# start boss music
 		stream.loop = true
-		boss_theme.stream = stream
-		boss_theme.play()
+		#boss_theme.stream = stream
+		#boss_theme.play()
 
 		# connect to dialogue end
 		if _dm:
@@ -67,11 +67,11 @@ func _cleanup_and_change_scene() -> void:
 		#_triggering_player = null
 
 	# stop boss music if desired or fade it with tween
-	if boss_theme.playing:
+	#if boss_theme.playing:
 		# instant stop:
-		boss_theme.stop()
+		#boss_theme.stop()
 		# or fade out: uncomment and tune
-		# tween.tween_property(boss_theme, "volume_db", -80, 1.0)
+		 #tween.tween_property(boss_theme, "volume_db", -80, 1.0)
 
 	# disconnect signal to avoid duplicates next time
 	if _dm and _dm.is_connected("dialogue_ended", Callable(self, "_on_dialogue_ended")):

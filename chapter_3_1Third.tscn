@@ -2450,7 +2450,7 @@ position = Vector2(643.04, 18.458)
 scale = Vector2(0.877902, 0.80701)
 sprite_frames = SubResource("SpriteFrames_3hy2m")
 animation = &"pricesswalk"
-frame_progress = 0.148228
+frame_progress = 0.166236
 flip_h = true
 
 [node name="Actionable" type="Area2D" parent="Princess"]
@@ -2461,5 +2461,3 @@ dialogue_resource = ExtResource("35_rk63w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Princess/Actionable"]
 shape = SubResource("CircleShape2D_d4u40")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

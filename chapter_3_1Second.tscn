@@ -1,6 +1,6 @@
 [gd_scene load_steps=332 format=4 uid="uid://c7mrcpvvyy5hm"]
 
-[ext_resource type="Script" uid="uid://b6icl2ryvtpae" path="res://chapter_3_1.gd" id="1_cmleo"]
+[ext_resource type="Script" uid="uid://bmhkh78cpx6aj" path="res://chapter_3_1_second.gd" id="1_l7pte"]
 [ext_resource type="Texture2D" uid="uid://crjbh7jiip621" path="res://1/5.png" id="2_7tumt"]
 [ext_resource type="Texture2D" uid="uid://b65s0fcwhgufo" path="res://2/4.png" id="3_oquoo"]
 [ext_resource type="Texture2D" uid="uid://b3fcns4arsefr" path="res://2/2.png" id="4_l55ig"]
@@ -2302,8 +2302,8 @@ height = 59.0
 radius = 111.595
 height = 298.19
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tumt"]
-size = Vector2(835.44, 559.056)
+[sub_resource type="CircleShape2D" id="CircleShape2D_l7pte"]
+radius = 414.162
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kcm7e"]
 radius = 135.5
@@ -2744,7 +2744,7 @@ bg_color = Color(0.94931, 0.0970107, 5.77569e-07, 1)
 bg_color = Color(0.278486, 0.711478, 0, 1)
 
 [node name="chapter3_1" type="Node2D"]
-script = ExtResource("1_cmleo")
+script = ExtResource("1_l7pte")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(24, 60)
@@ -2974,12 +2974,11 @@ position = Vector2(43.0322, 33.5446)
 shape = SubResource("CapsuleShape2D_coorm")
 
 [node name="Malrikaggro" type="Area2D" parent="Malrik"]
-visible = false
-position = Vector2(46.0273, 27.0491)
+position = Vector2(26.0085, 12.535)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Malrik/Malrikaggro"]
-position = Vector2(-2.4003, 0.6539)
-shape = SubResource("RectangleShape2D_7tumt")
+position = Vector2(24.6185, 10.668)
+shape = SubResource("CircleShape2D_l7pte")
 
 [node name="MalrikAtkzone" type="Area2D" parent="Malrik"]
 visible = false

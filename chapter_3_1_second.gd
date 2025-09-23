@@ -9,5 +9,4 @@ extends Node2D
 func _ready() -> void:
 	#boss.play("FinalbossAtk")
 	princess.play("princessidle")
-	Chapter3Theme.stop()
 	Chapter3Bosstheme._play_music_level()

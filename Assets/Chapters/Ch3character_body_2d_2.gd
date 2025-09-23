@@ -1110,3 +1110,8 @@ func _on_player_health_health_depleted() -> void:
 		## resume player's local input state
 		#if body.has_method("resume_input"):
 			#body.resume_input()
+
+
+func _on_s_cgate_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"): 
+		get_tree().change_scene_to_file("res://chapter_3_1First.tscn")

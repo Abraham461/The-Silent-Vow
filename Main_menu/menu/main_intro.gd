@@ -3,6 +3,7 @@ extends Node2D
 @onready var video_stream_player: VideoStreamPlayer = $VideoStreamPlayer
 
 func  _ready():
+
 	video_stream_player.play()
 	video_stream_player.finished.connect(on_finished)
 	

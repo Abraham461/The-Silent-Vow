@@ -12,6 +12,7 @@ const CHAR_READ_RATE = 0.05
 @onready var sfx_timer = $SFXTimer
 @onready var tween = get_tree().create_tween()
 @onready var seff_player: AudioStreamPlayer = $SeffPlayer
+@onready var main_theme_song: AudioStreamPlayer = $mainThemeSong
 
 
 
@@ -38,6 +39,7 @@ var sfx_map = {
 }
 
 func _ready():
+	main_theme_song.play()
 	print("Starting state: State.READY")
 	if has_node("BGMPlayer"):
 		$BGMPlayer.stop()

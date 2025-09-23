@@ -2448,5 +2448,3 @@ dialogue_resource = ExtResource("39_x1wnt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Princess/Actionable"]
 shape = SubResource("CircleShape2D_d4u40")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

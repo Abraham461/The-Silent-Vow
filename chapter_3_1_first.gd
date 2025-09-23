@@ -8,6 +8,8 @@ const TARGET_POS := Vector2(-450, 348)
 const WALK_SPEED := 80.0  # pixels per second, adjust to taste
 
 func _ready() -> void:
+	Chapter3Bosstheme.stop()
+	Chapter3Finaltheme._play_music_level()
 	player.play("ch3death")
 	# start walk animation
 	princess.play("pricesswalk")

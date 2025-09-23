@@ -25,12 +25,15 @@ GameState="*res://game_state.gd"
 Inventory="*res://inventory.gd"
 GameManager="*res://game_manager.tscn"
 AutoLoad="*res://InputBlocker.gd"
+Chapter3Theme="*res://ThemeSongs/chapter3theme.tscn"
+Chapter3Bosstheme="*res://ThemeSongs/chapter3Bosstheme.tscn"
+Chapter3Finaltheme="*res://ThemeSongs/chapter3Finaltheme.tscn"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/window_width_override=1920
+window/size/window_width_override=1440
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 
