@@ -2,7 +2,6 @@ extends Control
 
 @onready var resume: Button = $ColorRect/GridContainer/Resume
 @onready var exit: Button = $ColorRect/GridContainer/Exit
-@onready var restart: Button = $ColorRect/GridContainer/Restart
 @onready var button_click: AudioStreamPlayer = $Button_Click
 
 
@@ -10,11 +9,10 @@ var _is_paused: bool = false
 
 
 func _ready() -> void:
-	#process_mode = Node.PROCESS_MODE_ALWAYS
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	#visible = false
 	resume.pressed.connect(_on_resume_pressed)
 	exit.pressed.connect(_on_exit_pressed)
-	restart.pressed.connect(_on_restart_pressed)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -24,6 +22,8 @@ func set_paused(value: bool) -> void:
 	_is_paused = value
 	get_tree().paused = _is_paused
 	visible = _is_paused
+ 
+
 
 func _on_resume_pressed() -> void:
 	button_click.play()
@@ -36,11 +36,4 @@ func _on_exit_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main_menu/menu/Game_level.tscn")
 
 
-func _on_restart_pressed() -> void:
-	button_click.play()
-	#get_tree().paused = false
-	if Global.current_level_scene_path != "":
-		get_tree().change_scene_to_file(Global.current_level_scene_path)
-	else:
-			push_warning("No level set in Global. Going back to the main menu")
-			get_tree().change_scene_to_file("res://Main_menu/menu/Main_Menu.tscn")
+	

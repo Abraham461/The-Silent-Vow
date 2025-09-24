@@ -44,7 +44,6 @@ const JUMP_ATK_RESUME_FRAME := 2       # 0-based frame to resume from when landi
 const SPEED = -200.0			#for ladder climbing
 # Animation references
 
-@onready var game_over_menu: Control = $"../../CanvasLayer3/GameOverMenu"
 
 # Timers (only essential ones)
 
@@ -184,6 +183,7 @@ func _process(_delta):
 	
 func _ready() -> void:
 	
+	# To call the scene after choosing to Restart the game
 	Global.current_level_scene_path = "res://Assets/Chapters/chapter_2_1.tscn"
 
 	torch_light.visible = torch_on
@@ -1078,7 +1078,7 @@ func _on_health_health_depleted() -> void:
 	# Replace this path with the correct one in your project if needed:
 	
 	#var scene_path: String = "res://Assets/Chapters/chapter_2_1.tscn"
-	get_tree().change_scene_to_file("res://Main_menu/Game_Over_Menu/Game_over_menu.tscn")
+	get_tree().change_scene_to_file("res://Main_menu/Game_Over_Menu/Game_over_menu.tscn") # Call game over menu after the player die
 	#var err := get_tree().change_scene_to_file(scene_path)
 	#if err != OK:
 		#push_warning("Failed to change scene to '%s' (error code %d). Check the path.".format(scene_path, err))

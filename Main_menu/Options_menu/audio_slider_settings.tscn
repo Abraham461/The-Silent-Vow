@@ -4,9 +4,11 @@
 
 [sub_resource type="SystemFont" id="SystemFont_sde1f"]
 font_names = PackedStringArray("Times New Roman")
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_051l7"]
 font_names = PackedStringArray("Times New Roman")
+subpixel_positioning = 0
 
 [node name="Audio_Slider_Settings" type="Control"]
 layout_mode = 3
@@ -25,7 +27,7 @@ offset_bottom = 40.0
 theme_override_constants/separation = 30
 
 [node name="Audio_Name" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(120, 0)
+custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_sde1f")

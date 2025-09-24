@@ -25,25 +25,17 @@ GameState="*res://game_state.gd"
 Inventory="*res://inventory.gd"
 GameManager="*res://game_manager.tscn"
 AutoLoad="*res://InputBlocker.gd"
-<<<<<<< HEAD
 Global="*res://Main_menu/Global Transition/global.gd"
-=======
 Chapter3Theme="*res://ThemeSongs/chapter3theme.tscn"
 Chapter3Bosstheme="*res://ThemeSongs/chapter3Bosstheme.tscn"
 Chapter3Finaltheme="*res://ThemeSongs/chapter3Finaltheme.tscn"
->>>>>>> c3185709f522104888e426c6558f9278cf6f5c48
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-<<<<<<< HEAD
 window/size/window_width_override=1152
 window/size/window_height_override=648
-=======
-window/size/window_width_override=1440
-window/size/window_height_override=1080
->>>>>>> c3185709f522104888e426c6558f9278cf6f5c48
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
@@ -156,7 +148,7 @@ teleport={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Assets/Chapters/dialogue/npc_intro.dialogue", "res://dialogue/main.dialogue", "res://DuskBorne-Druid/introdia.dialogue.dialogue", "res://Assets/Chapters/dialogue/princess_intro.dialogue", "res://Assets/Chapters/dialogue/ch3final.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Assets/Chapters/dialogue/npc_intro.dialogue", "res://dialogue/main.dialogue", "res://DuskBorne-Druid/introdia.dialogue.dialogue", "res://Assets/Chapters/dialogue/ch3final.dialogue", "res://Assets/Chapters/dialogue/princess_intro.dialogue")
 
 [layer_names]
 

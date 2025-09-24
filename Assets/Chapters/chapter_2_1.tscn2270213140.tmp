@@ -16363,6 +16363,14 @@ position = Vector2(779, -94)
 metadata/_edit_horizontal_guides_ = [572.0, -204.0, -256.0, 553.0, 554.0, 1169.0]
 metadata/_edit_vertical_guides_ = [11905.0, 1884.0, 11551.0, 11039.0, 11904.0]
 
+[node name="Pause_Menu" parent="." instance=ExtResource("28_vimia")]
+visible = false
+anchors_preset = -1
+offset_left = 779.0
+offset_top = -94.0
+offset_right = 779.0
+offset_bottom = -94.0
+
 [node name="Chapter2-1" type="Node2D" parent="."]
 position = Vector2(-780, -5)
 script = ExtResource("1_2vle6")
@@ -17319,6 +17327,16 @@ volume_db = -11.609
 autoplay = true
 bus = &"Music"
 
+[node name="CanvasLayer3" type="CanvasLayer" parent="Chapter2-1"]
+
+[node name="Pause_Menu" parent="Chapter2-1/CanvasLayer3" instance=ExtResource("28_vimia")]
+visible = false
+anchors_preset = -1
+offset_left = 779.0
+offset_top = -94.0
+offset_right = 779.0
+offset_bottom = -94.0
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_6rjlp")
 position = Vector2(6833, -150)
@@ -17327,14 +17345,6 @@ amount = 1000
 preprocess = 0.5
 visibility_rect = Rect2(-350, -200, 700, 400)
 process_material = SubResource("ParticleProcessMaterial_dg2qy")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("28_vimia")]
-visible = false
-anchors_preset = -1
-offset_right = 2.0
-offset_bottom = 3.0
 
 [node name="pendant" parent="." instance=ExtResource("42_5vn1b")]
 position = Vector2(-344, 509)
