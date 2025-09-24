@@ -266,15 +266,7 @@ func _physics_process(delta: float) -> void:
 		return
 	# NEW: honor external/local and global input locks
 	# This forces the player to stop horizontally and play Idle while locked.
-	if external_input_blocked or (Engine.has_singleton("AutoLoad") and not AutoLoad.enabled):
-		# stop horizontal motion but allow vertical gravity to apply if you want:
-		velocity.x = 0
-		# If you prefer to completely freeze Y as well, set velocity.y = 0
-		current_state = State.IDLE
-		if sprite:
-			sprite.play("Idle")
-		move_and_slide()
-		return
+
 	if Input.is_action_just_pressed("teleport"):
 		global_position = Vector2(11040, 550)
 	# Apply variable jump height (better control)
@@ -840,11 +832,7 @@ func _on_enemyarea_body_entered(body: Node2D) -> void:
 		animMod.sprite_frames.set_animation_loop("moddeath", false)
 		animMod.play("moddeath")
 	# FORCE player to stop immediately (safe API call)
-		if body.has_method("stop_immediately"):
-			body.stop_immediately(true)
 
-		# then block global inputs (events + InputMap)
-		AutoLoad.block_all_except_space()
 		# Show dialogue immediately after death animation starts
 		var txt = textbox_scene.instantiate()
 		get_tree().current_scene.add_child(txt)
@@ -857,11 +845,7 @@ func _on_enemyarea_body_entered(body: Node2D) -> void:
 		animMod.play("modIdle")
 		await get_tree().create_timer(2.0).timeout
 		
-		AutoLoad.restore_all_input()
-		# resume player's local input state
-		if body.has_method("resume_input"):
-			body.resume_input()
-		
+
 		# 3) Play walk animation while moving left
 		animMod.play("modwalk")
 		var target_pos = enemy1.position + Vector2(-280, 0)

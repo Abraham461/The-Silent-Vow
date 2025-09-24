@@ -60,13 +60,17 @@ func _on_area_entered(area: Area2D) -> void:
 		received_damage.emit(hb.damage)
 		#enemy.play("NightborneTakeHit")
 		is_hurt = true
+		var tween  = get_tree().create_tween()
+		tween.tween_method(SetShader_BlinkIntensity, 1.0,0.0,0.5)
 		# start iFrame timer
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(1).timeout
 		is_hurt = false
 		_hitboxes_in_contact.erase(hb.get_instance_id())
 		print("It's a HitBox! Damage = ", hb.damage)
 
 
+func SetShader_BlinkIntensity(newValue : float):
+	enemy.material.set_shader_parameter("blink_intensity", newValue)
 
 func _on_health_depleted() -> void:
 	# mark death so HurtBox ignores future hits
