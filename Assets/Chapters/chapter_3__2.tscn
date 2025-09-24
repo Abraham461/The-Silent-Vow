@@ -13787,7 +13787,7 @@ shape = SubResource("WorldBoundaryShape2D_cu1h5")
 
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="." groups=["player"]]
 texture_filter = 1
-position = Vector2(5786.59, 936.184)
+position = Vector2(144.713, -1208.91)
 collision_layer = 590593
 collision_mask = 785
 script = ExtResource("13_obkk5")
