@@ -1,4 +1,4 @@
-[gd_scene load_steps=608 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=604 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -11,13 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://bjph6g1sgervc" path="res://Assets/Objects/light.png" id="6_htryq"]
 [ext_resource type="Texture2D" uid="uid://bki62858rpbhv" path="res://Assets/Objects/shop.png" id="6_pjcyk"]
 [ext_resource type="Texture2D" uid="uid://vbch285efpl4" path="res://Assets/Objects/Enviroment  2.png" id="6_whxi1"]
-[ext_resource type="Texture2D" uid="uid://m2c4ef5m6f5n" path="res://Assets/Objects/Item__37.png" id="8_vimia"]
 [ext_resource type="Texture2D" uid="uid://4x8rlmrgyasm" path="res://Assets/Objects/Enviroment.png" id="9_0ni1m"]
 [ext_resource type="Texture2D" uid="uid://dh60jab1do2uh" path="res://Assets/Sprites/Attacks.png" id="9_e8abh"]
 [ext_resource type="Texture2D" uid="uid://bm1khtjexhhsx" path="res://Assets/Sprites/NightBorne.png" id="9_whxi1"]
 [ext_resource type="Script" uid="uid://dygoxfbje3vki" path="res://Assets/Chapters/door_area.gd" id="10_fr5cv"]
 [ext_resource type="Texture2D" uid="uid://cbxvfelaq0kcd" path="res://Assets/Sprites/Climb.png" id="10_gmtg2"]
-[ext_resource type="Script" uid="uid://xhxu3lowv4cw" path="res://Assets/Chapters/key_item.gd" id="11_0ni1m"]
 [ext_resource type="Texture2D" uid="uid://cplsu82m7ob8u" path="res://Assets/Sprites/crouch_idle.png" id="11_rujle"]
 [ext_resource type="Texture2D" uid="uid://b5yhprilfv46y" path="res://Assets/Sprites/crouch_attacks.png" id="12_ui76u"]
 [ext_resource type="Script" uid="uid://3cge8f13eacw" path="res://Assets/Chapters/door_area_2.gd" id="12_vx4nc"]
@@ -43,17 +41,16 @@
 [ext_resource type="AudioStream" uid="uid://cns8qlrkdybef" path="res://sword-blade-slicing-flesh-352708.mp3" id="37_cuak4"]
 [ext_resource type="Script" uid="uid://brmwwvx2fwfan" path="res://Assets/Chapters/playerhurt_box.gd" id="39_0gqn2"]
 [ext_resource type="Script" uid="uid://bjc0hkhrtgrf4" path="res://Assets/Chapters/player_health.gd" id="40_0gqn2"]
-[ext_resource type="PackedScene" uid="uid://dfeffspxcid2k" path="res://Coin.tscn" id="40_6rjlp"]
-[ext_resource type="Script" uid="uid://b50wrvf20sfvl" path="res://Assets/Chapters/nightborne.gd" id="40_p04e3"]
+[ext_resource type="Script" path="res://Assets/Chapters/nightborne.gd" id="40_p04e3"]
 [ext_resource type="Texture2D" uid="uid://bqma83k4r2dcb" path="res://DuskBorne-Druid/SpriteSheet/DruidBasicAtk1-Sheet.png" id="41_f3ovl"]
 [ext_resource type="Texture2D" uid="uid://c2hff437ca1vx" path="res://DuskBorne-Druid/SpriteSheet/DruidIdle001-Sheet.png" id="41_lw5t0"]
-[ext_resource type="Script" uid="uid://dg3gkan77ko2i" path="res://Assets/Chapters/hurt_box_2.gd" id="41_lyhpd"]
+[ext_resource type="Script" path="res://Assets/Chapters/hurt_box_2.gd" id="41_lyhpd"]
 [ext_resource type="Texture2D" uid="uid://1fux5p67b6wf" path="res://DuskBorne-Druid/ThunderEffects/VFX6/Sprite-sheet/Sprite-sheet.png" id="42_0gqn2"]
 [ext_resource type="PackedScene" uid="uid://cf47qeryogghb" path="res://pendant.tscn" id="42_5vn1b"]
 [ext_resource type="Texture2D" uid="uid://dl0gf7yw8dnvp" path="res://DuskBorne-Druid/SpriteSheet/DruidHurt001-Sheet.png" id="42_6vvgp"]
-[ext_resource type="Script" uid="uid://iuj5py3qfghm" path="res://Assets/Chapters/hurt_box_3.gd" id="42_aopum"]
+[ext_resource type="Script" path="res://Assets/Chapters/hurt_box_3.gd" id="42_aopum"]
 [ext_resource type="Texture2D" uid="uid://0xlyl3332mwg" path="res://DuskBorne-Druid/SpriteSheet/DruidDeath001-Sheet.png" id="42_ks44t"]
-[ext_resource type="Script" uid="uid://uhdw47ry4fc2" path="res://Assets/Chapters/Nightbornehurtbox.gd" id="43_cnvpc"]
+[ext_resource type="Script" path="res://Assets/Chapters/Nightbornehurtbox.gd" id="43_cnvpc"]
 [ext_resource type="Texture2D" uid="uid://b632i16sxlgb" path="res://DuskBorne-Druid/SpriteSheet/DruidWalk001-Sheet.png" id="43_xy5j7"]
 [ext_resource type="Script" uid="uid://dp6r0h2bk0fgt" path="res://Assets/Chapters/enemyarea.gd" id="44_ks44t"]
 [ext_resource type="AudioStream" uid="uid://bmtol1owj2cor" path="res://air-blow-380645.mp3" id="44_srkaq"]
@@ -68,13 +65,11 @@
 [ext_resource type="Script" uid="uid://douukc8ck6cp4" path="res://Assets/Chapters/enemydevil.gd" id="53_1ys4a"]
 [ext_resource type="Texture2D" uid="uid://byfii32ipqhor" path="res://DuskBorne-Druid/moreeffects/Incendiary/Fire_Incendiary_96x32.png" id="53_w62w1"]
 [ext_resource type="Script" uid="uid://6jbqpdto4r3v" path="res://Assets/Chapters/hurt_box.gd" id="54_w62w1"]
-
 [ext_resource type="Resource" uid="uid://7iwcppn5rmip" path="res://Assets/Chapters/dialogue/guide_intro.dialogue" id="57_b863t"]
-
 [ext_resource type="Texture2D" uid="uid://d3eyknk28gjnu" path="res://bats/Minotaur_1/Idle.png" id="59_qxn60"]
-[ext_resource type="Script" uid="uid://bg3f2g7t4fwfp" path="res://Assets/Chapters/mino_health.gd" id="61_rvkcm"]
-[ext_resource type="Script" uid="uid://hjlp405kfq3p" path="res://Assets/Chapters/minohurtbox.gd" id="61_sd6qm"]
-[ext_resource type="Script" uid="uid://cdnq68g8u1gex" path="res://Assets/Chapters/devil_health.gd" id="67_u7x2r"]
+[ext_resource type="Script" path="res://Assets/Chapters/mino_health.gd" id="61_rvkcm"]
+[ext_resource type="Script" path="res://Assets/Chapters/minohurtbox.gd" id="61_sd6qm"]
+[ext_resource type="Script" path="res://Assets/Chapters/devil_health.gd" id="67_u7x2r"]
 [ext_resource type="PackedScene" uid="uid://cr30gpga8s5me" path="res://teleportOne.tscn" id="70_1as26"]
 [ext_resource type="PackedScene" uid="uid://c6h7bqnh0h170" path="res://fireburn.tscn" id="71_a65qw"]
 [ext_resource type="PackedScene" uid="uid://dcppd2uewbo04" path="res://smoe.tscn" id="72_1as26"]
@@ -12184,9 +12179,6 @@ distance = -543.0
 normal = Vector2(-1, 0)
 distance = 10.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g1nf"]
-size = Vector2(21, 17.9297)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pt7p7"]
 radius = 11.5385
 
@@ -16552,17 +16544,6 @@ shape = SubResource("WorldBoundaryShape2D_pjcyk")
 position = Vector2(13729, -46)
 shape = SubResource("WorldBoundaryShape2D_whxi1")
 
-[node name="KeyItem" type="Area2D" parent="Chapter2-1"]
-script = ExtResource("11_0ni1m")
-
-[node name="Sprite2D" type="Sprite2D" parent="Chapter2-1/KeyItem"]
-position = Vector2(5667, 74)
-texture = ExtResource("8_vimia")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/KeyItem"]
-position = Vector2(5665.5, 72.9648)
-shape = SubResource("RectangleShape2D_7g1nf")
-
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Chapter2-1" groups=["player"]]
 texture_filter = 1
 position = Vector2(34, -24)
@@ -17065,218 +17046,6 @@ position = Vector2(1777, -26)
 [node name="smoe" parent="Chapter2-1" instance=ExtResource("72_1as26")]
 position = Vector2(1770, -147)
 
-[node name="coins" type="Node" parent="Chapter2-1"]
-
-[node name="Coin226" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(1536, -127)
-
-[node name="Coin227" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(1556, -127)
-
-[node name="Coin228" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(851, -60)
-
-[node name="Coin229" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(871, -60)
-
-[node name="Coin14" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(2016, -253)
-
-[node name="Coin15" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(2037, -252)
-
-[node name="Coin25" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(3876, 72)
-
-[node name="Coin26" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(3896, 72)
-
-[node name="Coin212" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(3335, -163)
-
-[node name="Coin213" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(3355, -163)
-
-[node name="Coin214" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(2562, -129)
-
-[node name="Coin215" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(2582, -129)
-
-[node name="Coin217" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(2856, -271)
-
-[node name="Coin221" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(2285, -195)
-
-[node name="Coin231" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(1144, -29)
-
-[node name="Coin232" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(3054, -135)
-
-[node name="Coin233" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(594, -126)
-
-[node name="Coin34" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(4519, -242)
-
-[node name="Coin35" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(4539, -242)
-
-[node name="Coin43" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(5730, -79)
-
-[node name="Coin44" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(5750, -79)
-
-[node name="Coin45" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(4850, -207)
-
-[node name="Coin52" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(6318, -139)
-
-[node name="Coin53" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(6420, -132)
-
-[node name="Coin54" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(6463, -160)
-
-[node name="Coin58" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(7098, -199)
-
-[node name="Coin60" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(7022, -158)
-
-[node name="Coin178" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(7522, -231)
-
-[node name="Coin179" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(7543, -230)
-
-[node name="Coin184" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(6795, -41)
-
-[node name="Coin191" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(5487, -42)
-
-[node name="Coin203" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(5215, -97)
-
-[node name="Coin204" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(5236, -96)
-
-[node name="Coin207" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(4119, -74)
-
-[node name="Coin208" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(3606, -173)
-
-[node name="Coin173" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(7861, -4)
-
-[node name="Coin174" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(7828, -55)
-
-[node name="Coin171" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(7999, 83)
-
-[node name="Coin73" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(9050, -160)
-
-[node name="Coin156" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(9978, -175)
-
-[node name="Coin162" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(9656, -72)
-
-[node name="Coin159" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(9750, -74)
-
-[node name="Coin160" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(9775, -54)
-
-[node name="Coin167" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(8418, -3)
-
-[node name="Coin168" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(8439, -2)
-
-[node name="Coin82" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(10407, -251)
-
-[node name="Coin84" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(10490, -223)
-
-[node name="Coin155" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(10710, -235)
-
-[node name="Coin100" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(12034, -163)
-
-[node name="Coin101" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(12054, -163)
-
-[node name="Coin102" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(12075, -162)
-
-[node name="Coin121" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(14183, -115)
-
-[node name="Coin122" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(14203, -115)
-
-[node name="Coin125" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(13578, -167)
-
-[node name="Coin126" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(13598, -167)
-
-[node name="Coin131" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(12680, -157)
-
-[node name="Coin132" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(12700, -157)
-
-[node name="Coin133" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(12564, -78)
-
-[node name="Coin137" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(11568, -150)
-
-[node name="Coin138" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(11588, -150)
-
-[node name="Coin141" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(11263, -159)
-
-[node name="Coin142" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(11739, -99)
-
-[node name="Coin145" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(12395, -184)
-
-[node name="Coin146" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(13042, -256)
-
-[node name="Coin148" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(13372, -263)
-
-[node name="Coin151" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(13951, -103)
-
-[node name="Coin153" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(14047, -151)
-
-[node name="Coin152" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(14069, -120)
-
-[node name="Coin147" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(12993, -238)
-
-[node name="Coin140" parent="Chapter2-1/coins" instance=ExtResource("40_6rjlp")]
-position = Vector2(10916, -139)
-
 [node name="flyingDemon2" parent="Chapter2-1" instance=ExtResource("74_3nhts")]
 position = Vector2(1768, 622)
 
@@ -17461,8 +17230,6 @@ script = ExtResource("80_x6npn")
 [connection signal="body_exited" from="Chapter2-1/Door/DoorArea2" to="Chapter2-1/Door/DoorArea2" method="_on_body_exited"]
 [connection signal="body_entered" from="Chapter2-1/Door/DoorArea4" to="Chapter2-1/Door/DoorArea4" method="_on_body_entered"]
 [connection signal="body_exited" from="Chapter2-1/Door/DoorArea4" to="Chapter2-1/Door/DoorArea4" method="_on_body_exited"]
-[connection signal="body_entered" from="Chapter2-1/KeyItem" to="Chapter2-1/KeyItem" method="_on_body_entered"]
-[connection signal="body_exited" from="Chapter2-1/KeyItem" to="Chapter2-1/KeyItem" method="_on_body_exited"]
 [connection signal="health_depleted" from="Chapter2-1/CharacterBody2D/playerHealth" to="Chapter2-1/CharacterBody2D" method="_on_health_health_depleted"]
 [connection signal="tree_exited" from="Chapter2-1/Enemy" to="Chapter2-1" method="_on_enemy_tree_exited"]
 [connection signal="health_depleted" from="Chapter2-1/Enemy/Health" to="Chapter2-1/Enemy" method="_on_health_health_depleted"]

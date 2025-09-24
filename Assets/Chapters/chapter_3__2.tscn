@@ -1,8 +1,4 @@
-
-[gd_scene load_steps=225 format=4 uid="uid://swtscqw2p1m5"]
-
-[gd_scene load_steps=230 format=4 uid="uid://swtscqw2p1m5"]
-
+[gd_scene load_steps=244 format=4 uid="uid://swtscqw2p1m5"]
 
 [ext_resource type="Script" uid="uid://ct5jfn8ip5ssq" path="res://Assets/Chapters/chapter_3__2.gd" id="1_avu80"]
 [ext_resource type="Texture2D" uid="uid://62u6iepegns6" path="res://Assets/Chapter 3 objects/01 background.png" id="1_wmwd1"]
@@ -13790,7 +13786,7 @@ shape = SubResource("WorldBoundaryShape2D_cu1h5")
 
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="." groups=["player"]]
 texture_filter = 1
-position = Vector2(6105.15, -1848.35)
+position = Vector2(5786.59, 936.184)
 collision_layer = 590593
 collision_mask = 785
 script = ExtResource("13_obkk5")
