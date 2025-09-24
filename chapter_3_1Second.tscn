@@ -1,7 +1,8 @@
-[gd_scene load_steps=378 format=4 uid="uid://c7mrcpvvyy5hm"]
+[gd_scene load_steps=379 format=4 uid="uid://c7mrcpvvyy5hm"]
 
 [ext_resource type="Script" uid="uid://bmhkh78cpx6aj" path="res://chapter_3_1_second.gd" id="1_l7pte"]
 [ext_resource type="Texture2D" uid="uid://crjbh7jiip621" path="res://1/5.png" id="2_7tumt"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="2_r230k"]
 [ext_resource type="Texture2D" uid="uid://b65s0fcwhgufo" path="res://2/4.png" id="3_oquoo"]
 [ext_resource type="Texture2D" uid="uid://b3fcns4arsefr" path="res://2/2.png" id="4_l55ig"]
 [ext_resource type="Texture2D" uid="uid://vbrxc6018ygi" path="res://2/3.png" id="5_kcm7e"]
@@ -27,11 +28,11 @@
 [ext_resource type="AudioStream" uid="uid://bgfuyb5md4kjj" path="res://jumpingonconcrete-91439.mp3" id="25_7bnon"]
 [ext_resource type="AudioStream" uid="uid://bmtol1owj2cor" path="res://air-blow-380645.mp3" id="26_ibodk"]
 [ext_resource type="AudioStream" uid="uid://cns8qlrkdybef" path="res://sword-blade-slicing-flesh-352708.mp3" id="27_681gg"]
-[ext_resource type="Script" uid="uid://bjc0hkhrtgrf4" path="res://Assets/Chapters/player_health.gd" id="28_7tumt"]
+[ext_resource type="Script" path="res://Assets/Chapters/player_health.gd" id="28_7tumt"]
 [ext_resource type="Texture2D" uid="uid://cadkslsxgihhk" path="res://Assets/Chapter 3 objects/Assets.png" id="28_obd3m"]
 [ext_resource type="Texture2D" uid="uid://drgfigkdhkf5d" path="res://DuskBorne-Druid/CharacterPack/Player/Attack01/player_attack01_01.png" id="29_4xutg"]
 [ext_resource type="Script" uid="uid://cukjkg8gjheax" path="res://ch3playerhurt_box.gd" id="29_l7pte"]
-[ext_resource type="Script" uid="uid://bewar7nj31khi" path="res://malrik.gd" id="30_oquoo"]
+[ext_resource type="Script" path="res://malrik.gd" id="30_oquoo"]
 [ext_resource type="Texture2D" uid="uid://dq308p6xrw7a3" path="res://DuskBorne-Druid/CharacterPack/Player/Attack01/player_attack01_02.png" id="30_vbgwc"]
 [ext_resource type="Texture2D" uid="uid://c67687jwtn032" path="res://DuskBorne-Druid/Free/26.png" id="31_encc7"]
 [ext_resource type="Texture2D" uid="uid://cjrclcmp35doj" path="res://DuskBorne-Druid/CharacterPack/Player/Attack01/player_attack01_03.png" id="31_lvyky"]
@@ -107,11 +108,11 @@
 [ext_resource type="Texture2D" uid="uid://bwk36x4n1i2ae" path="res://DuskBorne-Druid/CharacterPack/Player/Run/player_run_10.png" id="100_35gwj"]
 [ext_resource type="PackedScene" uid="uid://bnotiaqqay4sg" path="res://Main_menu/Game_Over_Menu/Game_over_menu.tscn" id="101_mbji6"]
 [ext_resource type="Texture2D" uid="uid://cesok0f47vsd8" path="res://DuskBorne-Druid/princess/Countess_Vampire/Hurt.png" id="102_su6hx"]
-[ext_resource type="Script" uid="uid://8liti0lisf3h" path="res://malrik_health.gd" id="103_l55ig"]
+[ext_resource type="Script" path="res://malrik_health.gd" id="103_l55ig"]
 [ext_resource type="Texture2D" uid="uid://847w4noy1q5w" path="res://DuskBorne-Druid/princess/Countess_Vampire/Dead.png" id="103_x6sjd"]
 [ext_resource type="Script" uid="uid://dqxbhr2iaots5" path="res://malrikhurt_box.gd" id="104_kcm7e"]
 [ext_resource type="Texture2D" uid="uid://bbv3e6fdi3y66" path="res://DuskBorne-Druid/princess/Countess_Vampire/Attack_1.png" id="104_vwaby"]
-[ext_resource type="Script" uid="uid://cgdg6t1mnx886" path="res://malrikhit_box.gd" id="105_8obp0"]
+[ext_resource type="Script" path="res://malrikhit_box.gd" id="105_8obp0"]
 [ext_resource type="Texture2D" uid="uid://clkufagdjswng" path="res://DuskBorne-Druid/princess/Countess_Vampire/Attack_2.png" id="105_65plk"]
 [ext_resource type="Texture2D" uid="uid://ciw4qoj2gf3mu" path="res://DuskBorne-Druid/Free/16.png" id="105_coorm"]
 [ext_resource type="Texture2D" uid="uid://dowqbxbd7ifc5" path="res://DuskBorne-Druid/princess/Countess_Vampire/Blood_Charge_1.png" id="106_c1tcf"]
@@ -3080,6 +3081,11 @@ zoom = Vector2(0.7, 0.7)
 position_smoothing_enabled = true
 position_smoothing_speed = 100.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Pause_Menu" parent="Camera2D/CanvasLayer" instance=ExtResource("2_r230k")]
+visible = false
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -3125,6 +3131,7 @@ script = ExtResource("6_l7pte")
 [node name="running" type="AudioStreamPlayer" parent="CharacterBody2D"]
 stream = ExtResource("7_8obp0")
 volume_db = -6.33
+bus = &"Sfx"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" groups=["player"]]
 position = Vector2(2, 8)
@@ -3194,16 +3201,19 @@ shape = SubResource("CapsuleShape2D_lxgwd")
 stream = ExtResource("25_7bnon")
 volume_db = 5.913
 pitch_scale = 1.74
+bus = &"Sfx"
 
 [node name="roll" type="AudioStreamPlayer" parent="CharacterBody2D"]
 stream = ExtResource("26_ibodk")
 volume_db = -8.911
 pitch_scale = 1.27
+bus = &"Sfx"
 
 [node name="attack" type="AudioStreamPlayer" parent="CharacterBody2D"]
 stream = ExtResource("27_681gg")
 volume_db = -7.208
 pitch_scale = 0.86
+bus = &"Sfx"
 
 [node name="HitBox2" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 4

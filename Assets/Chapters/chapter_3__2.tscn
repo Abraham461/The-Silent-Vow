@@ -1,4 +1,4 @@
-[gd_scene load_steps=244 format=4 uid="uid://swtscqw2p1m5"]
+[gd_scene load_steps=245 format=4 uid="uid://swtscqw2p1m5"]
 
 [ext_resource type="Script" uid="uid://ct5jfn8ip5ssq" path="res://Assets/Chapters/chapter_3__2.gd" id="1_avu80"]
 [ext_resource type="Texture2D" uid="uid://62u6iepegns6" path="res://Assets/Chapter 3 objects/01 background.png" id="1_wmwd1"]
@@ -37,8 +37,8 @@
 [ext_resource type="AudioStream" uid="uid://bgfuyb5md4kjj" path="res://jumpingonconcrete-91439.mp3" id="32_71e8q"]
 [ext_resource type="AudioStream" uid="uid://bmtol1owj2cor" path="res://air-blow-380645.mp3" id="33_l7hfj"]
 [ext_resource type="AudioStream" uid="uid://cns8qlrkdybef" path="res://sword-blade-slicing-flesh-352708.mp3" id="34_s6wrs"]
-[ext_resource type="Script" uid="uid://bjc0hkhrtgrf4" path="res://Assets/Chapters/player_health.gd" id="36_046bb"]
-[ext_resource type="Script" uid="uid://dyj8qq6nndl8p" path="res://Assets/Chapters/ch3hurt_box.gd" id="36_cu1h5"]
+[ext_resource type="Script" path="res://Assets/Chapters/player_health.gd" id="36_046bb"]
+[ext_resource type="Script" path="res://Assets/Chapters/ch3hurt_box.gd" id="36_cu1h5"]
 [ext_resource type="PackedScene" uid="uid://dat14seammiq0" path="res://slime_demon.tscn" id="36_tx2b0"]
 [ext_resource type="Texture2D" uid="uid://buce6lcmpj87e" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_01.png" id="38_a4ilj"]
 [ext_resource type="Texture2D" uid="uid://dv50jd6xexpwk" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_02.png" id="39_avu80"]
@@ -56,6 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://c28ienxrepwi" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_14.png" id="51_bsdhb"]
 [ext_resource type="Texture2D" uid="uid://bxicjtph4uma8" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_15.png" id="52_al1v6"]
 [ext_resource type="Texture2D" uid="uid://cjahwm60kib0h" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_16.png" id="53_mjumw"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="57_71e8q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xfbc1"]
 texture = ExtResource("11_dunao")
@@ -13996,6 +13997,11 @@ frame_progress = 0.215899
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scenechangeGate/SCgate"]
 shape = SubResource("CapsuleShape2D_a4ilj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("57_71e8q")]
+visible = false
 
 [connection signal="health_depleted" from="CharacterBody2D2/playerHealth" to="CharacterBody2D2" method="_on_player_health_health_depleted"]
 [connection signal="body_entered" from="scenechangeGate/SCgate" to="CharacterBody2D2" method="_on_s_cgate_body_entered"]
