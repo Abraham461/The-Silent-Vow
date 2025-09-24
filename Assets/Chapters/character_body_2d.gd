@@ -267,15 +267,7 @@ func _physics_process(delta: float) -> void:
 		return
 	# NEW: honor external/local and global input locks
 	# This forces the player to stop horizontally and play Idle while locked.
-	if external_input_blocked or (Engine.has_singleton("AutoLoad") and not AutoLoad.enabled):
-		# stop horizontal motion but allow vertical gravity to apply if you want:
-		velocity.x = 0
-		# If you prefer to completely freeze Y as well, set velocity.y = 0
-		current_state = State.IDLE
-		if sprite:
-			sprite.play("Idle")
-		move_and_slide()
-		return
+
 	if Input.is_action_just_pressed("teleport"):
 		global_position = Vector2(11040, 550)
 	# Apply variable jump height (better control)
@@ -836,52 +828,34 @@ func _on_enemyarea_body_entered(body: Node2D) -> void:
 	has_triggeredmod = true
 	if body.is_in_group("player"):
 		enemy1.visible = true
-
 		# 1) Play death animation once
 		animMod.sprite_frames.set_animation_loop("moddeath", false)
 		animMod.play("moddeath")
 	# FORCE player to stop immediately (safe API call)
-		if body.has_method("stop_immediately"):
-			body.stop_immediately(true)
-
-		# then block global inputs (events + InputMap)
-		AutoLoad.block_all_except_space()
 		# Show dialogue immediately after death animation starts
-		var txt = textbox_scene.instantiate()
-		get_tree().current_scene.add_child(txt)
-		if txt.has_method("enqueue_message"):
-			txt.enqueue_message("Lo, the Hollow Star doth awaken, and from its dread breath rise the beasts of shadow. ")
-			txt.enqueue_message("Tread not where the sun shineth not, for there the dark claimeth thee, and none return unbroken. ")
-		await animMod.animation_finished  # wait until death finishes
-		
+		#var txt = textbox_scene.instantiate()
+		#get_tree().current_scene.add_child(txt)
+		#if txt.has_method("enqueue_message"):
+			#txt.enqueue_message("Lo, the Hollow Star doth awaken, and from its dread breath rise the beasts of shadow. ")
+			#txt.enqueue_message("Tread not where the sun shineth not, for there the dark claimeth thee, and none return unbroken. ")
 		# 2) Play idle animation for 2 seconds
 		animMod.play("modIdle")
 		await get_tree().create_timer(2.0).timeout
-		
-		AutoLoad.restore_all_input()
-		# resume player's local input state
-		if body.has_method("resume_input"):
-			body.resume_input()
-		
 		# 3) Play walk animation while moving left
 		animMod.play("modwalk")
 		var target_pos = enemy1.position + Vector2(-280, 0)
 		var tween = create_tween()
 		tween.tween_property(enemy1, "position", target_pos, 10.0)
 		await tween.finished  # wait until walk completes
-
 		# 4) Play "modHurt" animation and move slightly back (-20px)
 		animMod.sprite_frames.set_animation_loop("modHurt", false)
 		animMod.play("modHurt")
  # adjust duration to match animation
 		await animMod.animation_finished
-
-
 		# 5) Play "modDis" animation
 		animMod.sprite_frames.set_animation_loop("modDis", false)
 		animMod.play("modDis")
 		await animMod.animation_finished
-
 		# 6) Remove enemy node from scene
 		enemy1.queue_free()
 		#scene_change_tp.visible = true

@@ -16364,7 +16364,6 @@ metadata/_edit_horizontal_guides_ = [572.0, -204.0, -256.0, 553.0, 554.0, 1169.0
 metadata/_edit_vertical_guides_ = [11905.0, 1884.0, 11551.0, 11039.0, 11904.0]
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="."]
-process_mode = 3
 
 [node name="Pause_Menu" parent="CanvasLayer3" instance=ExtResource("28_vimia")]
 process_priority = 5
@@ -17471,6 +17470,7 @@ script = ExtResource("80_x6npn")
 [connection signal="body_exited" from="Chapter2-1/Enemy/NightborneAggro" to="Chapter2-1/CharacterBody2D" method="_on_nightborne_aggro_body_exited"]
 [connection signal="body_entered" from="Chapter2-1/Enemy/AttackZone" to="Chapter2-1/CharacterBody2D" method="_on_attack_zone_body_entered"]
 [connection signal="body_exited" from="Chapter2-1/Enemy/AttackZone" to="Chapter2-1/CharacterBody2D" method="_on_attack_zone_body_exited"]
+[connection signal="area_entered" from="Chapter2-1/enemy1/enemyarea" to="Chapter2-1/CharacterBody2D" method="_on_enemyarea_area_entered"]
 [connection signal="body_entered" from="Chapter2-1/enemy1/enemyarea" to="Chapter2-1/CharacterBody2D" method="_on_enemyarea_body_entered"]
 [connection signal="sprite_frames_changed" from="Chapter2-1/enemymino/AnimatedSprite2D" to="Chapter2-1/enemymino" method="_on_animated_sprite_2d_sprite_frames_changed"]
 [connection signal="body_entered" from="Chapter2-1/enemymino/Minoaggro" to="Chapter2-1/CharacterBody2D" method="_on_minoaggro_body_entered"]

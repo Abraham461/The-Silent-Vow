@@ -340,24 +340,30 @@ func _force_resume_frame(frame: int) -> void:
 
 func handle_idle_state() -> void:
 	move_direction = Input.get_axis("Left", "Right")
-	
+	hurt_box.monitoring = true
 	# smoother acceleration/deceleration
 	velocity.x = move_toward(velocity.x, move_direction * WALK_SPEED, WALK_SPEED * 0.25)
 	
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		jump()
+		hurt_box.monitoring = true
 	elif move_direction != 0:
 		current_state = State.RUN
 	elif Input.is_action_just_pressed("Roll") and can_roll:
 		start_roll()
+		hurt_box.monitoring = false
 	elif Input.is_action_just_pressed("Slide") and can_slide:
 		start_slide()
+		hurt_box.monitoring = false
 	elif Input.is_action_just_pressed("Atk"):
 		start_attack()
+		hurt_box.monitoring = true
 	elif Input.is_action_just_pressed("Heal"):
 		start_heal()
+		hurt_box.monitoring = true
 	elif Input.is_action_just_pressed("Pray"):
 		start_pray()
+		hurt_box.monitoring = true
 
 func handle_run_state() -> void:
 	move_direction = Input.get_axis("Left", "Right")
@@ -373,6 +379,7 @@ func handle_run_state() -> void:
 		jump()
 	elif Input.is_action_just_pressed("Roll") and can_roll:
 		start_roll()
+		hurt_box.monitoring = false
 	elif Input.is_action_just_pressed("Slide") and is_on_floor():
 		start_slide()
 	elif Input.is_action_just_pressed("Atk"):
@@ -401,7 +408,7 @@ func handle_attack_state() -> void:
 func handle_roll_state() -> void:
 	velocity.x = facing_direction * ROLL_SPEED
 	velocity.y = 0
-
+	hurt_box.monitoring = false
 func handle_slide_state() -> void:
 	velocity.x = facing_direction * SLIDE_SPEED
 	velocity.y = 0
@@ -438,6 +445,7 @@ func start_roll() -> void:
 	can_roll = false
 	roll_cooldown_timer.start()
 	roll_timer.start()
+	hurt_box.monitoring = false
 	# grant i-frames: disable HurtBox and disable collision during roll
 	if has_node("HurtBox"):
 		var hb := get_node("HurtBox")
