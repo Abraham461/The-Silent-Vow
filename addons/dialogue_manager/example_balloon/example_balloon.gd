@@ -127,7 +127,7 @@ func apply_dialogue_line() -> void:
 			portrait.visible  = true
 			portrait.position = balloon.position + Vector2(-174, -60)
 		"Princess":
-			portrait.texture  = preload("res://portriats/A_122.png")
+			portrait.texture  = preload("res://portriats/PrincessEliraaNew.png")
 			portrait.visible  = true
 			portrait.position = balloon.position + Vector2(-174, -60)
 		"Malrik":
