@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0vfhq2vsu53"]
+
+[ext_resource type="AudioStream" uid="uid://xt5sso2cnd8b" path="res://ThemeSongs/Broken_Hearts_Sad_Violin__Original_Composition_(256k).mp3" id="1_ue0hq"]
+[ext_resource type="Script" uid="uid://bsttfe2s0gwjs" path="res://ThemeSongs/chapter_3_finaltheme.gd" id="2_ue0hq"]
+
+[node name="Chapter3Theme" type="AudioStreamPlayer"]
+stream = ExtResource("1_ue0hq")
+volume_db = -4.566
+bus = &"Music"
+script = ExtResource("2_ue0hq")

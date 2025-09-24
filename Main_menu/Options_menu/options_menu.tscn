@@ -1,11 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://4g1bmsgkwl1f"]
+[gd_scene load_steps=21 format=3 uid="uid://4g1bmsgkwl1f"]
 
 [ext_resource type="Script" uid="uid://duqo8qifvriai" path="res://Main_menu/Options_menu/options_menu.gd" id="1_4k0dh"]
 [ext_resource type="Texture2D" uid="uid://cdiepsdpc3j1q" path="res://Main_menu/Image/optionBackground.jpg" id="1_51eh6"]
 [ext_resource type="Texture2D" uid="uid://bw1afptugxa2f" path="res://Main_menu/Image/button-frame.png" id="3_675vu"]
-[ext_resource type="PackedScene" uid="uid://c8ffxftds2ych" path="res://Main_menu/Options_menu/window_mode_button.tscn" id="3_6101e"]
-[ext_resource type="PackedScene" uid="uid://bge1jr61l3vwn" path="res://Main_menu/Options_menu/resolution_mode_button.tscn" id="4_675vu"]
 [ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="4_bw4fk"]
+[ext_resource type="PackedScene" uid="uid://4nsnfs4qvlgu" path="res://Main_menu/Options_menu/audio_slider_settings.tscn" id="4_heip3"]
 [ext_resource type="AudioStream" uid="uid://bxrp5gpdray2b" path="res://Main_menu/Audios/Boris_Skalsky_Mystery_Tension_epic_relaxation_music_Mind_Drifter256k.mp3" id="5_6101e"]
 
 [sub_resource type="SystemFont" id="SystemFont_auhud"]
@@ -32,9 +31,6 @@ texture = ExtResource("3_675vu")
 expand_margin_left = 5.0
 modulate_color = Color(0.03, 0.024085, 0.0027, 1)
 
-[sub_resource type="SystemFont" id="SystemFont_4k0dh"]
-font_names = PackedStringArray("Times New Roman")
-
 [sub_resource type="SystemFont" id="SystemFont_e4b6f"]
 font_names = PackedStringArray("Times New Roman")
 
@@ -44,18 +40,22 @@ font_names = PackedStringArray("Times New Roman")
 [sub_resource type="SystemFont" id="SystemFont_e4ii1"]
 font_names = PackedStringArray("Times New Roman")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51eh6"]
-bg_color = Color(0.768627, 0, 0.184314, 0.607843)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_51eh6"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bw4fk"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuc3t"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqryx"]
+texture = ExtResource("3_675vu")
+expand_margin_left = 7.0
+expand_margin_top = 7.0
+expand_margin_right = 7.0
+expand_margin_bottom = 7.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xuhp"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6101e"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fx2ha"]
+texture = ExtResource("3_675vu")
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+modulate_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_joalx"]
 
@@ -85,10 +85,10 @@ expand_mode = 1
 [node name="TabContainer" type="TabContainer" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.136
-anchor_top = 0.159
-anchor_right = 0.852
-anchor_bottom = 0.807
+anchor_left = 0.135937
+anchor_top = 0.166667
+anchor_right = 0.851563
+anchor_bottom = 0.825
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_unselected_color = Color(0, 0, 0, 1)
@@ -102,10 +102,10 @@ theme_override_styles/tab_selected = SubResource("StyleBoxTexture_675vu")
 theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_q0q0e")
 theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_heip3")
 tab_alignment = 1
-current_tab = 2
+current_tab = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="|  Sound  |" type="TabBar" parent="TextureRect/TabContainer"]
-visible = false
 layout_mode = 2
 tab_alignment = 1
 metadata/_tab_index = 0
@@ -122,37 +122,23 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 28
 
-[node name="Label" type="Label" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer/ScrollContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_4k0dh")
-theme_override_font_sizes/font_size = 22
-text = "Sound"
+theme_override_constants/separation = 33
 
-[node name="Label2" type="Label" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer/VBoxContainer"]
+[node name="Audio_Slider_Settings" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_heip3")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_4k0dh")
-theme_override_font_sizes/font_size = 22
-text = "Sound"
 
-[node name="Label3" type="Label" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer/VBoxContainer"]
+[node name="Audio_Slider_Settings2" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_heip3")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_4k0dh")
-theme_override_font_sizes/font_size = 22
-text = "Sound"
+bus_name = "Music"
 
-[node name="Label4" type="Label" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer/VBoxContainer"]
+[node name="Audio_Slider_Settings3" parent="TextureRect/TabContainer/|  Sound  |/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_heip3")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_4k0dh")
-theme_override_font_sizes/font_size = 22
-text = "Sound"
+bus_name = "Sfx"
 
 [node name="|   Control  |" type="TabBar" parent="TextureRect/TabContainer"]
 visible = false
@@ -163,9 +149,10 @@ metadata/_tab_index = 1
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/TabContainer/|   Control  |"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.0283694
-anchor_right = 1.03221
-anchor_bottom = 1.02333
+anchor_left = -0.0283843
+anchor_top = -0.00970874
+anchor_right = 1.03275
+anchor_bottom = 1.02913
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 12
@@ -508,66 +495,20 @@ text = "Alt + Y"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="|  Graphics  |" type="TabBar" parent="TextureRect/TabContainer"]
-layout_mode = 2
-tab_alignment = 1
-metadata/_tab_index = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="TextureRect/TabContainer/|  Graphics  |"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/TabContainer/|  Graphics  |/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/TabContainer/|  Graphics  |/MarginContainer/ScrollContainer"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="Window_Mode_Button" parent="TextureRect/TabContainer/|  Graphics  |/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_6101e")]
-layout_mode = 2
-
-[node name="Resolution_Mode_Button" parent="TextureRect/TabContainer/|  Graphics  |/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_675vu")]
-layout_mode = 2
-
-[node name="Exit_Button" type="Button" parent="TextureRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.796875
-anchor_top = 0.155556
-anchor_right = 0.853125
-anchor_bottom = 0.236111
-theme_override_colors/font_color = Color(0.905882, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_e4ii1")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/hover = SubResource("StyleBoxFlat_51eh6")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_51eh6")
-text = " X "
-metadata/_edit_use_anchors_ = true
-
 [node name="Back_Button" type="Button" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.440625
-anchor_top = 0.894444
-anchor_right = 0.534375
-anchor_bottom = 0.961111
+anchor_left = 0.403125
+anchor_top = 0.905556
+anchor_right = 0.573438
+anchor_bottom = 0.972222
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = SubResource("SystemFont_e4ii1")
 theme_override_font_sizes/font_size = 21
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bw4fk")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tuc3t")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_1xuhp")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_6101e")
+theme_override_styles/hover = SubResource("StyleBoxTexture_iqryx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fx2ha")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_joalx")
 text = "            "
 metadata/_edit_use_anchors_ = true
@@ -591,22 +532,23 @@ metadata/_edit_use_anchors_ = true
 [node name="Label2" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.440625
-anchor_top = 0.894445
-anchor_right = 0.528125
-anchor_bottom = 0.958334
+anchor_left = 0.415625
+anchor_top = 0.905557
+anchor_right = 0.5625
+anchor_bottom = 0.969446
 grow_horizontal = 2
 size_flags_vertical = 0
 theme_override_colors/font_shadow_color = Color(0.831373, 0.686275, 0.215686, 1)
 theme_override_fonts/font = SubResource("SystemFont_51eh6")
 theme_override_font_sizes/font_size = 20
-text = "Back"
+text = "Main Menu"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6101e")
+volume_db = -10.307
 autoplay = true
+bus = &"Music"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

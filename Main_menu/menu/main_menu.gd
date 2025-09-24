@@ -6,6 +6,7 @@ extends Control
 
 
 func _ready():
+	Chapter3Finaltheme.stop()
 	#AudioPlayer.play_music_level()
 	handle_connection_signals()
 

@@ -66,7 +66,7 @@ func _finish() -> void:
 			push_error("Credits: failed to change scene to '%s'" % autodismiss_scene)
 	else:
 		print("Credits finished.")
-
+	Chapter3Finaltheme.stop()
 func _load_credits_json(path: String):
 	if not FileAccess.file_exists(path):
 		return null

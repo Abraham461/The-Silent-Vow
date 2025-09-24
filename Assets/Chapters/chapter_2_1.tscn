@@ -1,4 +1,4 @@
-[gd_scene load_steps=607 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=608 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -44,16 +44,16 @@
 [ext_resource type="Script" uid="uid://brmwwvx2fwfan" path="res://Assets/Chapters/playerhurt_box.gd" id="39_0gqn2"]
 [ext_resource type="Script" uid="uid://bjc0hkhrtgrf4" path="res://Assets/Chapters/player_health.gd" id="40_0gqn2"]
 [ext_resource type="PackedScene" uid="uid://dfeffspxcid2k" path="res://Coin.tscn" id="40_6rjlp"]
-[ext_resource type="Script" path="res://Assets/Chapters/nightborne.gd" id="40_p04e3"]
+[ext_resource type="Script" uid="uid://b50wrvf20sfvl" path="res://Assets/Chapters/nightborne.gd" id="40_p04e3"]
 [ext_resource type="Texture2D" uid="uid://bqma83k4r2dcb" path="res://DuskBorne-Druid/SpriteSheet/DruidBasicAtk1-Sheet.png" id="41_f3ovl"]
 [ext_resource type="Texture2D" uid="uid://c2hff437ca1vx" path="res://DuskBorne-Druid/SpriteSheet/DruidIdle001-Sheet.png" id="41_lw5t0"]
-[ext_resource type="Script" path="res://Assets/Chapters/hurt_box_2.gd" id="41_lyhpd"]
+[ext_resource type="Script" uid="uid://dg3gkan77ko2i" path="res://Assets/Chapters/hurt_box_2.gd" id="41_lyhpd"]
 [ext_resource type="Texture2D" uid="uid://1fux5p67b6wf" path="res://DuskBorne-Druid/ThunderEffects/VFX6/Sprite-sheet/Sprite-sheet.png" id="42_0gqn2"]
 [ext_resource type="PackedScene" uid="uid://cf47qeryogghb" path="res://pendant.tscn" id="42_5vn1b"]
 [ext_resource type="Texture2D" uid="uid://dl0gf7yw8dnvp" path="res://DuskBorne-Druid/SpriteSheet/DruidHurt001-Sheet.png" id="42_6vvgp"]
-[ext_resource type="Script" path="res://Assets/Chapters/hurt_box_3.gd" id="42_aopum"]
+[ext_resource type="Script" uid="uid://iuj5py3qfghm" path="res://Assets/Chapters/hurt_box_3.gd" id="42_aopum"]
 [ext_resource type="Texture2D" uid="uid://0xlyl3332mwg" path="res://DuskBorne-Druid/SpriteSheet/DruidDeath001-Sheet.png" id="42_ks44t"]
-[ext_resource type="Script" path="res://Assets/Chapters/Nightbornehurtbox.gd" id="43_cnvpc"]
+[ext_resource type="Script" uid="uid://uhdw47ry4fc2" path="res://Assets/Chapters/Nightbornehurtbox.gd" id="43_cnvpc"]
 [ext_resource type="Texture2D" uid="uid://b632i16sxlgb" path="res://DuskBorne-Druid/SpriteSheet/DruidWalk001-Sheet.png" id="43_xy5j7"]
 [ext_resource type="Script" uid="uid://dp6r0h2bk0fgt" path="res://Assets/Chapters/enemyarea.gd" id="44_ks44t"]
 [ext_resource type="AudioStream" uid="uid://bmtol1owj2cor" path="res://air-blow-380645.mp3" id="44_srkaq"]
@@ -68,10 +68,13 @@
 [ext_resource type="Script" uid="uid://douukc8ck6cp4" path="res://Assets/Chapters/enemydevil.gd" id="53_1ys4a"]
 [ext_resource type="Texture2D" uid="uid://byfii32ipqhor" path="res://DuskBorne-Druid/moreeffects/Incendiary/Fire_Incendiary_96x32.png" id="53_w62w1"]
 [ext_resource type="Script" uid="uid://6jbqpdto4r3v" path="res://Assets/Chapters/hurt_box.gd" id="54_w62w1"]
+
+[ext_resource type="Resource" uid="uid://7iwcppn5rmip" path="res://Assets/Chapters/dialogue/guide_intro.dialogue" id="57_b863t"]
+
 [ext_resource type="Texture2D" uid="uid://d3eyknk28gjnu" path="res://bats/Minotaur_1/Idle.png" id="59_qxn60"]
-[ext_resource type="Script" path="res://Assets/Chapters/mino_health.gd" id="61_rvkcm"]
-[ext_resource type="Script" path="res://Assets/Chapters/minohurtbox.gd" id="61_sd6qm"]
-[ext_resource type="Script" path="res://Assets/Chapters/devil_health.gd" id="67_u7x2r"]
+[ext_resource type="Script" uid="uid://bg3f2g7t4fwfp" path="res://Assets/Chapters/mino_health.gd" id="61_rvkcm"]
+[ext_resource type="Script" uid="uid://hjlp405kfq3p" path="res://Assets/Chapters/minohurtbox.gd" id="61_sd6qm"]
+[ext_resource type="Script" uid="uid://cdnq68g8u1gex" path="res://Assets/Chapters/devil_health.gd" id="67_u7x2r"]
 [ext_resource type="PackedScene" uid="uid://cr30gpga8s5me" path="res://teleportOne.tscn" id="70_1as26"]
 [ext_resource type="PackedScene" uid="uid://c6h7bqnh0h170" path="res://fireburn.tscn" id="71_a65qw"]
 [ext_resource type="PackedScene" uid="uid://dcppd2uewbo04" path="res://smoe.tscn" id="72_1as26"]
@@ -16364,10 +16367,6 @@ position = Vector2(779, -94)
 metadata/_edit_horizontal_guides_ = [572.0, -204.0, -256.0, 553.0, 554.0, 1169.0]
 metadata/_edit_vertical_guides_ = [11905.0, 1884.0, 11551.0, 11039.0, 11904.0]
 
-[node name="Pause_Menu" parent="." instance=ExtResource("28_vimia")]
-visible = false
-anchors_preset = -1
-
 [node name="Chapter2-1" type="Node2D" parent="."]
 position = Vector2(-780, -5)
 script = ExtResource("1_2vle6")
@@ -16574,12 +16573,13 @@ script = ExtResource("4_ral0s")
 [node name="running" type="AudioStreamPlayer" parent="Chapter2-1/CharacterBody2D"]
 stream = ExtResource("34_f3ovl")
 volume_db = -18.122
+bus = &"Sfx"
 
 [node name="Camera2D" type="Camera2D" parent="Chapter2-1/CharacterBody2D"]
 offset = Vector2(0, -50)
-zoom = Vector2(1.5, 1.5)
+process_callback = 0
+limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/CharacterBody2D" groups=["player"]]
 position = Vector2(2, 8)
@@ -16657,16 +16657,19 @@ shape = SubResource("CircleShape2D_k0sts")
 stream = ExtResource("35_ks44t")
 volume_db = 2.295
 pitch_scale = 1.74
+bus = &"Sfx"
 
 [node name="roll" type="AudioStreamPlayer" parent="Chapter2-1/CharacterBody2D"]
 stream = ExtResource("44_srkaq")
 volume_db = -17.99
 pitch_scale = 1.27
+bus = &"Sfx"
 
 [node name="attack" type="AudioStreamPlayer" parent="Chapter2-1/CharacterBody2D"]
 stream = ExtResource("37_cuak4")
 volume_db = -0.37
 pitch_scale = 1.29
+bus = &"Sfx"
 
 [node name="HitBox2" type="Area2D" parent="Chapter2-1/CharacterBody2D"]
 collision_layer = 4
@@ -16830,6 +16833,7 @@ animation = &"deathNB"
 [node name="BossTheme" type="AudioStreamPlayer" parent="Chapter2-1/Enemy"]
 stream = ExtResource("51_a65qw")
 volume_db = -9.541
+bus = &"Music"
 
 [node name="Enemy2" type="CharacterBody2D" parent="Chapter2-1"]
 z_index = 100
@@ -16861,6 +16865,7 @@ libraries = {
 collision_layer = 512
 collision_mask = 512
 script = ExtResource("44_ks44t")
+dialogue_resource = ExtResource("57_b863t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/enemy1/enemyarea"]
 position = Vector2(552, 14)
@@ -17275,6 +17280,9 @@ position = Vector2(10916, -139)
 [node name="flyingDemon2" parent="Chapter2-1" instance=ExtResource("74_3nhts")]
 position = Vector2(1768, 622)
 
+[node name="BattleTheme" parent="Chapter2-1/flyingDemon2" index="10"]
+bus = &"Music"
+
 [node name="flyingDemon3" parent="Chapter2-1" instance=ExtResource("74_3nhts")]
 position = Vector2(1741, 384)
 
@@ -17314,6 +17322,7 @@ shape = SubResource("CircleShape2D_v522g")
 stream = ExtResource("77_a65qw")
 volume_db = -11.609
 autoplay = true
+bus = &"Music"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_6rjlp")
@@ -17324,15 +17333,18 @@ preprocess = 0.5
 visibility_rect = Rect2(-350, -200, 700, 400)
 process_material = SubResource("ParticleProcessMaterial_dg2qy")
 
-[node name="pendant" parent="." instance=ExtResource("42_5vn1b")]
-position = Vector2(-344, 509)
-rotation = -1.80173
-scale = Vector2(-0.077185, -0.111191)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("28_vimia")]
 visible = false
+anchors_preset = -1
+offset_right = 2.0
+offset_bottom = 3.0
+
+[node name="pendant" parent="." instance=ExtResource("42_5vn1b")]
+position = Vector2(-344, 509)
+rotation = -1.80173
+scale = Vector2(-0.077185, -0.111191)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
@@ -17460,7 +17472,6 @@ script = ExtResource("80_x6npn")
 [connection signal="body_exited" from="Chapter2-1/Enemy/NightborneAggro" to="Chapter2-1/CharacterBody2D" method="_on_nightborne_aggro_body_exited"]
 [connection signal="body_entered" from="Chapter2-1/Enemy/AttackZone" to="Chapter2-1/CharacterBody2D" method="_on_attack_zone_body_entered"]
 [connection signal="body_exited" from="Chapter2-1/Enemy/AttackZone" to="Chapter2-1/CharacterBody2D" method="_on_attack_zone_body_exited"]
-[connection signal="area_entered" from="Chapter2-1/enemy1/enemyarea" to="Chapter2-1/CharacterBody2D" method="_on_enemyarea_area_entered"]
 [connection signal="body_entered" from="Chapter2-1/enemy1/enemyarea" to="Chapter2-1/CharacterBody2D" method="_on_enemyarea_body_entered"]
 [connection signal="sprite_frames_changed" from="Chapter2-1/enemymino/AnimatedSprite2D" to="Chapter2-1/enemymino" method="_on_animated_sprite_2d_sprite_frames_changed"]
 [connection signal="body_entered" from="Chapter2-1/enemymino/Minoaggro" to="Chapter2-1/CharacterBody2D" method="_on_minoaggro_body_entered"]

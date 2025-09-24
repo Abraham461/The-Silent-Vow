@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2q4ctxy42k3k"]
+
+[ext_resource type="AudioStream" uid="uid://l8lnv8vhh465" path="res://ThemeSongs/Epic_Slavic_Music_-_Gods_Awaken(256k).mp3" id="1_4r1fr"]
+[ext_resource type="Script" uid="uid://dk6cg48ah866u" path="res://ThemeSongs/chapter_3_bosstheme.gd" id="2_4r1fr"]
+
+[node name="Chapter3Theme" type="AudioStreamPlayer"]
+stream = ExtResource("1_4r1fr")
+volume_db = -8.183
+bus = &"Music"
+script = ExtResource("2_4r1fr")

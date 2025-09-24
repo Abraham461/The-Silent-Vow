@@ -204,7 +204,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_tyhta")
+volume_db = -12.18
 autoplay = true
+bus = &"Music"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

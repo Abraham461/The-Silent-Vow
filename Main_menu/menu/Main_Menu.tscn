@@ -151,10 +151,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Exit_Button" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.439063
-anchor_top = 0.919444
-anchor_right = 0.560938
-anchor_bottom = 1.00556
+anchor_left = 0.435937
+anchor_top = 0.916667
+anchor_right = 0.557812
+anchor_bottom = 1.00278
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -246,7 +246,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_f112c")
+volume_db = -10.306
 autoplay = true
+bus = &"Music"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

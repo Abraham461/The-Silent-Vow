@@ -1540,6 +1540,7 @@ script = ExtResource("1_egvlp")
 
 [node name="running" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_or6ru")
+bus = &"Sfx"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -50)
@@ -1623,16 +1624,19 @@ shape = SubResource("CircleShape2D_orsf0")
 stream = ExtResource("20_td7qg")
 volume_db = 24.0
 pitch_scale = 1.74
+bus = &"Sfx"
 
 [node name="roll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_xhym0")
 volume_db = 9.176
 pitch_scale = 1.27
+bus = &"Sfx"
 
 [node name="attack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_6jwbu")
 volume_db = -7.208
 pitch_scale = 0.86
+bus = &"Sfx"
 
 [node name="LadderRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(0, -50)

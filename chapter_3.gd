@@ -5,4 +5,4 @@ extends Node2D
 
 func _ready():
 	portal.play("default")
-	
+	Chapter3Theme._play_music_level()
