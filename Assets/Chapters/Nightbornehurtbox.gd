@@ -64,6 +64,11 @@ func _on_area_entered(area: Area2D) -> void:
 			#enemy.play("NightborneIdle")
 			
 
+@export var dialogue_start: String = "start6"
+@export var dialogue_resource: DialogueResource
+var has_triggered := false
+var _triggering_player: Node = null
+var _dm = null
 
 
 func _on_health_depleted() -> void:
@@ -83,18 +88,67 @@ func _on_health_depleted() -> void:
 	await get_tree().create_timer(1.2).timeout
 	enemyNightborne.queue_free()
 	# show dialogue
-	var txt = textbox_scene.instantiate()
-	get_tree().current_scene.add_child(txt)
-	if txt.has_method("enqueue_message"):
-		txt.enqueue_message("Zakcoff: 'Forgive me, Kaelen. This is not who you were.' ")
-		txt.enqueue_message("Kaelen: 'Then... may your vow carry you further than mine did...' ")
+	#var txt = textbox_scene.instantiate()
+	#get_tree().current_scene.add_child(txt)
+	#if txt.has_method("enqueue_message"):
+		#txt.enqueue_message("Zakcoff: 'Forgive me, Kaelen. This is not who you were.' ")
+		#txt.enqueue_message("Kaelen: 'Then... may your vow carry you further than mine did...' ")
+
+	_dm = _find_dialogue_manager()
+	has_triggered = true
+	if _dm:
+		if not _dm.is_connected("dialogue_ended", Callable(self, "_on_dialogue_ended")):
+			_dm.connect("dialogue_ended", Callable(self, "_on_dialogue_ended"))
+
+		# show dialogue balloon
+	DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_start)
+
+		# if no dialogue resource was provided, clean up immediately
+	if not dialogue_resource:
+		_cleanup_after_dialogue()
 
 	# --- NEW: after dialogue, restore inputs ---
 	await get_tree().create_timer(2.0).timeout
 		# resume player's local input state
 	scene_change_tp.visible = true
 	scenechange_area.monitoring = true
+func _find_dialogue_manager():
+	# Try to get the DialogueManager singleton, fall back to root lookup
+	if Engine.has_singleton("DialogueManager"):
+		return Engine.get_singleton("DialogueManager")
+	if get_tree().get_root().has_node("DialogueManager"):
+		return get_tree().get_root().get_node("DialogueManager")
+	return null
 
+func _on_dialogue_ended(resource: DialogueResource) -> void:
+	# Only act if the ended dialogue is the one we started
+	if resource != dialogue_resource:
+		return
+
+	_cleanup_after_dialogue()
+
+func _cleanup_after_dialogue() -> void:
+	# Unfreeze player
+	if _triggering_player:
+		_triggering_player.is_frozen = false
+		_triggering_player = null
+
+	# Stop boss music and resume main theme
+	#if boss_theme and boss_theme.playing:
+		#boss_theme.stop()
+	## optional: fade-out with a Tween instead of instant stop (uncomment to use)
+	## var t = get_tree().create_tween()
+	## t.tween_property(boss_theme, "volume_db", -80, 1.0).as_async()
+	## await t.finished
+#
+	#if main_theme_song:
+		## restart main theme if you want it to continue
+		#if not main_theme_song.playing:
+			#main_theme_song.play()
+
+	# disconnect signal so next trigger works cleanly
+	if _dm and _dm.is_connected("dialogue_ended", Callable(self, "_on_dialogue_ended")):
+		_dm.disconnect("dialogue_ended", Callable(self, "_on_dialogue_ended"))
 func _on_area_exited(area: Area2D) -> void:
 	if area is HitBox:
 		var id := area.get_instance_id()

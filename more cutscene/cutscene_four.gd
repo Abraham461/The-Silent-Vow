@@ -30,13 +30,11 @@ var textures = [
 	preload("res://more cutscene//image_cutscene_four/kingdeath_princesspov.png"),
 	preload("res://more cutscene/image_cutscene_four/marble_knight_statue.png")
 ]
-  
+
 # Optional sound effect map
 var sfx_map = {
-	1: preload("res://more cutscene/soundeff/nosoundeff.ogg"),
-	2: preload("res://more cutscene/soundeff/lightning_sound_effect(256k).ogg"),
-	3: preload("res://more cutscene/soundeff/House_Fire_Burning_Sound_Effect_-_Fire_Sound_Effect(256k).ogg"),
-	4: preload("res://more cutscene/soundeff/nosoundeff.ogg")
+	1: preload("res://more cutscene/soundeff/nosoundeff.ogg")
+
 }
 
 func _ready():

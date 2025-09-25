@@ -12,12 +12,12 @@ var stream = preload("res://ThemeSongs/Action 3.ogg")
 # internal
 var _triggering_player: Node = null
 var _dm = null
+@onready var running: AudioStreamPlayer = $"../../CharacterBody2D/running"
 
 func _ready() -> void:
 	monitoring = true
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	_dm = _find_dialogue_manager()
-
 func _find_dialogue_manager():
 	# Try to get the DialogueManager singleton, fall back to root lookup
 	if Engine.has_singleton("DialogueManager"):

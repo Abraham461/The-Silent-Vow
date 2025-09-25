@@ -268,8 +268,8 @@ func _physics_process(delta: float) -> void:
 	# NEW: honor external/local and global input locks
 	# This forces the player to stop horizontally and play Idle while locked.
 
-	if Input.is_action_just_pressed("teleport"):
-		global_position = Vector2(11040, 550)
+	#if Input.is_action_just_pressed("teleport"):
+		#global_position = Vector2(11040, 550)
 	# Apply variable jump height (better control)
 	if Input.is_action_just_released("Jump") and velocity.y < 0:
 		velocity.y *= 0.5
@@ -648,6 +648,7 @@ func _on_animation_finished() -> void:
 	#move_and_slide()
 
 func trigger_dialogue(dialogue_resource) -> void:
+
 	if dialogue_resource and Engine.has_singleton("DialogueManager"):
 		var DialogueManager = Engine.get_singleton("DialogueManager")
 		DialogueManager.show_dialogue(dialogue_resource)

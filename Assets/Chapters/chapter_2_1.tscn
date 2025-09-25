@@ -1,4 +1,4 @@
-[gd_scene load_steps=604 format=4 uid="uid://c61wee8duqu24"]
+[gd_scene load_steps=605 format=4 uid="uid://c61wee8duqu24"]
 
 [ext_resource type="Script" uid="uid://cjwi57bpy3h12" path="res://Assets/Chapters/chapter_2_1.gd" id="1_2vle6"]
 [ext_resource type="Texture2D" uid="uid://dem1q5452a66a" path="res://Assets/Sprites/Background Extended.png" id="1_d0uug"]
@@ -41,20 +41,21 @@
 [ext_resource type="AudioStream" uid="uid://cns8qlrkdybef" path="res://sword-blade-slicing-flesh-352708.mp3" id="37_cuak4"]
 [ext_resource type="Script" uid="uid://brmwwvx2fwfan" path="res://Assets/Chapters/playerhurt_box.gd" id="39_0gqn2"]
 [ext_resource type="Script" uid="uid://bjc0hkhrtgrf4" path="res://Assets/Chapters/player_health.gd" id="40_0gqn2"]
-[ext_resource type="Script" path="res://Assets/Chapters/nightborne.gd" id="40_p04e3"]
+[ext_resource type="Script" uid="uid://b50wrvf20sfvl" path="res://Assets/Chapters/nightborne.gd" id="40_p04e3"]
 [ext_resource type="Texture2D" uid="uid://bqma83k4r2dcb" path="res://DuskBorne-Druid/SpriteSheet/DruidBasicAtk1-Sheet.png" id="41_f3ovl"]
 [ext_resource type="Texture2D" uid="uid://c2hff437ca1vx" path="res://DuskBorne-Druid/SpriteSheet/DruidIdle001-Sheet.png" id="41_lw5t0"]
-[ext_resource type="Script" path="res://Assets/Chapters/hurt_box_2.gd" id="41_lyhpd"]
+[ext_resource type="Script" uid="uid://dg3gkan77ko2i" path="res://Assets/Chapters/hurt_box_2.gd" id="41_lyhpd"]
 [ext_resource type="Texture2D" uid="uid://1fux5p67b6wf" path="res://DuskBorne-Druid/ThunderEffects/VFX6/Sprite-sheet/Sprite-sheet.png" id="42_0gqn2"]
 [ext_resource type="PackedScene" uid="uid://cf47qeryogghb" path="res://pendant.tscn" id="42_5vn1b"]
 [ext_resource type="Texture2D" uid="uid://dl0gf7yw8dnvp" path="res://DuskBorne-Druid/SpriteSheet/DruidHurt001-Sheet.png" id="42_6vvgp"]
-[ext_resource type="Script" path="res://Assets/Chapters/hurt_box_3.gd" id="42_aopum"]
+[ext_resource type="Script" uid="uid://iuj5py3qfghm" path="res://Assets/Chapters/hurt_box_3.gd" id="42_aopum"]
 [ext_resource type="Texture2D" uid="uid://0xlyl3332mwg" path="res://DuskBorne-Druid/SpriteSheet/DruidDeath001-Sheet.png" id="42_ks44t"]
-[ext_resource type="Script" path="res://Assets/Chapters/Nightbornehurtbox.gd" id="43_cnvpc"]
+[ext_resource type="Script" uid="uid://uhdw47ry4fc2" path="res://Assets/Chapters/Nightbornehurtbox.gd" id="43_cnvpc"]
 [ext_resource type="Texture2D" uid="uid://b632i16sxlgb" path="res://DuskBorne-Druid/SpriteSheet/DruidWalk001-Sheet.png" id="43_xy5j7"]
 [ext_resource type="Script" uid="uid://dp6r0h2bk0fgt" path="res://Assets/Chapters/enemyarea.gd" id="44_ks44t"]
 [ext_resource type="AudioStream" uid="uid://bmtol1owj2cor" path="res://air-blow-380645.mp3" id="44_srkaq"]
 [ext_resource type="Script" uid="uid://cf8t7uh18nmv" path="res://Assets/Chapters/enemybats.gd" id="45_cuak4"]
+[ext_resource type="Resource" uid="uid://bfak3kt5timlf" path="res://Assets/Chapters/dialogue/npc_death.dialogue" id="45_x6npn"]
 [ext_resource type="Texture2D" uid="uid://bi7nndjsahn6k" path="res://bats/Minotaur_1/Attack.png" id="46_4gk5h"]
 [ext_resource type="Texture2D" uid="uid://cig8dqr112u51" path="res://bats/Minotaur_1/Walk.png" id="46_cuak4"]
 [ext_resource type="Texture2D" uid="uid://cphv5ympxg2b0" path="res://bats/Minotaur_1/Dead.png" id="47_xy5j7"]
@@ -67,9 +68,9 @@
 [ext_resource type="Script" uid="uid://6jbqpdto4r3v" path="res://Assets/Chapters/hurt_box.gd" id="54_w62w1"]
 [ext_resource type="Resource" uid="uid://7iwcppn5rmip" path="res://Assets/Chapters/dialogue/guide_intro.dialogue" id="57_b863t"]
 [ext_resource type="Texture2D" uid="uid://d3eyknk28gjnu" path="res://bats/Minotaur_1/Idle.png" id="59_qxn60"]
-[ext_resource type="Script" path="res://Assets/Chapters/mino_health.gd" id="61_rvkcm"]
-[ext_resource type="Script" path="res://Assets/Chapters/minohurtbox.gd" id="61_sd6qm"]
-[ext_resource type="Script" path="res://Assets/Chapters/devil_health.gd" id="67_u7x2r"]
+[ext_resource type="Script" uid="uid://bg3f2g7t4fwfp" path="res://Assets/Chapters/mino_health.gd" id="61_rvkcm"]
+[ext_resource type="Script" uid="uid://hjlp405kfq3p" path="res://Assets/Chapters/minohurtbox.gd" id="61_sd6qm"]
+[ext_resource type="Script" uid="uid://cdnq68g8u1gex" path="res://Assets/Chapters/devil_health.gd" id="67_u7x2r"]
 [ext_resource type="PackedScene" uid="uid://cr30gpga8s5me" path="res://teleportOne.tscn" id="70_1as26"]
 [ext_resource type="PackedScene" uid="uid://c6h7bqnh0h170" path="res://fireburn.tscn" id="71_a65qw"]
 [ext_resource type="PackedScene" uid="uid://dcppd2uewbo04" path="res://smoe.tscn" id="72_1as26"]
@@ -16752,6 +16753,7 @@ script = ExtResource("31_fr5cv")
 collision_layer = 0
 collision_mask = 31
 script = ExtResource("43_cnvpc")
+dialogue_resource = ExtResource("45_x6npn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chapter2-1/Enemy/HurtBox"]
 position = Vector2(6, 29)

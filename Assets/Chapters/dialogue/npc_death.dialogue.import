@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bfak3kt5timlf"
+path="res://.godot/imported/npc_death.dialogue-76991561e0fde90872299f9107c96984.tres"
+
+[deps]
+
+source_file="res://Assets/Chapters/dialogue/npc_death.dialogue"
+dest_files=["res://.godot/imported/npc_death.dialogue-76991561e0fde90872299f9107c96984.tres"]
+
+[params]
+
+defaults=true
