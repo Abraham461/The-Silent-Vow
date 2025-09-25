@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://b7vycvoy2g8yk"]
+[gd_scene load_steps=25 format=4 uid="uid://b7vycvoy2g8yk"]
 
 [ext_resource type="Script" uid="uid://f51o10g4i6g3" path="res://chapter_3.gd" id="1_ad1jk"]
 [ext_resource type="Texture2D" uid="uid://crjbh7jiip621" path="res://1/5.png" id="1_wgaie"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://nrgjr17jbmfb" path="res://Assets/Chapter 3 objects/tileset.png" id="7_tw4ri"]
 [ext_resource type="Texture2D" uid="uid://cadkslsxgihhk" path="res://Assets/Chapter 3 objects/Assets.png" id="8_tw4ri"]
 [ext_resource type="Texture2D" uid="uid://bg44at5w6r8fe" path="res://DuskBorne-Druid/moreeffects/Dimensional_Portal.png" id="9_jlcj0"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="11_vl6qv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jlcj0"]
 texture = ExtResource("7_tw4ri")
@@ -639,6 +640,11 @@ frame_progress = 0.41421
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/cha3CutsceneTpZone"]
 position = Vector2(1.03226, 0.516121)
 shape = SubResource("CapsuleShape2D_jlcj0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("11_vl6qv")]
+visible = false
 
 [connection signal="body_entered" from="AnimatedSprite2D/cha3CutsceneTpZone" to="CharacterBody2D" method="_on_cha_3_cutscene_tp_zone_body_entered"]
 

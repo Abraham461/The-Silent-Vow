@@ -185,6 +185,8 @@ func _process(_delta):
 
 	
 func _ready() -> void:
+	
+	Global.current_level_scene_path = "res://chapter_3_1Second.tscn"
 
 	torch_light.visible = torch_on
 	combo_timer.wait_time = COMBO_WINDOW
@@ -1092,7 +1094,7 @@ func _on_player_health_health_depleted() -> void:
 
 	# ----------------- CHANGE SCENE TO CHAPTER_2_1 -----------------
 	# Replace this path with the correct one in your project if needed:
-	var scene_path: String = "res://chapter_3_1Second.tscn"
+	get_tree().change_scene_to_file("res://Main_menu/Game_Over_Menu/Game_over_menu.tscn")
 
 	# Optional: do any cleanup you want before switching (stop music, reset singletons, etc.)
 	# For example:
@@ -1101,7 +1103,7 @@ func _on_player_health_health_depleted() -> void:
 	#     m.stop()
 
 	# Attempt to change scene
-	var err := get_tree().change_scene_to_file(scene_path)
+	
 	#if err != OK:
 		#push_warning("Failed to change scene to '%s' (error code %d). Check the path.".format(scene_path, err))
 	#else:

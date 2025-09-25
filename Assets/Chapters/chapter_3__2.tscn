@@ -1,4 +1,4 @@
-[gd_scene load_steps=244 format=4 uid="uid://swtscqw2p1m5"]
+[gd_scene load_steps=245 format=4 uid="uid://swtscqw2p1m5"]
 
 [ext_resource type="Script" uid="uid://ct5jfn8ip5ssq" path="res://Assets/Chapters/chapter_3__2.gd" id="1_avu80"]
 [ext_resource type="Texture2D" uid="uid://62u6iepegns6" path="res://Assets/Chapter 3 objects/01 background.png" id="1_wmwd1"]
@@ -56,6 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://c28ienxrepwi" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_14.png" id="51_bsdhb"]
 [ext_resource type="Texture2D" uid="uid://bxicjtph4uma8" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_15.png" id="52_al1v6"]
 [ext_resource type="Texture2D" uid="uid://cjahwm60kib0h" path="res://DuskBorne-Druid/CharacterPack/GPE/nextlevel/nextlevel1/nextlevel_1_16.png" id="53_mjumw"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="57_71e8q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xfbc1"]
 texture = ExtResource("11_dunao")
@@ -13996,6 +13997,11 @@ frame_progress = 0.215899
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scenechangeGate/SCgate"]
 shape = SubResource("CapsuleShape2D_a4ilj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("57_71e8q")]
+visible = false
 
 [connection signal="health_depleted" from="CharacterBody2D2/playerHealth" to="CharacterBody2D2" method="_on_player_health_health_depleted"]
 [connection signal="body_entered" from="scenechangeGate/SCgate" to="CharacterBody2D2" method="_on_s_cgate_body_entered"]

@@ -3,7 +3,7 @@ extends Node2D
 @onready var player = $Player
 
 var scene_changed := false
-const NEXT_SCENE := "res://more cutscene/cuts_second.tscn"
+#const NEXT_SCENE := "res://more cutscene/cuts_second.tscn"
 var dialogue_active: bool = false
 
 func _ready():
@@ -37,9 +37,9 @@ func _on_exit_area_body_entered(body: Node):
 		return
 
 	# Prefer group check. Add the Player node to the 'player' group in the editor.
-	if body.is_in_group("player") or body.name == "Player":
-		scene_changed = true
-		get_tree().change_scene_to_file(NEXT_SCENE)
+	#if body.is_in_group("player") or body.name == "Player":
+		#scene_changed = true
+		#get_tree().change_scene_to_file(NEXT_SCENE)
 
 # === Dialogue signal handlers ===
 func _on_dialogue_started(_res: Variant) -> void:

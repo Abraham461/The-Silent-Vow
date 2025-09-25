@@ -16,7 +16,7 @@ size = Vector2(33, 375)
 [node name="Playable" type="Node2D"]
 script = ExtResource("1_xx22o")
 
-[node name="Player" parent="." instance=ExtResource("1_1sv7u")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_1sv7u")]
 disable_mode = 1
 
 [node name="Running_on_concrete" type="AudioStreamPlayer" parent="Player"]
@@ -42,3 +42,5 @@ shape = SubResource("RectangleShape2D_1t06j")
 visible = false
 position = Vector2(6.5, 177.5)
 shape = SubResource("RectangleShape2D_xx22o")
+
+[connection signal="body_entered" from="ExitRight" to="Player" method="_on_exit_right_body_entered"]

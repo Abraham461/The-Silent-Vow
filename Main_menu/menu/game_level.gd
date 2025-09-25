@@ -6,32 +6,38 @@ extends Control
 @onready var chapter_3: Button = $TextureRect/Chapter3
 @onready var chapter_4: Button = $TextureRect/Chapter4
 @onready var back_button: Button = $TextureRect/Back_Button
+@onready var click_button: AudioStreamPlayer = $Click_Button
 
 
 func _ready():
 	handle_signals()
 
 func on_chapter_1_button_pressed() -> void:
+	click_button.play()
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished 
 	get_tree().change_scene_to_file("res://Chapter_1_cutscene/intro_cutscene.tscn")
 
 func on_chapter_2_button_pressed() -> void:
+	click_button.play()
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished 
 	get_tree().change_scene_to_file("res://more cutscene/cuts_second.tscn")
 	
 func on_chapter_3_button_pressed() -> void:
+	click_button.play()
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished 
 	get_tree().change_scene_to_file("res://more cutscene/cutscene_third.tscn")
 	
 func on_chapter_4_button_pressed() -> void:
+	click_button.play()
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
 	get_tree().change_scene_to_file("res://more cutscene/cutscene_four.tscn")
 	
 func on_back_button_pressed() -> void:
+	click_button.play()
 	TransitionScreen.transition()
 	await TransitionScreen.on_transition_finished
 	get_tree().change_scene_to_file("res://Main_menu/menu/Main_Menu.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://chs8gl8jb2gd6"]
+[gd_scene load_steps=34 format=3 uid="uid://chs8gl8jb2gd6"]
 
 [ext_resource type="Texture2D" uid="uid://c8j44nc22qbpk" path="res://background 4/Plan 3.png" id="1_ho7oe"]
 [ext_resource type="Texture2D" uid="uid://d67s4jqfbh1p" path="res://background 4/Plan 2.png" id="2_nmhtg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dlra2l36w6sjl" path="res://Sprites/Run (King).png" id="8_ivjb3"]
 [ext_resource type="PackedScene" uid="uid://dingdtff7a7j5" path="res://helpers/actioinable.tscn" id="9_ivjb3"]
 [ext_resource type="Resource" uid="uid://b4rro3nph71ad" path="res://dialogue/main.dialogue" id="10_i8grw"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="11_i8grw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i8grw"]
 
@@ -275,5 +276,10 @@ dialogue_resource = ExtResource("10_i8grw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Actioinable"]
 position = Vector2(68, 260)
 shape = SubResource("CircleShape2D_xw712")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="CanvasLayer" instance=ExtResource("11_i8grw")]
+visible = false
 
 [editable path="Doors/door_W"]

@@ -18,6 +18,7 @@ extends Node2D
 @onready var smoe_3: AnimatedSprite2D = $smoe3
 @onready var scene_change_tp: AnimatedSprite2D = $SceneChangeTP
 @onready var scenechange_area: Area2D = $SceneChangeTP/ScenechangeArea
+@onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
 
 #@onready var main_theme_song: AudioStreamPlayer2D = $mainThemeSong
 @onready var main_theme_song: AudioStreamPlayer = $mainThemeSong
@@ -45,6 +46,7 @@ func _ready():
 	enemy.play("NightborneIdle")
 	lightning_aura.play("aura")
 	scene_change_tp.play("ch3scene")
+	animated_sprite_2d_2.play("gate")
 	if not devildeath:
 		devilanim.play("devilidle")
 		# If the enemy is valid (exists), disable the scene-change trigger.

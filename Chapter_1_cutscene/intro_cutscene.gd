@@ -50,7 +50,7 @@ func _ready():
 func enqueue_cutscenes():
 	# Add text and image pairs in order
 	queue_pair("In the peaceful kingdom of Eirenwald, lush valleys and golden cites lived under calm skies. For decades, its people flourished under King Solomon the Wise, a ruler known for justce and peace. ", textures[0])
-	queue_pair("But peace, like glass, shaters silently.", textures[1])
+	queue_pair("But peace, like glass, shatters silently.", textures[1])
 	queue_pair("One cool autumn morning, dark clouds gathered above the castle. Lightning cracked the sky though no storm had been forecast. The wind screamed like a warning. ", textures[2])
 	queue_pair("From deep in the wildlands, strange monsters appeared—beasts with horns, flying creatures, and walking shadows. They atacked outer villages, destroying everything in their path. ", textures[3])
 	queue_pair("Then, On the third night, they reached the capital. In the chaos, Princess Elira—the king’s only daughter—was taken from her tower while everyone slept. ", textures[4])

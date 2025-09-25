@@ -1,7 +1,8 @@
-[gd_scene load_steps=378 format=4 uid="uid://c7mrcpvvyy5hm"]
+[gd_scene load_steps=379 format=4 uid="uid://c7mrcpvvyy5hm"]
 
 [ext_resource type="Script" uid="uid://bmhkh78cpx6aj" path="res://chapter_3_1_second.gd" id="1_l7pte"]
 [ext_resource type="Texture2D" uid="uid://crjbh7jiip621" path="res://1/5.png" id="2_7tumt"]
+[ext_resource type="PackedScene" uid="uid://2qug76wnw8xm" path="res://Main_menu/Pause_Menu/pause_menu.tscn" id="2_r230k"]
 [ext_resource type="Texture2D" uid="uid://b65s0fcwhgufo" path="res://2/4.png" id="3_oquoo"]
 [ext_resource type="Texture2D" uid="uid://b3fcns4arsefr" path="res://2/2.png" id="4_l55ig"]
 [ext_resource type="Texture2D" uid="uid://vbrxc6018ygi" path="res://2/3.png" id="5_kcm7e"]
@@ -3080,6 +3081,11 @@ zoom = Vector2(0.7, 0.7)
 position_smoothing_enabled = true
 position_smoothing_speed = 100.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Pause_Menu" parent="Camera2D/CanvasLayer" instance=ExtResource("2_r230k")]
+visible = false
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -3125,6 +3131,7 @@ script = ExtResource("6_l7pte")
 [node name="running" type="AudioStreamPlayer" parent="CharacterBody2D"]
 stream = ExtResource("7_8obp0")
 volume_db = -6.33
+bus = &"Sfx"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" groups=["player"]]
 position = Vector2(2, 8)
@@ -3194,16 +3201,19 @@ shape = SubResource("CapsuleShape2D_lxgwd")
 stream = ExtResource("25_7bnon")
 volume_db = 5.913
 pitch_scale = 1.74
+bus = &"Sfx"
 
 [node name="roll" type="AudioStreamPlayer" parent="CharacterBody2D"]
 stream = ExtResource("26_ibodk")
 volume_db = -8.911
 pitch_scale = 1.27
+bus = &"Sfx"
 
 [node name="attack" type="AudioStreamPlayer" parent="CharacterBody2D"]
 stream = ExtResource("27_681gg")
 volume_db = -7.208
 pitch_scale = 0.86
+bus = &"Sfx"
 
 [node name="HitBox2" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 4
